@@ -44,8 +44,8 @@ function showMessageFormIfViewingSelf() {
           messageForm.classList.remove('hidden');
           document.getElementById('about-me-form').classList.remove('hidden');
           }
-        }
-      });
+        });
+  }
 
 
 /** Fetches messages and add them to the page. */
@@ -65,6 +65,7 @@ function fetchMessages() {
         messages.forEach((message) => {
           const messageDiv = buildMessageDiv(message);
           messagesContainer.appendChild(messageDiv);
+
         });
       });
 }
@@ -91,12 +92,12 @@ function buildMessageDiv(message) {
 
   return messageDiv;
 }
-
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
   showMessageFormIfViewingSelf();
   fetchMessages();
+  fetchAboutMe();
 }
 
 function fetchAboutMe(){
@@ -113,3 +114,4 @@ function fetchAboutMe(){
 
   });
 }
+
