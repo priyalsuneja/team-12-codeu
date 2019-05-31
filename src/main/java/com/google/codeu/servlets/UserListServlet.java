@@ -27,7 +27,6 @@ public class UserListServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    //          response.getOutputStream().println("this will be my user list");
         Set<String> users = datastore.getUsers();
         response.setContentType("application/json");
         Gson gson = new Gson();
