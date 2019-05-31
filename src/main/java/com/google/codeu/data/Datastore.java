@@ -113,6 +113,7 @@ public class Datastore {
 
     return messages;
   }
+  /**
    * Stores the User in Datastore.
    */
   public void storeUser(User user) {
