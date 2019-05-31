@@ -16,31 +16,23 @@ import java.util.Set;
  */
 @WebServlet("/user-list")
 public class UserListServlet extends HttpServlet{
-	
-	private Datastore datastore;	
 
-	@Override
-	public void init() {
-            datastore = new Datastore();
-	}
+    private Datastore datastore;	
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-	  throws IOException {
+    @Override
+    public void init() {
+        datastore = new Datastore();
+    }
 
-//          response.getOutputStream().println("this will be my user list");
-            Set<String> users = datastore.getUsers();
-//          for(String user: users)
-//          {
-//              response.getOutputStream().println(user);
-//          }
-            response.setContentType("application/json");
-            Gson gson = new Gson();
-            String json = gson.toJson(users);
-            response.getOutputStream().println(json);
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+    //          response.getOutputStream().println("this will be my user list");
+        Set<String> users = datastore.getUsers();
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+        String json = gson.toJson(users);
+        response.getOutputStream().println(json);
 
-	}
-
-
-    
+    }
 }
