@@ -130,7 +130,7 @@ public class Datastore {
 	return users;
   }
   
-  public int getTotalMessageCount(){
+  public int getTotalMessageCount() {
 	  Query query = new Query("Message");
 	  PreparedQuery results = datastore.prepare(query);
 	  return results.countEntities(FetchOptions.Builder.withLimit(1000));

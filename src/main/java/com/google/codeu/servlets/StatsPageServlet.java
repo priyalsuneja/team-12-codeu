@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
  * Handles fetching site statistics.
  */
 @WebServlet("/stats")
-public class StatsPageServlet extends HttpServlet{
+public class StatsPageServlet extends HttpServlet {
 
   private Datastore datastore;
 
