@@ -16,7 +16,7 @@ function fetchStats(){
 }
 
 function buildStatElement(statString){
-	const statElement = document.createElement('p');
-	statElement.appendChild(document.createTextNode(statString));
-	return statElement;
+	 const statElement = document.createElement('p');
+	 statElement.appendChild(document.createTextNode(statString));
+	 return statElement;
 }
