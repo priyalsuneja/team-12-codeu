@@ -119,13 +119,24 @@ public class Datastore {
   */
   public Set<String> getUsers()
   {
-	Set<String> users = new HashSet<>();
-	Query query = new Query("Message");
-	PreparedQuery results = datastore.prepare(query);
-	for(Entity entity: results.asIterable())
-	{
-	  users.add((String)entity.getProperty("user"));
-	}
-	return users;
+    Set<String> users = new HashSet<>();
+	
+    /*adding users who have posted a message*/
+    Query query = new Query("Message");
+    PreparedQuery results = datastore.prepare(query);
+    for(Entity entity: results.asIterable())
+    {
+      users.add((String)entity.getProperty("user"));
+    }
+	
+    /*adding users who have added about me*/
+    Query query2 = new Query("User");
+    PreparedQuery results2 = datastore.prepare(query2);
+    for(Entity entity: results2.asIterable())
+    {
+      users.add((String)entity.getProperty("email"));
+    }
+	
+    return users;
   }
 }
