@@ -8,10 +8,9 @@
           list.innerHTML = '';
 
           users.forEach((user) => {
-		    let EndOfUsernameindex = user.indexOf(".com")+4;
+            let EndOfUsernameindex = user.indexOf(".com")+4;
             const userListItem = buildUserListItem(user.substring(0, EndOfUsernameindex), user.substring(EndOfUsernameindex));
             list.appendChild(userListItem);
-			//list.appendChild(buildUserListItem(user.substring(EndOfUsernameindex)));
           });
         });
       }
@@ -24,14 +23,14 @@
         const userLink = document.createElement('a');
         userLink.setAttribute('href', '/user-page.html?user=' + user);
         userLink.appendChild(document.createTextNode(user));
-		const aboutMeParagraph = document.createElement('textarea');
-		aboutMeParagraph.setAttribute('placeholder', 'About me ...');
-		aboutMeParagraph.setAttribute('readonly', 'readonly');
-		aboutMeParagraph.innerHTML = aboutMe;
+	const aboutMeParagraph = document.createElement('textarea');
+	aboutMeParagraph.setAttribute('placeholder', 'About me ...');
+	aboutMeParagraph.setAttribute('readonly', 'readonly');
+	aboutMeParagraph.innerHTML = aboutMe;
         const userListItem = document.createElement('li');
         userListItem.appendChild(userLink);
-		userListItem.appendChild(document.createElement('br'));
-		userListItem.appendChild(aboutMeParagraph);
+	userListItem.appendChild(document.createElement('br'));
+	userListItem.appendChild(aboutMeParagraph);
         return userListItem;
       }
 

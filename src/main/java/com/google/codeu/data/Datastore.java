@@ -129,7 +129,7 @@ public class Datastore {
       users.add((String)entity.getProperty("email") + (String)entity.getProperty("aboutMe"));
     }
 	
-	/*adding users who have posted a message*/
+    /*adding users who have posted a message*/
     Query query = new Query("Message");
     PreparedQuery results = datastore.prepare(query);
     for(Entity entity: results.asIterable())
