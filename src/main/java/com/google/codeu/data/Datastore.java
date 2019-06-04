@@ -115,26 +115,31 @@ public class Datastore {
   }
   
   /**
-  * Returns a set of all users who have posted a message
+  * Returns a set of all users who have posted a message or about me
   */
   public Set<String> getUsers()
   {
     Set<String> users = new HashSet<>();
+    Set<String> usersWithAboutMe = new HashSet<>();
 	
     /*adding users who have added about me*/
-    Query query2 = new Query("User");
-    PreparedQuery results2 = datastore.prepare(query2);
-    for(Entity entity: results2.asIterable())
+    Query userQuery = new Query("User");
+    PreparedQuery userQueryResults = datastore.prepare(userQuery);
+    for(Entity entity: userQueryResults.asIterable())
     {
-      users.add((String)entity.getProperty("email") + (String)entity.getProperty("aboutMe"));
+      users.add((String)entity.getProperty("email") +" "+ (String)entity.getProperty("aboutMe"));
+      usersWithAboutMe.add((String)entity.getProperty("email"));
     }
 	
     /*adding users who have posted a message*/
-    Query query = new Query("Message");
-    PreparedQuery results = datastore.prepare(query);
-    for(Entity entity: results.asIterable())
+    Query messageQuery = new Query("Message");
+    PreparedQuery messageQueryResults = datastore.prepare(messageQuery);
+    for(Entity entity: messageQueryResults.asIterable())
     {
-      users.add((String)entity.getProperty("user"));
+      if(!usersWithAboutMe.contains((String)entity.getProperty("user")))
+      {
+        users.add((String)entity.getProperty("user")+" ");
+      }
     }
 	
     return users;
