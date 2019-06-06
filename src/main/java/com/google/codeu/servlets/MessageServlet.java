@@ -23,12 +23,19 @@ import com.google.codeu.data.Message;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.regex.*;
+
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
@@ -78,13 +85,80 @@ public class MessageServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 	
-    String regex = "(https?://\\S+\\.(png|jpg))";
-    String replacement = "<img src=\"$1\" />";
-    String textWithImagesReplaced = text.replaceAll(regex, replacement);
-
+    String textWithImagesReplaced = tagImageURLs(text);
+	
     Message message = new Message(user, textWithImagesReplaced);
     datastore.storeMessage(message);
 
     response.sendRedirect("/user-page.html?user=" + user);
+  }
+  
+  /** Replaces valid image url in the message with image tag
+   *  Does not change the strig message if there are no valid image urls
+   */ 
+  public String tagImageURLs(String message)
+  {
+    String regex = "(https?://\\S*\\.(?:png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF))";
+    Pattern pattern = Pattern.compile(regex); 
+    Matcher matcher = pattern.matcher(message);  
+    
+    //creating list of all urls that match the pattern
+    List<String> urls = new ArrayList<String>();
+    int firstMarchedUrlIndex = -1;
+    //adding first matched url and getting its index
+    if(matcher.find())
+    {
+      String matchedUrl = matcher.group(1);
+      firstMarchedUrlIndex = matcher.start();
+      urls.add(matchedUrl);
+    }
+    //adding other matched urls
+    while(matcher.find())
+    {
+      String matchedUrl = matcher.group(1);
+      urls.add(matchedUrl);
+    }
+    //checking if url is valid Using Java library
+    String[] nonUrlTexts = message.split(regex);
+    
+    for(int i  = 0; i<urls.size(); i++)
+    {
+      boolean isUrlValid = false;
+      try {
+        
+        URI uri = new URL(urls.get(i)).toURI();
+        uri.parseServerAuthority();
+        isUrlValid = true;
+      } catch (Exception e) {}
+      
+      if(isUrlValid)
+      {
+        String replacement = "<img src=\"$1\" />";
+        urls.set(i, urls.get(i).replaceAll(regex, replacement));
+      }
+    }
+
+    //putting urls and nonUrlTexts back into one single message
+    message = "";
+    if(firstMarchedUrlIndex==0)
+    {
+      for(int i = 0; i<urls.size(); i++)
+      {
+        message+=urls.get(i);
+        if(i+1<nonUrlTexts.length)
+          message+=nonUrlTexts[i+1];
+      }
+    }
+    else
+    {
+      for(int i = 0; i<nonUrlTexts.length; i++)
+      {
+        message+=nonUrlTexts[i];
+        if(i<urls.size())
+          message+=urls.get(i);
+      }
+    }
+    
+    return message;
   }
 }
