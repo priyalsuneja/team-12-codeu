@@ -85,9 +85,9 @@ public class MessageServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 	
-    String textWithImagesReplaced = tagImageURLs(text);
+    String textReplaced = tagURLs(text);
 	
-    Message message = new Message(user, textWithImagesReplaced);
+    Message message = new Message(user, textReplaced);
     datastore.storeMessage(message);
 
     response.sendRedirect("/user-page.html?user=" + user);
@@ -96,9 +96,9 @@ public class MessageServlet extends HttpServlet {
   /** Replaces valid image url in the message with image tag
    *  Does not change the strig message if there are no valid image urls
    */ 
-  public String tagImageURLs(String message)
+  public String tagURLs(String message)
   {
-    String regex = "(https?://\\S*\\.(?:png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF))";
+    String regex = "(https?://\\S*\\.(?:png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF|mp4|MP4|webm|mp3|MP3|wav|WAV))";
     Pattern pattern = Pattern.compile(regex); 
     Matcher matcher = pattern.matcher(message);  
     
@@ -118,9 +118,11 @@ public class MessageServlet extends HttpServlet {
       String matchedUrl = matcher.group(1);
       urls.add(matchedUrl);
     }
-    //checking if url is valid Using Java library
+	
+    //creating list of non-url sections of text
     String[] nonUrlTexts = message.split(regex);
-    
+	
+    //checking if url is valid Using Java library
     for(int i  = 0; i<urls.size(); i++)
     {
       boolean isUrlValid = false;
@@ -133,8 +135,16 @@ public class MessageServlet extends HttpServlet {
       
       if(isUrlValid)
       {
-        String replacement = "<img src=\"$1\" />";
-        urls.set(i, urls.get(i).replaceAll(regex, replacement));
+        String imageReplacement = "<img src=\"$1\" />";
+        String videoReplacement = "<video controls><source src=\"$1\" type=\"video/webm\"><source src = \"$1\" type = \"video/mp4\"></video>";
+        String audioReplacement = "<audio controls><source src=\"$1\" type=\"audio/mp3\"><source src = \"$1\" type = \"audio/wav\"></video>";
+        
+        if(urls.get(i).toLowerCase().endsWith("mp4") ||urls.get(i).toLowerCase().endsWith("webm"))
+          urls.set(i, urls.get(i).replaceAll(regex, videoReplacement));
+        else if(urls.get(i).toLowerCase().endsWith("mp3") || urls.get(i).toLowerCase().endsWith("wav"))
+          urls.set(i, urls.get(i).replaceAll(regex, audioReplacement));
+        else
+          urls.set(i, urls.get(i).replaceAll(regex, imageReplacement));
       }
     }
 
