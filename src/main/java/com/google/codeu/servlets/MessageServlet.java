@@ -41,8 +41,11 @@ import java.util.regex.*;
 @WebServlet("/messages")
 public class MessageServlet extends HttpServlet {
 
+  private final static String imageReplacement = "<img src=\"$1\" />";
+  private final static String videoReplacement = "<video controls><source src=\"$1\" type=\"video/webm\"><source src = \"$1\" type = \"video/mp4\"></video>";
+  private final static String audioReplacement = "<audio controls><source src=\"$1\" type=\"audio/mp3\"><source src = \"$1\" type = \"audio/wav\"></audio>";
   private Datastore datastore;
-
+  
   @Override
   public void init() {
     datastore = new Datastore();
@@ -93,12 +96,13 @@ public class MessageServlet extends HttpServlet {
     response.sendRedirect("/user-page.html?user=" + user);
   }
   
-  /** Replaces valid image url in the message with image tag
+  /**
+   * Replaces valid image url in the message with image tag
    *  Does not change the strig message if there are no valid image urls
    */ 
   public String tagURLs(String message)
   {
-    String regex = "(https?://\\S*\\.(?:png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF|mp4|MP4|webm|mp3|MP3|wav|WAV))";
+    String regex = "(https?://\\S*?\\.(?:png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF|mp4|MP4|webm|mp3|MP3|wav|WAV))";
     Pattern pattern = Pattern.compile(regex); 
     Matcher matcher = pattern.matcher(message);  
     
@@ -134,11 +138,7 @@ public class MessageServlet extends HttpServlet {
       } catch (Exception e) {}
       
       if(isUrlValid)
-      {
-        String imageReplacement = "<img src=\"$1\" />";
-        String videoReplacement = "<video controls><source src=\"$1\" type=\"video/webm\"><source src = \"$1\" type = \"video/mp4\"></video>";
-        String audioReplacement = "<audio controls><source src=\"$1\" type=\"audio/mp3\"><source src = \"$1\" type = \"audio/wav\"></video>";
-        
+      { 
         if(urls.get(i).toLowerCase().endsWith("mp4") ||urls.get(i).toLowerCase().endsWith("webm"))
           urls.set(i, urls.get(i).replaceAll(regex, videoReplacement));
         else if(urls.get(i).toLowerCase().endsWith("mp3") || urls.get(i).toLowerCase().endsWith("wav"))
