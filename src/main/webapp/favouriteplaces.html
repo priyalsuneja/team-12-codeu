@@ -1,54 +1,22 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Favourite Spots</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACmyAkxL4HbZk2-M7PsvjhCU8vdctvw0g"></script>
-  <script>
-    function createMap(){
-      const map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat:40.281080,  lng: -8.424165}, 
-        zoom: 1.4
-      });
+    <head>
+      <title>Favourite Spots</title>
+          <link rel="stylesheet" href="/css/favourite-places.css">
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACmyAkxL4HbZk2-M7PsvjhCU8vdctvw0g"></script>
+          <script src="/js/favourite-places.js"></script>
+     </head>
 
-      addLandmark(map, 43.724911, -79.394798, 'Ginelle\'s Favourite Place',
-          'Toronto is Ginelle\'s favourite place in the world.');
-      addLandmark(map, 32.640176, 51.677378, 'Pardis\'s Favourite Place',
-          'Esfahan is Pardis\'s favourite place in the world.');
-      addLandmark(map, 30.579241, 114.344387, 'Chloe\'s Favourite Place',
-          'Wuhan is Chloe\'s favourite place in the world.');
-      addLandmark(map, 21.171620, 72.806259, 'Priyal\'s Favourite Place',
-          'Surat is Priyal\'s favourite place in the world.');
-    }
-
-    /** Adds a marker that shows an info window when clicked. */
-    function addLandmark(map, lat, lng, title, description) {
-      const marker = new google.maps.Marker ({
-        position: {lat: lat, lng: lng},
-        map: map,
-        title: title
-      });
-      const infoWindow = new google.maps.InfoWindow({
-        content: description
-      });
-      marker.addListener('click', function() {
-        infoWindow.open(map, marker);
-      });
-    }
-  </script>
-
-  <style>
-    #map {
-      width: 500px;
-      height: 500px;
-      border: thin solid black;
-    }
-  </style>
- </head>
-
-<body onload="createMap();">
-  <h1>Favourite Places</h1>
-  <p>This page contains our Team's favourite places around the world! Click on the markers to see the location and find out who suggested that spot.</p>
-  <div id="map"></div>
-</body>
+    <body onload="createMap();">
+        <nav>
+          <ul id="navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutus.html">About Our Team</a></li>
+          </ul>
+        </nav>
+        <h1>Favourite Places</h1>
+        <p>This page contains our Team's favourite places around the world! Click on the markers to see the location and find out who suggested that spot.</p>
+        <div id="map"></div>
+    </body>
 </html>
