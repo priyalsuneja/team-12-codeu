@@ -10,7 +10,7 @@
 		  
           /*separating user link and about me section by " " */
           users.forEach((user) => {
-            let endOfUsernameindex = user.indexOf(" ");
+            let endOfUsernameindex = user.indexOf("|");
             const userListItem = buildUserListItem(user.substring(0, endOfUsernameindex), user.substring(endOfUsernameindex+1));
             list.appendChild(userListItem);
           });
@@ -24,6 +24,8 @@
        * example:
        * <li><a href="/user-page.html?user=test@example.com">test@example.com</a>
        * <textarea readonly = 'readonly'> about me <textarea></li>
+	   * param user = test@example.com (String)
+	   * param aboutMe = about me text (String)
        */
       function buildUserListItem(user, aboutMe) 
       {
@@ -35,7 +37,7 @@
         userListItem.appendChild(userLink);
         userListItem.appendChild(document.createElement('br'));
 		
-        if(aboutMe!==null && aboutMe!=="")
+        if(aboutMe)
         {
           const aboutMeText = document.createElement('textarea');
           aboutMeText.setAttribute('readonly', 'readonly');

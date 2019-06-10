@@ -24,6 +24,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.Set;
@@ -117,31 +118,26 @@ public class Datastore {
   /**
   * Returns a set of all users who have posted a message or about me
   */
-  public Set<String> getUsers()
+  public HashMap<String, String> getUsers()
   {
-    Set<String> users = new HashSet<>();
-    Set<String> usersWithAboutMe = new HashSet<>();
-	
-    /*adding users who have added about me*/
-    Query userQuery = new Query("User");
-    PreparedQuery userQueryResults = datastore.prepare(userQuery);
-    for(Entity entity: userQueryResults.asIterable())
-    {
-      users.add((String)entity.getProperty("email") +" "+ (String)entity.getProperty("aboutMe"));
-      usersWithAboutMe.add((String)entity.getProperty("email"));
-    }
-	
-    /*adding users who have posted a message*/
-    Query messageQuery = new Query("Message");
-    PreparedQuery messageQueryResults = datastore.prepare(messageQuery);
-    for(Entity entity: messageQueryResults.asIterable())
-    {
-      if(!usersWithAboutMe.contains((String)entity.getProperty("user")))
+      HashMap<String, String> usersMap = new HashMap<>();
+
+      //adding users who have posted a message
+      Query messageQuery = new Query("Message");
+      PreparedQuery messageQueryResults = datastore.prepare(messageQuery);
+      for(Entity entity: messageQueryResults.asIterable())
       {
-        users.add((String)entity.getProperty("user")+" ");
+        usersMap.put(entity.getProperty("user").toString(),entity.getProperty("user")+"|" );
       }
-    }
+      
+      //adding users who have posted aboutMe
+      Query userQuery = new Query("User");
+      PreparedQuery userQueryResults = datastore.prepare(userQuery);
+      for(Entity entity: userQueryResults.asIterable())
+      {
+        usersMap.put(entity.getProperty("email").toString(),entity.getProperty("email") +"|"+ entity.getProperty("aboutMe") );
+      }
 	
-    return users;
+    return usersMap;
   }
 }
