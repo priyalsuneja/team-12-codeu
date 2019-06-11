@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.codeu.data.Datastore;
 import com.google.gson.Gson;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -27,10 +28,10 @@ public class UserListServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-        Set<String> users = datastore.getUsers();
+        HashMap<String, String> usersMap = datastore.getUsers();
         response.setContentType("application/json");
         Gson gson = new Gson();
-        String json = gson.toJson(users);
+        String json = gson.toJson(usersMap.values());
         response.getOutputStream().println(json);
 
     }
