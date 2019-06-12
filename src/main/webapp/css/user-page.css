@@ -47,6 +47,20 @@
   max-width: 100%;
 }
 
+/*Styling videos in message body*/
+.message-body video {
+  display: block;
+  margin-top: 25px;
+  max-width: 100%;
+}
+
+/*Styling audios in message body*/
+.message-body audio {
+  display: block;
+  margin-top: 25px;
+  width: 100%;
+}
+
 /* Use this to hide certain elements like forms if the
    user is not logged in or viewing their own page. */
 .hidden {
