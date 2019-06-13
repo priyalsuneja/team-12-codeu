@@ -104,7 +104,9 @@ public class MessageServlet extends HttpServlet {
     //get image url ulpoaded to Blobstore
     String imageUrl = getUploadedFileUrl(request, "image");
     //add image tage for uploaded image url at the end of message text
-    messageText += "<img src=\"" + imageUrl + "\" />";
+    if(imageUrl!=null) {
+      messageText += "<img src=\"" + imageUrl + "\" />";
+    }
     
     /*storing the message in Datastore*/
     Message message = new Message(user, messageText);
@@ -137,13 +139,20 @@ public class MessageServlet extends HttpServlet {
       return null;
     }
 
-    // We could check the validity of the file here, e.g. to make sure it's an image file
-    // https://stackoverflow.com/q/10779564/873165
-
     // Use ImagesService to get a URL that points to the uploaded file.
     ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
-    return imagesService.getServingUrl(options);
+    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);  
+    // Checking the validity of the file to make sure it's an image, if not catch exception.
+    try
+    {
+        //getting the image URL to the uploaded file
+        String imageUrl = imagesService.getServingUrl(options);
+        return imageUrl;
+    }
+    catch(java.lang.IllegalArgumentException exception)
+    {
+        return null;
+    }
   }
   
   /**
