@@ -33,7 +33,7 @@ function setPageTitle() {
  * Shows the message form if the user is logged in and viewing their own page.
  */
 function showMessageFormIfViewingSelf() {
-  fetch('/MessageServlet')
+  fetch('/Message')
       .then((response) => {
         return response.json();
       })
