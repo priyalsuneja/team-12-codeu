@@ -38,11 +38,8 @@ public class ChartServlet extends HttpServlet {
     while(scanner.hasNextLine()) {
       String line = scanner.nextLine();
       String[] cells = line.split(",");
-
       String curName = cells[1];
-      //System.out.println(curName);
       double curDonation = Double.parseDouble(cells[2]);
-      //System.out.println(curDonation);
       charityDonationArray.add(gson.toJsonTree(new charityDonation(curName, curDonation)));
     }
     scanner.close();
