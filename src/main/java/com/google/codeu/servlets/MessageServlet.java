@@ -45,6 +45,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.regex.*;
 
+import java.util.concurrent.TimeUnit;
+
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
@@ -102,10 +104,13 @@ public class MessageServlet extends HttpServlet {
     /*adding image tags for the image file uploaded to Blobstore*/
     String messageText = textReplaced;
     //get image url ulpoaded to Blobstore
-    String imageUrl = getUploadedFileUrl(request, "image");
+    List<String> imageBlobUrls = getUploadedFileUrl(request, "image");
     //add image tage for uploaded image url at the end of message text
-    if(imageUrl!=null) {
-      messageText += "<img src=\"" + imageUrl + "\" />";
+    if(imageBlobUrls!=null ) {
+      for(String url:imageBlobUrls)
+      {
+        messageText += "<img src=\"" + url + "\" />";   
+      }
     }
     
     /*storing the message in Datastore*/
@@ -118,7 +123,7 @@ public class MessageServlet extends HttpServlet {
    /**
     * Returns a URL that points to the uploaded file, or null if the user didn't upload a file.
     */
-  private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName)
+  private List<String> getUploadedFileUrl(HttpServletRequest request, String formInputElementName)
   {
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
@@ -129,30 +134,44 @@ public class MessageServlet extends HttpServlet {
       return null;
     }
 
-    // Our form only contains a single file input, so get the first index.
-    BlobKey blobKey = blobKeys.get(0);
-
     // User submitted form without selecting a file, so we can't get a URL. (live server)
-    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-    if (blobInfo.getSize() == 0) {
-      blobstoreService.delete(blobKey);
-      return null;
+    for(BlobKey blobKey: blobKeys)
+    {
+      BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+      if (blobInfo.getSize() == 0) {
+        blobstoreService.delete(blobKey);
+      }
     }
-
+	
     // Use ImagesService to get a URL that points to the uploaded file.
     ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);  
-    // Checking the validity of the file to make sure it's an image, if not catch exception.
-    try
+    List<String> imageBlobUrls = new ArrayList<String>();
+	
+    for(BlobKey blobK: blobKeys)
     {
-        //getting the image URL to the uploaded file
-        String imageUrl = imagesService.getServingUrl(options);
-        return imageUrl;
+      // Checking the validity of the file to make sure it's an image, if not catch exception.
+      String fileType = new BlobInfoFactory().loadBlobInfo(blobK).getContentType().toString().toLowerCase();
+      if(!(fileType.equals("image/jpg") ||fileType.equals("image/jpeg") || fileType.equals("image/gif")))
+      {
+        blobstoreService.delete(blobK);
+      }
+	  else //else: blob is an image
+      {
+        try
+        {
+          //getting the image URL to the uploaded file
+          ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobK);  
+          String imageUrl = imagesService.getServingUrl(options);//getServingUrl locks the blob, so it cannot be deleted with blobstoreService.delete(blobK); 
+          imageBlobUrls.add(imageUrl);
+	}
+	catch(IllegalArgumentException e)
+	{
+          //in case getServingUrl() raises an exception	
+        }
+      }
     }
-    catch(java.lang.IllegalArgumentException exception)
-    {
-        return null;
-    }
+
+    return imageBlobUrls;
   }
   
   /**
