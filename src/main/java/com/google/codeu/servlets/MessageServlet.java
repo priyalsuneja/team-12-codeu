@@ -151,7 +151,7 @@ public class MessageServlet extends HttpServlet {
     {
       // Checking the validity of the file to make sure it's an image
       String fileType = new BlobInfoFactory().loadBlobInfo(blobK).getContentType().toString().toLowerCase();
-      if(!(fileType.equals("image/jpg") ||fileType.equals("image/jpeg") || fileType.equals("image/gif")))
+      if(!(fileType.equals("image/jpg") ||fileType.equals("image/jpeg") || fileType.equals("image/gif") || fileType.equals("image/png")))
       {
         blobstoreService.delete(blobK);
       }
