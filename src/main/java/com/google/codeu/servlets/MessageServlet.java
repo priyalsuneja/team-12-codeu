@@ -135,12 +135,11 @@ public class MessageServlet extends HttpServlet {
     }
 
     // User submitted form without selecting a file, so we can't get a URL. (live server)
-    for(BlobKey blobKey: blobKeys)
-    {
-      BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-      if (blobInfo.getSize() == 0) {
-        blobstoreService.delete(blobKey);
-      }
+    BlobKey blobKey = blobKeys.get(0);
+    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+    if (blobInfo.getSize() == 0) {
+      blobstoreService.delete(blobKey);
+      return null;
     }
 	
     // Use ImagesService to get a URL that points to the uploaded file.
