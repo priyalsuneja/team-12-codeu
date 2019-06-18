@@ -149,7 +149,7 @@ public class MessageServlet extends HttpServlet {
 	
     for(BlobKey blobK: blobKeys)
     {
-      // Checking the validity of the file to make sure it's an image, if not catch exception.
+      // Checking the validity of the file to make sure it's an image
       String fileType = new BlobInfoFactory().loadBlobInfo(blobK).getContentType().toString().toLowerCase();
       if(!(fileType.equals("image/jpg") ||fileType.equals("image/jpeg") || fileType.equals("image/gif")))
       {
@@ -164,9 +164,9 @@ public class MessageServlet extends HttpServlet {
           String imageUrl = imagesService.getServingUrl(options);//getServingUrl locks the blob, so it cannot be deleted with blobstoreService.delete(blobK); 
           imageBlobUrls.add(imageUrl);
         }
-        catch(IllegalArgumentException e)
+        catch(IllegalArgumentException e) //This is an additional step to check validity of file.
         {
-          //in case getServingUrl() raises an exception	
+          //imagesService.getServingUrl() raises an exception if blob is not an image. 	
         }
       }
     }
