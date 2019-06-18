@@ -155,7 +155,7 @@ public class MessageServlet extends HttpServlet {
       {
         blobstoreService.delete(blobK);
       }
-	  else //else: blob is an image
+	  else //blob is an image
       {
         try
         {
@@ -163,14 +163,13 @@ public class MessageServlet extends HttpServlet {
           ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobK);  
           String imageUrl = imagesService.getServingUrl(options);//getServingUrl locks the blob, so it cannot be deleted with blobstoreService.delete(blobK); 
           imageBlobUrls.add(imageUrl);
-	}
-	catch(IllegalArgumentException e)
-	{
+        }
+        catch(IllegalArgumentException e)
+        {
           //in case getServingUrl() raises an exception	
         }
       }
     }
-
     return imageBlobUrls;
   }
   
