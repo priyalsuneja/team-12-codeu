@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Charities</title>
+          <link rel="stylesheet" href="/css/charities.css">
+          <script
+          src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=<jsfunction>></script>
+          <script src="/js/charities-page-loader.js"></script>
+     </head>
+</html>

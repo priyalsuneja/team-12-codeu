@@ -13,6 +13,15 @@ function createMap(){
           'Wuhan is Chloe\'s favourite place in the world.');
     addLandmark(map, 21.171620, 72.806259, 'Priyal\'s Favourite Place',
           'Surat is Priyal\'s favourite place in the world.');
+
+
+          var geocoder = new google.maps.Geocoder();
+
+          /*document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+          });*/
+      
+          geocodeAddress("New York", map);
     }
 
 /** Adds a marker that shows an info window when clicked. */
