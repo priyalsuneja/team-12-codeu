@@ -9,7 +9,7 @@ function initMap() {
       geocodeAddress(geocoder, map);
     });*/
 
-    geocodeAddress("New York", map);
+    geocodeAddress("1050 THORNDIKE ST PALMER MA", map);
   }
 
   function geocodeAddress(geocoder, resultsMap) {

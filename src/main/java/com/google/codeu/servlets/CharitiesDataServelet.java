@@ -33,7 +33,7 @@ public class CharitiesDataServelet extends HttpServlet {
 
       // create Charity obj 
 
-      charityLocationArray.add(gson.toJsonTree(new UfoSighting(lat, lng)));
+     // charityLocationArray.add(gson.toJsonTree(new UfoSighting(lat, lng)));
     }
     scanner.close();
   }

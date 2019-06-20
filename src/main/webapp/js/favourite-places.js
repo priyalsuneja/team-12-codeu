@@ -1,5 +1,5 @@
 /** Creates and displays a map on the page with everyone's favourite locations */
-function createMap(){
+function createMap() {
     const map = new google.maps.Map(document.getElementById('map'), {
         center: {lat:26.80,  lng: 16.59 },
         zoom: 2.0
@@ -15,13 +15,13 @@ function createMap(){
           'Surat is Priyal\'s favourite place in the world.');
 
 
-          var geocoder = new google.maps.Geocoder();
 
           /*document.getElementById('submit').addEventListener('click', function() {
             geocodeAddress(geocoder, map);
           });*/
       
-          geocodeAddress("New York", map);
+     //     geocodeAddress("New York", map);
+    geocodeAddress("1050 THORNDIKE ST PALMER MA", map);
     }
 
 /** Adds a marker that shows an info window when clicked. */
@@ -38,3 +38,22 @@ function addLandmark(map, lat, lng, title, description) {
     infoWindow.open(map, marker);
   });
 }
+
+function geocodeAddress(address, resultsMap) {
+
+        var geocoder = new google.maps.Geocoder();
+       // var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+
+            });
+           console.log("Successful")
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
