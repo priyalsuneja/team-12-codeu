@@ -109,12 +109,12 @@ public class MessageServlet extends HttpServlet {
   /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
     String textReplaced = tagURLs(text);
     
-  /*adding image tags and corresponding lables for the image file uploaded to Blobstore to the end of message*/
+  /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
     String messageText = textReplaced;
     List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
     /*get image url ulpoaded to Blobstore*/
     List<String> imageBlobUrls = getUploadedFileUrl(imageBlobKeys);
-    /*add image tage for uploaded image url at the end of message text*/
+    /*add image tag for uploaded image url at the end of message text*/
     if(imageBlobUrls!=null && !imageBlobUrls.isEmpty()) 
     {
       for(int i = 0; i<imageBlobUrls.size(); i++)
@@ -125,10 +125,13 @@ public class MessageServlet extends HttpServlet {
         //Get labels of the image and add it after image tag
         byte[] blobBytes = getBlobBytes(imageBlobKeys.get(i));
         List<EntityAnnotation> imageLabels = getImageLabels(blobBytes);
-        for(EntityAnnotation label : imageLabels)
-        {
-          messageText+= label.getDescription() + ": " + label.getScore()+", ";
-        }
+	if(imageLabels != null)
+	{
+          for(EntityAnnotation label : imageLabels)
+          {
+            messageText+= label.getDescription() + ": " + label.getScore()+", ";
+          }
+	}
       }
     }
     
@@ -202,7 +205,7 @@ public class MessageServlet extends HttpServlet {
         }
         catch(IllegalArgumentException e) 
         {
-          //imagesService.getServingUrl() raises an exception if blob is not an image. 	
+          System.out.println(e.getMessage());		  
         }
       }
     }
