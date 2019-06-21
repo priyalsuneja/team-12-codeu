@@ -127,3 +127,23 @@ function fetchAboutMe(){
   });
 }
 
+function fetchFilteredMessages() {
+	const keyword = document.getElementById('search-text').value;
+	const url = '/filter-messages?user=' + parameterUsername+'&search='+keyword;
+	  fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((messages) => {
+        const messagesContainer = document.getElementById('message-container');
+        if (messages.length == 0) {
+          messagesContainer.innerHTML = '<p>No results found.</p>';
+        } else {
+          messagesContainer.innerHTML = '';
+        }
+        messages.forEach((message) => {
+          const messageDiv = buildMessageDiv(message);
+          messagesContainer.appendChild(messageDiv);
+        });
+      });
+}
