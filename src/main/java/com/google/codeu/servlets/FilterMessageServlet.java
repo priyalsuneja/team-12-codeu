@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Respons to the request for list of messages that contain specific keyword for a specific user.
+ * Returns to the request for list of messages that contain specific keyword for a specific user.
  */
 @WebServlet("/filter-messages")
 public class FilterMessageServlet extends HttpServlet {
@@ -30,8 +30,8 @@ public class FilterMessageServlet extends HttpServlet {
   
   
   /**
-   * Responds with a JSON representation of {@link Message} data for a specific user that includes keyword. 
-   * Responds with an empty array if the user is not provided, or there are no messages to return.
+   * Returns with a JSON representation of {@link Message} data for a specific user that includes keyword. 
+   * Returns with an empty array if the user is not provided, or there are no messages to return.
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,6 +44,7 @@ public class FilterMessageServlet extends HttpServlet {
     if (user == null || user.equals("")) {
       // Request is invalid, return empty array
       response.getWriter().println("[]");
+      System.out.println("user is null or empty");
       return;
     }
 
@@ -52,6 +53,7 @@ public class FilterMessageServlet extends HttpServlet {
     Gson gson = new Gson();
     if(keyword==null || keyword.equals(""))
     {
+      //returns all messages
       String json = gson.toJson(messages);
       response.getWriter().println(json);
       return;
