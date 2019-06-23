@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Translation</title>
+	<link rel="stylesheet" href="/css/translate-page.css">
+    <script src="/js/translate-loader.js"></script>
+  </head>
+  <body>
+    <h1>Translation</h1>
+    <p>Type a message and select a language, then click submit to translate it.</p>
+
+    <textarea id="text"></textarea>
+
+    <select id="language">
+      <option value="es">English</option>
+      <option value="zh">Chinese</option>
+      <option value="es">Spanish</option>
+      <option value="hi">Hindi</option>
+      <option value="ar">Arabic</option>
+    </select>
+
+    <button onclick="requestTranslation();">Translate</button>
+
+    <hr/>
+    <div id="result"></div>
+  </body>
+</html>
