@@ -36,7 +36,6 @@ function addLandmark(map, lat, lng, title) {
 function geocodeAddress(address, resultsMap) {
 
         var geocoder = new google.maps.Geocoder();
-       // var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);

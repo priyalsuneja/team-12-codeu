@@ -51,14 +51,12 @@ public class CharitiesDataServelet extends HttpServlet {
   // This class could be its own file if we needed it outside this servlet
   private static class Charity{
     String name;
-    //String url;
     String location;
     String lat;
     String lng;
 
     private Charity(String name, String location, String lat, String lng) {
       this.name = name;
-      //this.url = url;
       this.location = location;
       this.lat = lat;
       this.lng = lng;
