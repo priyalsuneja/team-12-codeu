@@ -24,7 +24,7 @@ public class CharitiesDataServelet extends HttpServlet {
   public void init() {
     charityArray = new JsonArray();
     Gson gson = new Gson();
-    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/eo1.csv"));
+    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/eo2.csv"));
     while(scanner.hasNextLine()) {
       String line = scanner.nextLine();
       String[] cells = line.split(",");
@@ -34,23 +34,8 @@ public class CharitiesDataServelet extends HttpServlet {
       }
 
 
-      String address = cells[3] + " " + cells[4] + " " + cells[5];
-      Charity newCharity = new Charity(cells[1], address);
-
-     /* ScriptEngineManager manager = new ScriptEngineManager();
-      ScriptEngine engine = manager.getEngineByName("JavaScript");
-
-      // read script file
-      engine.eval(Files.newBufferedReader(Paths.get("/home/priyalsuneja/team-12-codeu/src/main/webapp/js/charities.js"), StandardCharsets.UTF_8));
-
-      Invocable inv = (Invocable) engine;
-
-      // call function from script file
-      inv.invokeFunction("yourFunction", "param");*/
-
-      // use api to get lang, lat from city name 
-
-      // create Charity obj 
+      String address = cells[4] + " " + cells[5] + " " + cells[6];
+      Charity newCharity = new Charity(cells[1], address, cells[2], cells[3]);
 
       charityArray.add(gson.toJsonTree(newCharity));
     }
@@ -68,13 +53,15 @@ public class CharitiesDataServelet extends HttpServlet {
     String name;
     //String url;
     String location;
-   // double lat;
-   // double lng;
+    String lat;
+    String lng;
 
-    private Charity(String name, String location) {
+    private Charity(String name, String location, String lat, String lng) {
       this.name = name;
       //this.url = url;
       this.location = location;
+      this.lat = lat;
+      this.lng = lng;
     }
   }
 }

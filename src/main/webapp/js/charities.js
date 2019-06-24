@@ -6,41 +6,31 @@ function createCharities() {
       }).then((charities) => {
 
         const map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 35.78613674, lng: -119.4491591},
-          zoom:7
+          center: {lat: 39.141964, lng: -94.571583},
+          zoom:5
         });
 
         charities.forEach((charity) => {
-          geocodeAddress(charity.location,map);
+         // geocodeAddress(charity.location,map);
+         addLandmark(map, parseFloat(charity.lat), parseFloat(charity.lng), charity.name)
         });
 
-        //geocodeAddress(charities[0].location,map);
       });
-    /*const map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat:26.80,  lng: 16.59 },
-        zoom: 2.0
-      });
-
-
-    geocodeAddress("1050 THORNDIKE ST PALMER MA", map);*/
 
  }
 
 
-/** Adds a marker that shows an info window when clicked.
-function addLandmark(map, lat, lng, title, description) {
+//Adds a marker that shows an info window when clicked.
+function addLandmark(map, lat, lng, title) {
   const marker = new google.maps.Marker ({
     position: {lat: lat, lng: lng},
     map: map,
     title: title
   });
-  const infoWindow = new google.maps.InfoWindow({
-    content: description
-  });
   marker.addListener('click', function() {
     infoWindow.open(map, marker);
   });
-}*/
+}
 
 
 function geocodeAddress(address, resultsMap) {
@@ -53,9 +43,8 @@ function geocodeAddress(address, resultsMap) {
             var marker = new google.maps.Marker({
               map: resultsMap,
               position: results[0].geometry.location
-
             });
-           console.log("Successful")
+            console.log(results[0].geometry.location);
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
