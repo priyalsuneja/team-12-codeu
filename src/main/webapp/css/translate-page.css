@@ -1,11 +1,11 @@
 @charset "UTF-8";
 #text {
-	width: 500px;
-    height: 125px;
+  width: 500px;
+  height: 125px;
 }
 
 #language {
-	display: block;
-	margin-top: 25px;
-   	margin-bottom: 25px;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
