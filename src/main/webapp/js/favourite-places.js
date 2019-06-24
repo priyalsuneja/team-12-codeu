@@ -21,7 +21,7 @@ function createMap() {
           });*/
       
      //     geocodeAddress("New York", map);
-    geocodeAddress("1050 THORNDIKE ST PALMER MA", map);
+    //geocodeAddress("1050 THORNDIKE ST PALMER MA", map);
     }
 
 /** Adds a marker that shows an info window when clicked. */
@@ -39,7 +39,7 @@ function addLandmark(map, lat, lng, title, description) {
   });
 }
 
-function geocodeAddress(address, resultsMap) {
+/*function geocodeAddress(address, resultsMap) {
 
         var geocoder = new google.maps.Geocoder();
        // var address = document.getElementById('address').value;
@@ -56,4 +56,4 @@ function geocodeAddress(address, resultsMap) {
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
-      }
+      }*/
