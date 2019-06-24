@@ -11,7 +11,7 @@ function createCharities() {
         });
 
         charities.forEach((charity) => {
-          setTimeout(geocodeAddress(charity.location,map), 1000);
+          geocodeAddress(charity.location,map);
         });
 
         //geocodeAddress(charities[0].location,map);
