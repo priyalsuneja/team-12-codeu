@@ -81,13 +81,27 @@ function buildMessageDiv(message) {
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('message-body');
   bodyDiv.innerHTML = message.text;
+  
+  /*creating delete button*/ 
+  const deleteButton = document.createElement("Button");
+  deleteButton.innerHTML = "Delete";
+  deleteButton.setAttribute("onclick","deleteMessage()");
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
+  /*adding delete button to message-div*/
+  messageDiv.appendChild(deleteButton);
 
   return messageDiv;
+}
+
+/**
+* Send a request to delete a message 
+*/
+function deleteMessage() {
+  console.log("delete button clicked!!!");	
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
