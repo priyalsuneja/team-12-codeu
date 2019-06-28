@@ -47,7 +47,7 @@ import java.io.ByteArrayOutputStream;
  *
  * @author 018639476
  */
-@WebServlet("/deletMessage")
+@WebServlet("/deleteMessage")
 public class DeleteMessageServlet extends HttpServlet{
       private Datastore datastore;
   
@@ -68,11 +68,16 @@ public class DeleteMessageServlet extends HttpServlet{
       response.getWriter().println("[]");
       return;
     }
-    System.out.println("**************************************user is: "+user+", and request is: "+request.toString());
-    String strRequest = request.toString();
+	
+    /*deleting message using message id from datastore*/
+    String messageId = Jsoup.clean(request.getParameter("messageId"), Whitelist.none());
+    datastore.deleteMessage(messageId);
+    
+    /*fetch remaining messages after delete*/
+    List<Message> messages = datastore.getMessages(user);
     Gson gson = new Gson();
-    String json = gson.toJson(strRequest);
-    System.out.println("**************************************string json is :"+json);
+    String json = gson.toJson(messages);
+
     response.getWriter().println(json);
   }
 }

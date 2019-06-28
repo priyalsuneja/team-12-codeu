@@ -81,28 +81,53 @@ function buildMessageDiv(message) {
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('message-body');
   bodyDiv.innerHTML = message.text;
-  
-  /*creating delete button*/ 
-  const deleteButton = document.createElement("Button");
-  deleteButton.innerHTML = "Delete";
-  const messageId = message.id;
-  deleteButton.onclick = function(){
-                           console.log("Message is: "+ messageId);
-                           const url = '/deletMessage?user=' + parameterUsername+"&messageId="+messageId;
-                           fetch(url).
-                           then((response) => {
-                             console.log( response);
-                           })
-                         };
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
   /*adding delete button to message-div*/
-  messageDiv.appendChild(deleteButton);
+  addDeleteButtonIfViewSelf(message, messageDiv);
   
   return messageDiv;
+}
+
+/*creating delete button if user has login to their page*/ 
+function addDeleteButtonIfViewSelf(message, div) {
+  fetch('/login-status')
+    .then((response) => {
+      return response.json();
+    })
+    .then((loginStatus) => {
+      if (loginStatus.isLoggedIn &&
+        loginStatus.username == parameterUsername) {
+        /*creat delete button*/
+        const deleteButton = document.createElement("Button");
+        deleteButton.innerHTML = "Delete";
+        const messageId = message.id;
+        deleteButton.onclick = function(){
+          const url = '/deleteMessage?user=' + parameterUsername+"&messageId="+messageId;
+          fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((messages) => {
+            const messagesContainer = document.getElementById('message-container');
+            if (messages.length == 0) {
+              messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+            } else {
+              messagesContainer.innerHTML = '';
+            }
+            messages.forEach((message) => {
+              const messageDiv = buildMessageDiv(message);
+              messagesContainer.appendChild(messageDiv);
+            });
+          });
+        };
+        /*adding delete button to message div*/
+        div.appendChild(deleteButton);
+      }
+    });
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
