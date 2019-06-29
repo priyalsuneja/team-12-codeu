@@ -86,8 +86,32 @@ function buildMessageDiv(message) {
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
+  /*adding edit button to message div*/
+  addEditButtonIfViewSelf(messageDiv, bodyDiv, message);
 
   return messageDiv;
+}
+
+function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
+  fetch('/login-status')
+    .then((response) => {
+      return response.json();
+    })
+    .then((loginStatus) => {
+      if (loginStatus.isLoggedIn &&
+          loginStatus.username == parameterUsername) {
+        const editButton = document.createElement('Button');
+        editButton.innerHTML = "Edit";
+        editButton.onclick = function() {
+          const bodyText = document.createElement('textarea');
+          bodyText.innerHTML = message.text;
+          bodyText.style.width = "100%";
+          bodyDiv.innerHTML = '';
+          bodyDiv.appendChild(bodyText);
+        }
+        messageDiv.appendChild(editButton);
+      }
+    });
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
