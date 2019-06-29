@@ -103,16 +103,42 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
         const editButton = document.createElement('Button');
         editButton.innerHTML = "Edit";
         editButton.onclick = function() {
+          editButton.style.visibility="hidden";
           const bodyText = document.createElement('textarea');
           bodyText.innerHTML = message.text;
           bodyText.style.width = "100%";
           bodyDiv.innerHTML = '';
           bodyDiv.appendChild(bodyText);
+          	  
+          /*creating cancle and save buttons*/
+          const cancleButton = document.createElement('Button');
+          const saveButton = document.createElement('Button');
+          /*add calcle button*/
+          addCancleButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message);
         }
         messageDiv.appendChild(editButton);
       }
     });
 }
+
+/*adding functionality to cancle button and append it to message div*/
+function addCancleButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+  cancleButton.innerHTML = "Cancel";
+  cancleButton.onclick = function() {
+    editButton.style.visibility="visible";
+    try{
+      bodyDiv.removeChild(bodyText);
+      bodyDiv.innerHTML = message.text;
+      messageDiv.removeChild(cancleButton);
+      messageDiv.removeChild(saveButton);
+    }
+    catch(err) {
+      console.log(err.message);
+    }
+  }
+  messageDiv.appendChild(cancleButton);
+}
+
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
 function fetchBlobstoreUrlAndShowForm() {
