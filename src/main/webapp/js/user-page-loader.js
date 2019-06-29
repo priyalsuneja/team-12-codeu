@@ -113,8 +113,12 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
           /*creating cancle and save buttons*/
           const cancleButton = document.createElement('Button');
           const saveButton = document.createElement('Button');
-          /*add calcle button*/
+		  
+          /*add cancle button*/
           addCancleButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message);
+		  
+          /*add save button*/
+          addSaveButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message);
         }
         messageDiv.appendChild(editButton);
       }
@@ -139,6 +143,42 @@ function addCancleButtonFunction(editButton, cancleButton, saveButton, messageDi
   messageDiv.appendChild(cancleButton);
 }
 
+/*adding functionality to save button and append it to message div*/
+function addSaveButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+  saveButton.innerHTML = "Save";
+  saveButton.onclick = function() {
+    editButton.style.visibility="visible";
+    const messageId = message.id;
+    const url = '/editMessage?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
+    fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((messages) => {
+      const messagesContainer = document.getElementById('message-container');
+      if (messages.length == 0) {
+        messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+      } else {
+        messagesContainer.innerHTML = '';
+      }
+      messages.forEach((message) => {
+        const messageDiv = buildMessageDiv(message);
+        messagesContainer.appendChild(messageDiv);
+      });
+    });
+
+    try{
+      bodyDiv.removeChild(bodyText);
+      bodyDiv.innerHTML = message.text;
+      messageDiv.removeChild(cancleButton);
+      messageDiv.removeChild(saveButton);
+    }
+    catch(err) {
+      console.log(err.message);
+    }
+  }
+  messageDiv.appendChild(saveButton);
+}
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
 function fetchBlobstoreUrlAndShowForm() {
