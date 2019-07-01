@@ -111,14 +111,14 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
           bodyDiv.appendChild(bodyText);
           	  
           /*creating cancle and save buttons*/
-          const cancleButton = document.createElement('Button');
+          const cancelButton = document.createElement('Button');
           const saveButton = document.createElement('Button');
 		  
           /*add cancle button*/
-          addCancleButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message);
+          addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message);
 		  
           /*add save button*/
-          addSaveButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message);
+          addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message);
         }
         messageDiv.appendChild(editButton);
       }
@@ -126,30 +126,29 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
 }
 
 /*adding functionality to cancle button and append it to message div*/
-function addCancleButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
-  cancleButton.innerHTML = "Cancel";
-  cancleButton.onclick = function() {
+function addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+  cancelButton.innerHTML = "Cancel";
+  cancelButton.onclick = function() {
     editButton.style.visibility="visible";
     try{
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
-      messageDiv.removeChild(cancleButton);
+      messageDiv.removeChild(cancelButton);
       messageDiv.removeChild(saveButton);
     }
     catch(err) {
       console.log(err.message);
     }
   }
-  messageDiv.appendChild(cancleButton);
+  messageDiv.appendChild(cancelButton);
 }
 
 /*adding functionality to save button and append it to message div*/
-function addSaveButtonFunction(editButton, cancleButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
   saveButton.innerHTML = "Save";
   saveButton.onclick = function() {
-    editButton.style.visibility="visible";
     const messageId = message.id;
-    const url = '/editMessage?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
+    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
     fetch(url)
     .then((response) => {
       return response.json();
@@ -160,17 +159,19 @@ function addSaveButtonFunction(editButton, cancleButton, saveButton, messageDiv,
         messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
       } else {
         messagesContainer.innerHTML = '';
+		messages.forEach((message) => {
+          const messageDiv = buildMessageDiv(message);
+          messagesContainer.appendChild(messageDiv);
+        });
       }
-      messages.forEach((message) => {
-        const messageDiv = buildMessageDiv(message);
-        messagesContainer.appendChild(messageDiv);
-      });
+
     });
 
     try{
+	  editButton.style.visibility="visible";
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
-      messageDiv.removeChild(cancleButton);
+      messageDiv.removeChild(cancelButton);
       messageDiv.removeChild(saveButton);
     }
     catch(err) {

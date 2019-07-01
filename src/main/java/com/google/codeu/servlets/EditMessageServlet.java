@@ -18,7 +18,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 
-@WebServlet("/editMessage")
+@WebServlet("/edit-message")
 public class EditMessageServlet extends HttpServlet {
   private Datastore datastore;
   @Override
