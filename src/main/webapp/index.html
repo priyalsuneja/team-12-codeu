@@ -19,27 +19,75 @@ limitations under the License.
   <head>
     <meta charset="UTF-8">
     <title>CodeU 2019 Starter Project</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css\main.css">
+    <link rel="stylesheet" href="css\index.css">
     <script src="/js/navigation-loader.js"></script>
   </head>
   <body onload="addLoginOrLogoutLinkToNavigation();">
     <nav>
       <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
+        <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+        <li><a href="/">Public Feed</a></li>
         <li><a href="/community.html">Community</a></li>
-        <li><a href="/stats.html">Stats</a></li>
-        <li><a href="/chart.html">Charts</a></li>
-        <li><a href="/favouriteplaces.html">Favourite Places</a></li>
         <li><a href="/charities.html">Charities</a></li>
-
       </ul>
     </nav>
-    <h1>CodeU Starter Project</h1>
-    <p>This is the CodeU starter project. Click the links above to login and visit your page.
-    You can post messages on your page, and you can visit other user pages if you have
-    their URL.</p>
-    <p>This is your code now! Feel free to make changes, and don't be afraid to get creative!
-    You could start by modifying this page to tell the world more about your team.</p>
+    <div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+    <div id = "parallax">
+      <div id="slogan-container">
+        <div id="slogan">
+          <p class="p1">SHARE LOVE<p>
+          <p class="p2">TOGETHER WE CAN BE MIRACLES<p>
+        </div>
+      </div>
+    </div>
+    <div id="info-container">
+      <div id="general-text">
+        <p class="p4">World Charities</p>
+        <p class="p5"> The purpose of this web application is to make a platform for all charities around the world to introduce themselves to the public. Many charities have websites, but most people still do not know about it, or they do not where to find information about different charities.</p> 
+        <p class="p5"> Our goal is to help people find information about many different charities on one website. This way, we hope to help charities save advertising money for helping more people in need.</p>
+        <p class="p5"> Charities can post events, volunteer recruting, and other information here for everyone to view and connect with them.</p>
+      </div>
+      <div id="info-section">
+        <div class="info">
+          <div class="img-container">
+            <img class="info-item-image" src = "images/location-logo.png" width = "100%">
+          </div>
+          <div class="text-container">
+            <a href="/favouriteplaces.html">Favorite Places</a>
+            <p class="p3">A map with our team's favourite places around the world.</p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="img-container">
+            <img class="info-item-image" src = "images/charts-logo.jpg" width = "100%">
+          </div>
+          <div class="text-container">
+            <a href="/chart.html">Charts</a>
+            <p class="p3">View donation summeries for different charities.</p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="img-container">
+            <img class="info-item-image" src = "images/about-us-logo.jpg" width = "100%">
+          </div>
+          <div class="text-container">
+            <a href="/aboutus.html">About our team</a>
+            <p class="p3">Find a little bit about our team.</p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="img-container">
+            <img class="info-item-image" src = "images/stats-logo.jpg" width = "100%">
+          </div>
+          <div class="text-container">
+            <a href="/stats.html">Stats</a>
+            <p class="p3">Look at the statistics for our website.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
