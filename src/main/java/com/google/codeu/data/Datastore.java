@@ -181,5 +181,37 @@ public class Datastore {
     return charity;
   }
 
+  /**
+   * Gets charities with the given type.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<Charity> getCharities(String type) {
+    List<Charity> charities = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .setFilter(new Query.FilterPredicate("type", FilterOperator.EQUAL, type))
+                    .addSort("name", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String name = (String) entity.getProperty("name");
+        String city = (String) entity.getProperty("city");
+
+        Charity charity = new Charity(name, city, type);
+        charities.add(charity);
+      } catch (Exception e) {
+        System.err.println("Error finding charities.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return charities;
+  }
+
 }
 

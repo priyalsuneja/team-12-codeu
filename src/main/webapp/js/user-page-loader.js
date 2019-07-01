@@ -106,10 +106,10 @@ fetch('/blobstore-upload-url')
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
-  showMessageFormIfViewingSelf();
-  fetchMessages();
+  //showMessageFormIfViewingSelf();
+  //fetchMessages();
   fetchAboutMe();
-  fetchBlobstoreUrlAndShowForm()
+  //fetchBlobstoreUrlAndShowForm()
 }
 
 function fetchAboutMe(){
