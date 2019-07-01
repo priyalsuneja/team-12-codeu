@@ -3,6 +3,7 @@
 <html>
     <head>
       <title>Favourite Spots</title>
+	      <link rel="stylesheet" href="/css/main.css">
           <link rel="stylesheet" href="/css/favourite-places.css">
           <script
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaVv-ww3u5WKKgvLB4nA__2ROpcb7WlBw"></script>
@@ -12,11 +13,13 @@
     <body onload="createMap();">
         <nav>
           <ul id="navigation">
-            <li><a href="/">Home</a></li>
-            <li><a href="/aboutus.html">About Our Team</a></li>
+            <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+            <li><a href="/">Public Feed</a></li>
+            <li><a href="/community.html">Community</a></li>
+            <li><a href="/charities.html">Charities</a></li>
           </ul>
         </nav>
-        <h1>Favourite Places</h1>
+        <Label id = "text" class="h1-label">Favourite Places</Label>
         <p>This page contains our Team's favourite places around the world! Click on the markers to see the location and find out who suggested that spot.</p>
         <div id="map"></div>
     </body>
