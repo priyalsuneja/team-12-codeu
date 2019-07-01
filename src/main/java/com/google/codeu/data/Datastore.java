@@ -20,6 +20,8 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -156,6 +158,18 @@ public class Datastore {
     try {
       Key messageKey = KeyFactory.createKey("Message", messageId);
       datastore.delete(messageKey);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+
+  public void editMessage(String messageId, String messageText)
+  {
+    try {
+      Key messageKey = KeyFactory.createKey("Message", messageId);
+      Entity messageEntity = datastore.get(messageKey);
+      messageEntity.setProperty("text", messageText);
+      datastore.put(messageEntity);
     } catch (Exception e) {
       System.out.println("error: " + e.toString());
     }

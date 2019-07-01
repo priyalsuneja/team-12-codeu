@@ -86,10 +86,103 @@ function buildMessageDiv(message) {
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
+
   /*adding delete button to message-div*/
   addDeleteButtonIfViewSelf(message, messageDiv);
-  
+
+  /*adding edit button to message div*/
+  addEditButtonIfViewSelf(messageDiv, bodyDiv, message);
+
   return messageDiv;
+}
+
+function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
+
+  fetch('/login-status')
+    .then((response) => {
+      return response.json();
+    })
+    .then((loginStatus) => {
+      if (loginStatus.isLoggedIn &&
+          loginStatus.username == parameterUsername) {
+        const editButton = document.createElement('Button');
+        editButton.innerHTML = "Edit";
+        editButton.onclick = function() {
+          editButton.style.visibility="hidden";
+          const bodyText = document.createElement('textarea');
+          bodyText.innerHTML = message.text;
+          bodyText.style.width = "100%";
+          bodyDiv.innerHTML = '';
+          bodyDiv.appendChild(bodyText);
+          	  
+          /*creating cancle and save buttons*/
+          const cancelButton = document.createElement('Button');
+          const saveButton = document.createElement('Button');
+		  
+          /*add cancle button*/
+          addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message);
+		  
+          /*add save button*/
+          addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message);
+        }
+        messageDiv.appendChild(editButton);
+      }
+    });
+}
+
+/*adding functionality to cancle button and append it to message div*/
+function addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+  cancelButton.innerHTML = "Cancel";
+  cancelButton.onclick = function() {
+    editButton.style.visibility="visible";
+    try{
+      bodyDiv.removeChild(bodyText);
+      bodyDiv.innerHTML = message.text;
+      messageDiv.removeChild(cancelButton);
+      messageDiv.removeChild(saveButton);
+    }
+    catch(err) {
+      console.log(err.message);
+    }
+  }
+  messageDiv.appendChild(cancelButton);
+}
+
+/*adding functionality to save button and append it to message div*/
+function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
+  saveButton.innerHTML = "Save";
+  saveButton.onclick = function() {
+    const messageId = message.id;
+    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
+    fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((messages) => {
+      const messagesContainer = document.getElementById('message-container');
+      if (messages.length == 0) {
+        messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+      } else {
+        messagesContainer.innerHTML = '';
+		messages.forEach((message) => {
+          const messageDiv = buildMessageDiv(message);
+          messagesContainer.appendChild(messageDiv);
+        });
+      }
+    });
+
+    try{
+	  editButton.style.visibility="visible";
+      bodyDiv.removeChild(bodyText);
+      bodyDiv.innerHTML = message.text;
+      messageDiv.removeChild(cancelButton);
+      messageDiv.removeChild(saveButton);
+    }
+    catch(err) {
+      console.log(err.message);
+    }
+  }
+  messageDiv.appendChild(saveButton);
 }
 
 /*creating delete button if user has login to their page*/ 
