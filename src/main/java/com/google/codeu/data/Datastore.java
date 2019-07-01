@@ -147,5 +147,39 @@ public class Datastore {
 	  PreparedQuery results = datastore.prepare(query);
 	  return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
+
+  /**
+   * Stores Charity in datastore
+   */
+
+  public void storeCharity(Charity charity) {
+    Entity charEntity = new Entity("Charity", charity.getName());
+    charEntity.setProperty("name", charity.getName());
+    charEntity.setProperty("city", charity.getCity());
+    charEntity.setProperty("type", charity.getType());
+    datastore.put(charEntity);
+  }
+
+  /**
+   * Returns the Charity owned by the name, or
+   * null if no matching Charity was found.
+   */
+  public Charity getCharity(String name) {
+
+    Query query = new Query("Charity")
+            .setFilter(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+    PreparedQuery results = datastore.prepare(query);
+    Entity charEntity = results.asSingleEntity();
+    if (charEntity == null) {
+      return null;
+    }
+
+    String city = (String) charEntity.getProperty("city");
+    String type = (String) charEntity.getProperty("type");
+    Charity charity = new Charity(name,city,type);
+
+    return charity;
+  }
+
 }
 
