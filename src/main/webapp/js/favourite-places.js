@@ -1,5 +1,5 @@
 /** Creates and displays a map on the page with everyone's favourite locations */
-function createMap(){
+function createMap() {
     const map = new google.maps.Map(document.getElementById('map'), {
         center: {lat:26.80,  lng: 16.59 },
         zoom: 2.0
@@ -13,6 +13,7 @@ function createMap(){
           'Wuhan is Chloe\'s favourite place in the world.');
     addLandmark(map, 21.171620, 72.806259, 'Priyal\'s Favourite Place',
           'Surat is Priyal\'s favourite place in the world.');
+
     }
 
 /** Adds a marker that shows an info window when clicked. */
@@ -29,3 +30,4 @@ function addLandmark(map, lat, lng, title, description) {
     infoWindow.open(map, marker);
   });
 }
+

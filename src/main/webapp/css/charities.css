@@ -1,0 +1,22 @@
+#map {
+  width: 1200px;
+  height: 800px;
+  border: thin solid black;
+}
+
+.gm-style img { max-width: none; }
+.gm-style label { width: auto; display: inline; }
+body {
+  max-width: 800px;
+}
+/* Remove bullet points from navigation bar. */
+nav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Keep navigation menu on one line. */
+nav li {
+  display: inline-block;
+  margin-right: 10px
+}
