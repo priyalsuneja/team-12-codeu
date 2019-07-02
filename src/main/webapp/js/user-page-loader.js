@@ -148,7 +148,9 @@ function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv,
   saveButton.innerHTML = "Save";
   saveButton.onclick = function() {
     const messageId = message.id;
-    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
+    var messageText = bodyText.value;
+    messageText = messageText.split('\n').join(" ");
+    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+messageText;
     fetch(url)
     .then((response) => {
       return response.json();
