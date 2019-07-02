@@ -250,7 +250,7 @@ function addCommentsButton(messageDiv, message) {
       })
       .then((comments) => {
         if (comments.length == 0) {
-          commentDiv.innerHTML = '<p>This user has no posts yet.</p>';
+          commentDiv.innerHTML = '<p>There are no comments on this message yet.</p>';
         } else {
           comments.forEach((comment) => {
             const bodyDiv = document.createElement('div');
