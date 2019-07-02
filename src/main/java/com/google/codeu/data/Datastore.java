@@ -33,6 +33,10 @@ import java.util.UUID;
 import java.util.Set;
 import java.util.HashSet;
 
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
 
@@ -150,6 +154,15 @@ public class Datastore {
 	  return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
   
+  public void deleteMessage(String messageId) {
+    try {
+      Key messageKey = KeyFactory.createKey("Message", messageId);
+      datastore.delete(messageKey);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+
   public void editMessage(String messageId, String messageText)
   {
     try {
