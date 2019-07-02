@@ -84,9 +84,9 @@ public class SearchCharitiesServelet extends HttpServlet {
     @Override
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        System.out.println("Type: " + request.getParameter("type"));
         String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
 
-        System.out.println("IN POST 1");
         if(type == null ){
             System.out.println("NULL TYPE");
         }
@@ -99,11 +99,9 @@ public class SearchCharitiesServelet extends HttpServlet {
             charitiesArray.add(gson.toJsonTree(charity));
         }
 
-        System.out.println("IN POST 2");
         response.setContentType("application/json");
         response.getOutputStream().println(charitiesArray.toString());
 
-        System.out.println("IN POST 3");
         //response.sendRedirect("/displaycharities.html" );
     }
 

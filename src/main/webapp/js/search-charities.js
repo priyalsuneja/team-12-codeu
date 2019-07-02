@@ -5,7 +5,8 @@ function displayCharities() {
       }).then((charities) => {
         charities.forEach((charity) => {
           const charityContainer = document.getElementById('display-charities');
-          charityContainer.innerHTML += charityList;
+          console.log(charity)
+          charityContainer.innerHTML += charity;
         });
 
       });
