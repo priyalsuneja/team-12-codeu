@@ -210,11 +210,11 @@ function addDeleteButtonIfViewSelf(message, div) {
               messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
             } else {
               messagesContainer.innerHTML = '';
+			  messages.forEach((message) => {
+                const messageDiv = buildMessageDiv(message);
+                messagesContainer.appendChild(messageDiv);
+              });
             }
-            messages.forEach((message) => {
-              const messageDiv = buildMessageDiv(message);
-              messagesContainer.appendChild(messageDiv);
-            });
           });
         };
         /*adding delete button to message div*/
