@@ -97,6 +97,7 @@ public class SearchCharitiesServelet extends HttpServlet {
 
         for(Charity charity : charities) {
             charitiesArray.add(gson.toJsonTree(charity));
+            System.out.println(charity);
         }
 
         response.setContentType("application/json");

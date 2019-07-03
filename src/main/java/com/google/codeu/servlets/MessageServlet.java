@@ -40,10 +40,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 import java.util.regex.*;
+
+import com.google.cloud.vision.v1.AnnotateImageRequest;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
+import com.google.cloud.vision.v1.Feature;
+import com.google.cloud.vision.v1.Image;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.protobuf.ByteString;
+import java.io.ByteArrayOutputStream;
 
 
 /** Handles fetching and saving {@link Message} instances. */
@@ -96,16 +105,34 @@ public class MessageServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-    /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
+    
+  /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
     String textReplaced = tagURLs(text);
     
-    /*adding image tags for the image file uploaded to Blobstore*/
+  /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
     String messageText = textReplaced;
-    //get image url ulpoaded to Blobstore
-    String imageUrl = getUploadedFileUrl(request, "image");
-    //add image tage for uploaded image url at the end of message text
-    if(imageUrl!=null) {
-      messageText += "<img src=\"" + imageUrl + "\" />";
+    List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
+    /*get image url ulpoaded to Blobstore*/
+    List<String> imageBlobUrls = getUploadedFileUrl(imageBlobKeys);
+    /*add image tag for uploaded image url at the end of message text*/
+    if(imageBlobUrls!=null && !imageBlobUrls.isEmpty()) 
+    {
+      for(int i = 0; i<imageBlobUrls.size(); i++)
+      {
+        //add image tag for the image user uploaded to Blobstore
+        messageText += "<img src=\"" + imageBlobUrls.get(i) + "\" />"; 
+        
+        //Get labels of the image and add it after image tag
+        byte[] blobBytes = getBlobBytes(imageBlobKeys.get(i));
+        List<EntityAnnotation> imageLabels = getImageLabels(blobBytes);
+	if(imageLabels != null)
+	{
+          for(EntityAnnotation label : imageLabels)
+          {
+            messageText+= label.getDescription() + ": " + label.getScore()+", ";
+          }
+	}
+      }
     }
     
     /*storing the message in Datastore*/
@@ -115,11 +142,13 @@ public class MessageServlet extends HttpServlet {
     response.sendRedirect("/user-page.html?user=" + user);
   }
   
-   /**
-    * Returns a URL that points to the uploaded file, or null if the user didn't upload a file.
-    */
-  private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName)
+  /**
+  * Returns the BlobKey that points to the image files uploaded by the user,
+  * or null if the user didn't upload any image file.
+  */
+  private List<BlobKey> getBlobKeys(HttpServletRequest request, String formInputElementName)
   {
+    List<BlobKey> imageBlobKeys = new ArrayList<>();
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
     List<BlobKey> blobKeys = blobs.get(formInputElementName);
@@ -129,30 +158,59 @@ public class MessageServlet extends HttpServlet {
       return null;
     }
 
-    // Our form only contains a single file input, so get the first index.
-    BlobKey blobKey = blobKeys.get(0);
-
     // User submitted form without selecting a file, so we can't get a URL. (live server)
+    BlobKey blobKey = blobKeys.get(0);
     BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
     if (blobInfo.getSize() == 0) {
       blobstoreService.delete(blobKey);
       return null;
     }
-
+    
+    //selecting blobKeys for image blobs only
+    for(BlobKey blobK: blobKeys)
+    {
+      // Checking the validity of the file to make sure it's an image
+      String fileType = new BlobInfoFactory().loadBlobInfo(blobK).getContentType().toLowerCase();
+      if(!(fileType.equals("image/jpg") ||fileType.equals("image/jpeg") || fileType.equals("image/gif") || fileType.equals("image/png")))
+      {
+        blobstoreService.delete(blobK);
+      }
+      else //blob is an image file
+      {
+          imageBlobKeys.add(blobK);
+      }
+    }
+    return imageBlobKeys;
+  }
+  
+  /**
+  * Returns a list URL that points to the uploaded image files in Blobstore 
+  */
+  private List<String> getUploadedFileUrl(List<BlobKey> imageBlobKeys)
+  {
     // Use ImagesService to get a URL that points to the uploaded file.
     ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);  
-    // Checking the validity of the file to make sure it's an image, if not catch exception.
-    try
+    List<String> imageBlobUrls = new ArrayList<>();
+	
+    if(imageBlobKeys!=null)
     {
-        //getting the image URL to the uploaded file
-        String imageUrl = imagesService.getServingUrl(options);
-        return imageUrl;
+      for(BlobKey blobK: imageBlobKeys)
+      {
+        try
+        {
+          //getting the image URL to the uploaded file
+          ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobK);  
+          String imageUrl = imagesService.getServingUrl(options);//getServingUrl locks the blob, so it cannot be deleted with blobstoreService.delete(blobK); 
+          imageBlobUrls.add(imageUrl);
+        }
+        catch(IllegalArgumentException e) 
+        {
+          System.out.println(e.getMessage());		  
+        }
+      }
     }
-    catch(java.lang.IllegalArgumentException exception)
-    {
-        return null;
-    }
+
+    return imageBlobUrls;
   }
   
   /**
@@ -229,5 +287,60 @@ public class MessageServlet extends HttpServlet {
     }
     
     return message;
+  }
+  
+  /**
+  * Blobstore stores files as binary data. This function retrieves the
+  * binary data stored at the BlobKey parameter.
+  * return blob as byte array
+  */
+  private byte[] getBlobBytes(BlobKey blobKey) throws IOException {
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    ByteArrayOutputStream outputBytes = new ByteArrayOutputStream();
+
+    int fetchSize = BlobstoreService.MAX_BLOB_FETCH_SIZE;
+    long currentByteIndex = 0;
+    boolean continueReading = true;
+    while (continueReading) {
+      // end index is inclusive, so we have to subtract 1 to get fetchSize bytes
+      byte[] b = blobstoreService.fetchData(blobKey, currentByteIndex, currentByteIndex + fetchSize - 1);
+      outputBytes.write(b);
+
+      // if we read fewer bytes than we requested, then we reached the end
+      if (b.length < fetchSize) {
+        continueReading = false;
+      }
+
+      currentByteIndex += fetchSize;
+    }
+
+    return outputBytes.toByteArray();
+  }
+  
+  /**
+  * Uses the Google Cloud Vision API to generate a list of labels that apply to the image
+  * represented by the binary data stored in imgBytes.
+  */
+  private List<EntityAnnotation> getImageLabels(byte[] imgBytes) throws IOException {
+    ByteString byteString = ByteString.copyFrom(imgBytes);
+    Image image = Image.newBuilder().setContent(byteString).build();
+
+    Feature feature = Feature.newBuilder().setType(Feature.Type.LABEL_DETECTION).build();
+    AnnotateImageRequest request = AnnotateImageRequest.newBuilder().addFeatures(feature).setImage(image).build();
+    List<AnnotateImageRequest> requests = new ArrayList<>();
+    requests.add(request);
+
+    ImageAnnotatorClient client = ImageAnnotatorClient.create();
+    BatchAnnotateImagesResponse batchResponse = client.batchAnnotateImages(requests);
+    client.close();
+    List<AnnotateImageResponse> imageResponses = batchResponse.getResponsesList();
+    AnnotateImageResponse imageResponse = imageResponses.get(0);
+
+    if (imageResponse.hasError()) {
+      System.err.println("Error getting image labels: " + imageResponse.getError().getMessage());
+      return null;
+    }
+
+    return imageResponse.getLabelAnnotationsList();
   }
 }
