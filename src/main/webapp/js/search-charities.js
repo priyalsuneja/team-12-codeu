@@ -1,20 +1,28 @@
+
 function displayCharities() {
 
-      fetch('/search-charities').then(function(response) {
-        return response.json();
-      }).then((charities) => {
+	const type = document.getElementById('search-text').value;
+    const url = '/search-charities?type=' + type;
+    console.log(url);
+    fetch(url).then(function(response) {
+      return response.json();
+    }).then((charities) => {
 
-        if(JSON.stringify(charities) === JSON.stringify({})) {
-          const charityContainer = document.getElementById('display-charities');
-          charityContainer.innerHTML += "Sorry, there are no charities matching this keyword!";
-          Console.log("here");
-        }
-        charities.forEach((charity) => {
-          const charityContainer = document.getElementById('display-charities');
-          console.log(charity)
-          charityContainer.innerHTML += charity;
-        });
+        console.log(Object.entries(charities).length);
+      if(Object.entries(charities).length === 0) {
+        const charityContainer = document.getElementById('display-charities');
+        charityContainer.innerHTML += "Sorry, there are no charities matching this keyword!";
+      }
 
-      });
+      else {
+          const charityContainer = document.getElementById('display-charities');
+          charityContainer.innerHTML ='';
+
+          charities.forEach((charity) => {
+            const charityContainer = document.getElementById('display-charities');
+            charityContainer.innerHTML += charity.name + '&#13;&#10;';
+          });
+      }
+    });
 
  }

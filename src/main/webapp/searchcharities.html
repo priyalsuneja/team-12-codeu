@@ -16,14 +16,10 @@
 </nav>
 <h1 id="page-title">Charities Search Page</h1>
 
-<div id="search-container">Loading...</div>
-<div id="search-form">
-    <form action="/search-charities" method="POST">
-        <input type="text" name="type" placeholder="Enter Keyword" rows=1 required/>
-        <br/>
-        <input type="submit" value="Submit">
-    </form>
+<div id="search-container">
+    <textarea id="search-text" rows="1"></textarea>
+    <button type="button" onclick="displayCharities()">Search</button>
 </div>
-<div id="display-charities">Loading...</div>
+<div id="display-charities"></div>
 </body>
 </html>

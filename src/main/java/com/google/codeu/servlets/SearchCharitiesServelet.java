@@ -62,11 +62,7 @@ public class SearchCharitiesServelet extends HttpServlet {
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
-        System.out.println("IN GET");
 
-        if(type == null ){
-            System.out.println("NULL TYPE");
-        }
         List<Charity> charities = datastore.getCharities(type);
 
         JsonArray charitiesArray = new JsonArray();
@@ -79,17 +75,12 @@ public class SearchCharitiesServelet extends HttpServlet {
         response.setContentType("application/json");
         response.getOutputStream().println(charitiesArray.toString());
 
-        //response.sendRedirect("/displaycharities.html" );
     }
     @Override
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        System.out.println("Type: " + request.getParameter("type"));
         String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
 
-        if(type == null ){
-            System.out.println("NULL TYPE");
-        }
         List<Charity> charities = datastore.getCharities(type);
 
         JsonArray charitiesArray = new JsonArray();
@@ -97,13 +88,11 @@ public class SearchCharitiesServelet extends HttpServlet {
 
         for(Charity charity : charities) {
             charitiesArray.add(gson.toJsonTree(charity));
-            System.out.println(charity);
         }
 
         response.setContentType("application/json");
         response.getOutputStream().println(charitiesArray.toString());
 
-        //response.sendRedirect("/displaycharities.html" );
     }
 
 
