@@ -155,8 +155,8 @@ function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv,
     const messageId = message.id;
     var messageText = bodyText.value;
     messageText = messageText.split('\n').join(" ");
-    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+messageText;
-    fetch(url)
+    const url = '/messages?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+messageText;
+    fetch(url, {method:'PUT'})
     .then((response) => {
       return response.json();
     })
@@ -201,8 +201,8 @@ function addDeleteButtonIfViewSelf(message, div) {
         deleteButton.innerHTML = "Delete";
         const messageId = message.id;
         deleteButton.onclick = function(){
-          const url = '/deleteMessage?user=' + parameterUsername+"&messageId="+messageId;
-          fetch(url)
+          const url = '/messages?user=' + parameterUsername+"&messageId="+messageId;
+          fetch(url, {method:'DELETE'})
           .then((response) => {
             return response.json();
           })
