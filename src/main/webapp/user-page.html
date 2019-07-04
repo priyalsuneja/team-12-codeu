@@ -21,6 +21,7 @@ limitations under the License.
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-A9BQNUd6cR6IgbOnZwr26_62tB6LRI"></script>
     <script src="/js/user-page-loader.js"></script>
   </head>
   <body onload="buildUI();">
@@ -34,10 +35,21 @@ limitations under the License.
     </nav>
     <Label id="page-title" class="h1-label">User Page</Label>
 	
+    <div id="map-container">
+	  <div id="map"></div>
+      <form id="location-form" method="POST" action="/locations">
+	    <textarea name="longitude" placeholder="longitude" rows=1 required></textarea>
+	    <textarea name="latitude" placeholder="latitude" rows=1 required></textarea>
+	    <input type="submit" value="Set Location">
+	  </form>
+	</div>
+	
 	<div id="search-container">
 	  <textarea id="search-text" rows="1"></textarea>
 	  <button type="button" onclick="fetchFilteredMessages()">Search</button>
 	</div>
+	
+
 
     <div id="about-me-container">Loading...</div>
     <div id="about-me-form" class="hidden">

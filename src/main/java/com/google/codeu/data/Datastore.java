@@ -174,5 +174,92 @@ public class Datastore {
       System.out.println("error: " + e.toString());
     }
   }
+  
+  public void storeLocation(Location location)
+  {
+    Entity userEntity = new Entity("Location", location.getId().toString());
+    userEntity.setProperty("longitude", location.getLongitude()+"");
+    userEntity.setProperty("latitude", location.getLatitude()+"");
+    userEntity.setProperty("text", location.getText());
+    userEntity.setProperty("user", location.getUser());
+    datastore.put(userEntity);
+    System.out.println("message stored");
+  }
+  
+  /*
+  * Return the list of locations including:
+  * location of charity at index zero and
+  * location of nearby charities from index 1 and above
+  */
+  public List<Location> getLocations(String user)
+  {
+    List<Location> locations = new ArrayList<>();
+
+    Query query =
+            new Query("Location")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user));
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String text = (String) entity.getProperty("text");
+        double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
+        double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
+        Location location = new Location(id, longitude, latitude, text, user);
+        locations.add(location);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    if(locations.size()==1)//if one location found
+    {
+        Query allLocations =
+           new Query("Location")
+                   .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, user));
+        PreparedQuery allLocationresults = datastore.prepare(allLocations);
+        for (Entity entity : allLocationresults.asIterable()) {
+          try {
+            double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
+            double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
+            if(Math.abs(locations.get(0).getLatitude()-latitude)<3 && Math.abs(locations.get(0).getLongitude()-longitude)<3)
+            {
+              String idString = entity.getKey().getName();
+              UUID id = UUID.fromString(idString);
+              String text = (String) entity.getProperty("text");
+              Location location = new Location(id, longitude, latitude, text, user);
+              locations.add(location);
+            }
+
+          } catch (Exception e) {
+            System.err.println("Error reading message.");
+            System.err.println(entity.toString());
+            e.printStackTrace();
+          }
+        }
+    }
+    else
+    {
+      if(locations.size()>1)
+            System.out.println("multiple locations for a charity!");
+      locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
+    }
+    return locations;
+  }
+  
+  public void updateLocation(String locationId, double longitude, double latitude) {
+    try {
+      Key locationKey = KeyFactory.createKey("Location", locationId);
+      Entity locationEntity = datastore.get(locationKey);
+      locationEntity.setProperty("longitude", longitude);
+      locationEntity.setProperty("latitude", latitude);
+      datastore.put(locationEntity);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
 }
 

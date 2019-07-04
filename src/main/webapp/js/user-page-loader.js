@@ -29,6 +29,52 @@ function setPageTitle() {
   document.title = parameterUsername + ' - User Page';
 }
 
+/** created a map to show the location of charity*/
+function createMap(){
+	var longitude;
+	var latitude;
+  const url = "/locations?user="+parameterUsername;
+  fetch(url)
+    .then((response)=> {
+      return response.json();
+	})
+	  .then((locations)=> {
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35, lng: -100},
+          zoom:3
+        });
+        if (locations.length > 0){
+		  
+		  /*adding location of the self charity*/
+		  longitude = locations[0].longitude;
+		  console.log(longitude);
+		  latitude = locations[0].latitude;
+	      console.log(latitude);
+          new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map,
+			zIndex: google.maps.Marker.MAX_ZINDEX + 1
+		  });
+			
+		  /*adding location of other nearby charities*/
+		  for(var i = 1; i<locations.length; i++){
+            longitude = locations[i].longitude;
+			console.log(longitude);
+		    latitude = locations[i].latitude;
+			console.log(latitude);
+            new google.maps.Marker({
+                position: {lat: latitude, lng: longitude},
+                map: map,
+				icon: {url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+			});
+		  }  
+        }
+	  });
+}
+
+/**show location-form if view self*/
+//to be done later ...
+
 /**
  * Shows the message form if the user is logged in and viewing their own page.
  */
@@ -241,6 +287,7 @@ fetch('/blobstore-upload-url')
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
+  createMap();
   showMessageFormIfViewingSelf();
   fetchMessages();
   fetchAboutMe();
