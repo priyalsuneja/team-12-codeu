@@ -18,7 +18,7 @@
    and will fill the width of its parent element. */
 #message-input {
   height: 100px;
-  width: 100%;
+  width: 75%;
 }
 
 /* Give each message a rounded border. */
@@ -26,6 +26,7 @@
   border: thin solid black;
   border-radius: 5px;
   margin-top: 20px;
+  width:75%;
 }
 
 /* Add a bottom border to the message header. */
@@ -38,6 +39,27 @@
    isn't too close to the border. */
 .message-body {
   margin: 5px;
+}
+
+/*for styling the imagaes in message body and their maximum width*/
+.message-body img {
+  display: block;
+  margin-top: 25px;
+  max-width: 100%;
+}
+
+/*Styling videos in message body*/
+.message-body video {
+  display: block;
+  margin-top: 25px;
+  max-width: 100%;
+}
+
+/*Styling audios in message body*/
+.message-body audio {
+  display: block;
+  margin-top: 25px;
+  width: 100%;
 }
 
 /* Use this to hide certain elements like forms if the

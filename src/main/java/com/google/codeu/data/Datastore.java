@@ -19,13 +19,23 @@ package com.google.codeu.data;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.Set;
+import java.util.HashSet;
+
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -142,4 +152,58 @@ public class Datastore {
 
     return user;
   }
+  
+  /**
+  * Returns a set of all users who have posted a message or about me
+  */
+  public HashMap<String, String> getUsers()
+  {
+      HashMap<String, String> usersMap = new HashMap<>();
+
+      //adding users who have posted a message
+      Query messageQuery = new Query("Message");
+      PreparedQuery messageQueryResults = datastore.prepare(messageQuery);
+      for(Entity entity: messageQueryResults.asIterable())
+      {
+        usersMap.put(entity.getProperty("user").toString(),entity.getProperty("user")+"|" );
+      }
+      
+      //adding users who have posted aboutMe
+      Query userQuery = new Query("User");
+      PreparedQuery userQueryResults = datastore.prepare(userQuery);
+      for(Entity entity: userQueryResults.asIterable())
+      {
+        usersMap.put(entity.getProperty("email").toString(),entity.getProperty("email") +"|"+ entity.getProperty("aboutMe") );
+      }
+	
+    return usersMap;
+  }
+  
+  public int getTotalMessageCount() {
+	  Query query = new Query("Message");
+	  PreparedQuery results = datastore.prepare(query);
+	  return results.countEntities(FetchOptions.Builder.withLimit(1000));
+  }
+  
+  public void deleteMessage(String messageId) {
+    try {
+      Key messageKey = KeyFactory.createKey("Message", messageId);
+      datastore.delete(messageKey);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+
+  public void editMessage(String messageId, String messageText)
+  {
+    try {
+      Key messageKey = KeyFactory.createKey("Message", messageId);
+      Entity messageEntity = datastore.get(messageKey);
+      messageEntity.setProperty("text", messageText);
+      datastore.put(messageEntity);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
 }
+
