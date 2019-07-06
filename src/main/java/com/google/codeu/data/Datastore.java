@@ -36,6 +36,7 @@ import java.util.HashSet;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -183,7 +184,6 @@ public class Datastore {
     userEntity.setProperty("text", location.getText());
     userEntity.setProperty("user", location.getUser());
     datastore.put(userEntity);
-    System.out.println("message stored");
   }
   
   /*
@@ -244,12 +244,13 @@ public class Datastore {
     else
     {
       if(locations.size()>1)
-            System.out.println("multiple locations for a charity!");
+        System.out.println("Invalid: multiple locations for a charity!");
       locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
     }
     return locations;
   }
   
+  /*update a location entity stored in datastore*/
   public void updateLocation(String locationId, double longitude, double latitude) {
     try {
       Key locationKey = KeyFactory.createKey("Location", locationId);
@@ -260,6 +261,47 @@ public class Datastore {
     } catch (Exception e) {
       System.out.println("error: " + e.toString());
     }
+  }
+  
+  /*stores a notification entity for a user*/
+  public void storeNotification(Notification notification)
+  {
+      /*creating notification entity*/
+      Entity notificationEntity = new Entity("Notification", notification.getId().toString());
+      notificationEntity.setProperty("user", notification.getUser());
+      notificationEntity.setProperty("text", notification.getText());
+      notificationEntity.setProperty("timestamp", notification.getTimestamp());
+      notificationEntity.setProperty("link", notification.getLink());
+      datastore.put(notificationEntity);
+  }
+  
+  /*returns a list of notifications for a user*/
+  public List<Notification> getNotifications(String user)
+  {
+      List<Notification> notifications = new ArrayList<Notification>();
+      Query query =
+            new Query("Notification")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+                    .addSort("timestamp", SortDirection.DESCENDING);
+      PreparedQuery results = datastore.prepare(query); 
+      for(Entity entity: results.asIterable())
+      {
+        try {
+          String idString = entity.getKey().getName();
+          UUID id = UUID.fromString(idString);
+          String text = (String) entity.getProperty("text");
+          long timestamp = (long) entity.getProperty("timestamp");
+          String link = (String) entity.getProperty("link");
+
+          Notification notification = new Notification(link, id, user, text, timestamp);
+          notifications.add(notification);
+        } catch (Exception e) {
+          System.err.println("Error reading notification.");
+          System.err.println(entity.toString());
+          e.printStackTrace();
+        }
+      }
+      return notifications;
   }
 }
 

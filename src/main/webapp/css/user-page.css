@@ -16,6 +16,29 @@
 
 /* Set the size of the message input to be 100 pixels high
    and will fill the width of its parent element. */
+button:focus {outline:0;}
+#notifications-btn {
+  background: none;
+  border:none;
+  color:white;
+  font-family:Impact, Haettenschweiler, serif;
+  font-size: 12px;
+  
+}
+   
+#notification-container {
+  visibility: hidden;
+  position: fixed;
+  left:5%;
+  width: 25%;
+  max-height:50%;  
+  background-color:white;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  font-size:10px;
+  z-index:999;
+}
+
 #map-container {
   border: thin solid black;
   width:50vh;

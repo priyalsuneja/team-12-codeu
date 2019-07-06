@@ -29,6 +29,41 @@ function setPageTitle() {
   document.title = parameterUsername + ' - User Page';
 }
 
+/**create list of notifications*/
+function listNotifications() {
+  const notificationsBtn = document.getElementById('notifications-btn');
+  notificationsBtn.onclick = function() {
+    const notificationsDiv = document.getElementById('notification-container');
+	notificationsDiv.style.visibility = 'visible';
+	const closeBtn = document.createElement('Button');
+	closeBtn.innerHTML="Close";
+	closeBtn.onclick = function() {
+	    notificationsDiv.style.visibility = 'hidden';
+        notificationsDiv.removeChild(closeBtn);	
+	  }
+	notificationsDiv.appendChild(closeBtn);
+	
+	/*requesting list of notifications*/
+	const url = "/notification?user="+parameterUsername;
+	fetch(url)
+	  .then((response)=> {
+        return response.json();
+	  })
+        .then((notifications)=> {
+		  const noteDiv = document.createElement('Div');
+          if (notifications.length == 0) {
+            notificationsDiv.innerHTML = '<p>No notifications</p>';
+          } else {
+            notificationsDiv.innerHTML = '';
+			notifications.forEach((note) => {
+              noteDiv.innerHTML = note.timestamp+"<br>"+note.text+"<br>"+"<a href="+note.link+">click here</a>";
+              notificationsDiv.appendChild(noteDiv);
+            });
+          }
+		});
+  }
+}
+
 /** created a map to show the location of charity*/
 function createMap(){
 	var longitude;
@@ -292,6 +327,7 @@ function buildUI() {
   fetchMessages();
   fetchAboutMe();
   fetchBlobstoreUrlAndShowForm()
+  listNotifications()
 }
 
 function fetchAboutMe(){
