@@ -59,7 +59,7 @@ function listNotifications() {
             bodyDiv.innerHTML = '';
 			notifications.forEach((note) => {
 			  const noteDiv = document.createElement('Div');
-              noteDiv.innerHTML = note.timestamp+"<br>"+note.text+"<br>"+"<a href='/user-page.html?user="+note.link+"'>"+note.link+"</a>";
+              noteDiv.innerHTML = new Date(note.timestamp)+"<br>"+note.text+"<br>"+"<a href='/user-page.html?user="+note.link+"'>"+note.link+"</a>";
 			  noteDiv.style.borderStyle = "solid";
 			  noteDiv.style.borderWidths = "1px";
 			  noteDiv.style.marginTop = "2px";
