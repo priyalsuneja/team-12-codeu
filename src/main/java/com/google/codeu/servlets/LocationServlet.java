@@ -65,8 +65,10 @@ public class LocationServlet extends HttpServlet{
     double latitude = Double.parseDouble(request.getParameter("latitude"));
     
     /*check validity of input*/
-    if(Math.abs(latitude)>90 || Math.abs(longitude)>180) 
+    if(Math.abs(latitude)>90 || Math.abs(longitude)>180)  {
+		response.sendRedirect("/user-page.html?user=" + user);
         return;
+	}
     
     List<Location> locations = datastore.getLocations(user);
   

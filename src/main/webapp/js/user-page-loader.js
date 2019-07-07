@@ -92,11 +92,20 @@ function createMap(){
 		  console.log(longitude);
 		  latitude = locations[0].latitude;
 	      console.log(latitude);
-          new google.maps.Marker({
+          var myMarker = new google.maps.Marker({
             position: {lat: latitude, lng: longitude},
             map: map,
 			zIndex: google.maps.Marker.MAX_ZINDEX + 1
 		  });
+		  
+		  const infoWindow = new google.maps.InfoWindow({
+            content: '<p> You are at: '+locations[0].latitude+', '+locations[0].longitude+'</p>'
+          });
+		  
+		  myMarker.addListener('click', function() {
+            infoWindow.open(map, myMarker);
+          });
+          
 			
 		  /*adding location of other nearby charities*/
 		  for(var i = 1; i<locations.length; i++){
@@ -104,11 +113,18 @@ function createMap(){
 			console.log(longitude);
 		    latitude = locations[i].latitude;
 			console.log(latitude);
-            new google.maps.Marker({
-                position: {lat: latitude, lng: longitude},
-                map: map,
-				icon: {url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+            const otherMarker = new google.maps.Marker({
+              position: {lat: latitude, lng: longitude},
+              map: map,
+              icon: {url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
 			});
+			const otherInfoWindow = new google.maps.InfoWindow({
+              content: '<p>'+locations[i].user+'</p>'
+            });
+			
+            otherMarker.addListener('click', function() {
+              otherInfoWindow.open(map, otherMarker);
+            });
 		  }  
         }
 	  });
@@ -129,6 +145,7 @@ function showMessageFormIfViewingSelf() {
         if (loginStatus.isLoggedIn &&
             loginStatus.username == parameterUsername) {
           document.getElementById('about-me-form').classList.remove('hidden');
+		  document.getElementById('message-form').classList.remove('hidden');
           }
         });
   }
@@ -322,7 +339,6 @@ fetch('/blobstore-upload-url')
   .then((imageUploadUrl) => {
 	const messageForm = document.getElementById('message-form');
 	messageForm.action = imageUploadUrl;
-	messageForm.classList.remove('hidden');
   });
 }
 	  
@@ -330,10 +346,10 @@ fetch('/blobstore-upload-url')
 function buildUI() {
   setPageTitle();
   createMap();
-  showMessageFormIfViewingSelf();
   fetchMessages();
   fetchAboutMe();
   fetchBlobstoreUrlAndShowForm()
+  showMessageFormIfViewingSelf();
   listNotifications()
 }
 
