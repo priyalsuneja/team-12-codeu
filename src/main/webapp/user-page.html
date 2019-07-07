@@ -41,11 +41,13 @@ limitations under the License.
 	
     <div id="map-container">
 	  <div id="map"></div>
-      <form id="location-form" method="POST" action="/locations">
-	    <textarea name="latitude" placeholder="latitude" rows=1 required></textarea>
-	    <textarea name="longitude" placeholder="longitude" rows=1 required></textarea>
-	    <input type="submit" value="Set Location">
-	  </form>
+	  <div id="map-form-div" class="hidden">
+	    <p> Add your location, and view near by charities!</p>
+        <form id="location-form" method="POST" action="/locations">
+	      <textarea id= "address-input" name="address" placeholder="Enter your location address" rows=1 required></textarea>
+	      <button id="set-location-btn" type="button">Set Location</button>
+	    </form>
+	  </div>
 	</div>
 	
 	<div id="search-container">

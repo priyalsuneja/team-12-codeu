@@ -9,7 +9,6 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Location;
-import com.google.codeu.data.Message;
 import com.google.codeu.data.Notification;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -61,8 +60,8 @@ public class LocationServlet extends HttpServlet{
     }
     
     String user = userService.getCurrentUser().getEmail();
-    double longitude = Double.parseDouble(request.getParameter("longitude"));
-    double latitude = Double.parseDouble(request.getParameter("latitude"));
+    double longitude = Double.parseDouble(request.getParameter("longitude").toString());
+    double latitude = Double.parseDouble(request.getParameter("latitude").toString());
     
     /*check validity of input*/
     if(Math.abs(latitude)>90 || Math.abs(longitude)>180)  {
@@ -96,14 +95,6 @@ public class LocationServlet extends HttpServlet{
         datastore.storeNotification(notification);
       }
     }
-    
-//    /* Store notifications for near by charities about this changse */
-//    NotificationServlet notificationServlet = new NotificationServlet();
-//    notificationServlet.doPost(request, response);
-    
-    /*redirect to user page*/
-    response.sendRedirect("/user-page.html?user=" + user);
-    
   }
     
 }

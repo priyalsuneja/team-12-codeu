@@ -209,8 +209,8 @@ public class Datastore {
   public void storeLocation(Location location)
   {
     Entity userEntity = new Entity("Location", location.getId().toString());
-    userEntity.setProperty("longitude", location.getLongitude()+"");
-    userEntity.setProperty("latitude", location.getLatitude()+"");
+    userEntity.setProperty("longitude", String.valueOf(location.getLongitude()));
+    userEntity.setProperty("latitude", String.valueOf(location.getLatitude()));
     userEntity.setProperty("text", location.getText());
     userEntity.setProperty("user", location.getUser());
     datastore.put(userEntity);

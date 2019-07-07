@@ -73,8 +73,6 @@ function listNotifications() {
 
 /** created a map to show the location of charity*/
 function createMap(){
-	var longitude;
-	var latitude;
   const url = "/locations?user="+parameterUsername;
   fetch(url)
     .then((response)=> {
@@ -88,9 +86,9 @@ function createMap(){
         if (locations.length > 0){
 		  
 		  /*adding location of the self charity*/
-		  longitude = locations[0].longitude;
+		  var longitude = locations[0].longitude;
 		  console.log(longitude);
-		  latitude = locations[0].latitude;
+		  var latitude = locations[0].latitude;
 	      console.log(latitude);
           var myMarker = new google.maps.Marker({
             position: {lat: latitude, lng: longitude},
@@ -130,8 +128,43 @@ function createMap(){
 	  });
 }
 
-/**show location-form if view self*/
-//to be done later ...
+/**show map-container and form if view self*/
+function showMapFormIfViewSelf() {
+  fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        if (loginStatus.isLoggedIn &&
+            loginStatus.username == parameterUsername) {
+          document.getElementById('map-form-div').classList.remove('hidden');
+          }
+        });
+}
+
+/* map setLocation button function*/
+function addSetLocationFunction() {
+    const setLocationBtn = document.getElementById('set-location-btn');
+	setLocationBtn.onclick = function() {
+	  const adressInput = document.getElementById('address-input');
+	  var address = adressInput.value.split(' ').join('+');
+	  const urlgeo = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key=AIzaSyBJ-A9BQNUd6cR6IgbOnZwr26_62tB6LRI';
+	  fetch(urlgeo)
+	    .then((response)=> {
+		  return response.json();
+		})
+		  .then((locationGeo) => {
+		    if (locationGeo.status == google.maps.GeocoderStatus.OK) {
+			  var latlng = locationGeo.results[0].geometry.location;
+			  const url = '/locations?user='+parameterUsername+'&latitude='+latlng.lat+'&longitude='+latlng.lng;
+	          fetch(url, {method:'POST'})
+			    .then(()=> {
+				  createMap();
+				});
+			}
+		  });
+	}
+}
 
 /**
  * Shows the message form if the user is logged in and viewing their own page.
@@ -346,11 +379,14 @@ fetch('/blobstore-upload-url')
 function buildUI() {
   setPageTitle();
   createMap();
+  addSetLocationFunction();
   fetchMessages();
   fetchAboutMe();
-  fetchBlobstoreUrlAndShowForm()
+  fetchBlobstoreUrlAndShowForm();
+  listNotifications();
   showMessageFormIfViewingSelf();
-  listNotifications()
+  showMapFormIfViewSelf();
+  
 }
 
 function fetchAboutMe(){
