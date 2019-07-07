@@ -10,6 +10,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Location;
 import com.google.codeu.data.Message;
+import com.google.codeu.data.Notification;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
@@ -68,9 +69,10 @@ public class LocationServlet extends HttpServlet{
         return;
     
     List<Location> locations = datastore.getLocations(user);
+  
     
     /*check if location object exists*/
-    if(locations.isEmpty())
+    if(locations==null || locations.isEmpty())
     {
       /*make location object*/
       String text = "Charity Location";
@@ -82,6 +84,21 @@ public class LocationServlet extends HttpServlet{
       String existingLocationId = locations.get(0).getId().toString();
       datastore.updateLocation(existingLocationId, longitude, latitude); 
     }
+    
+    locations = datastore.getLocations(user);
+     if(locations!=null && locations.size()>0) {
+      /*send notification to other charities near by*/
+      for(int i = 1; i<locations.size(); i++)
+      {
+        Notification notification = new Notification(user, locations.get(i).getUser(), "New charity location found near you!");//in this case link is also user: test@example.com
+        datastore.storeNotification(notification);
+      }
+    }
+    
+//    /* Store notifications for near by charities about this changse */
+//    NotificationServlet notificationServlet = new NotificationServlet();
+//    notificationServlet.doPost(request, response);
+    
     /*redirect to user page*/
     response.sendRedirect("/user-page.html?user=" + user);
     

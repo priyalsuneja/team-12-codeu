@@ -31,33 +31,40 @@ function setPageTitle() {
 
 /**create list of notifications*/
 function listNotifications() {
+  const notificationsDiv = document.getElementById('notification-container');
   const notificationsBtn = document.getElementById('notifications-btn');
+  const closeBtn = document.createElement('Button');
+  closeBtn.innerHTML="Close";
+  closeBtn.onclick = function() {
+    notificationsDiv.style.visibility = 'hidden';
+  }
+  notificationsDiv.appendChild(closeBtn);
+	
+  /*creating body div for notifications*/
+  const bodyDiv = document.createElement('Div');
+  notificationsDiv.appendChild(bodyDiv);
   notificationsBtn.onclick = function() {
-    const notificationsDiv = document.getElementById('notification-container');
 	notificationsDiv.style.visibility = 'visible';
-	const closeBtn = document.createElement('Button');
-	closeBtn.innerHTML="Close";
-	closeBtn.onclick = function() {
-	    notificationsDiv.style.visibility = 'hidden';
-        notificationsDiv.removeChild(closeBtn);	
-	  }
-	notificationsDiv.appendChild(closeBtn);
 	
 	/*requesting list of notifications*/
-	const url = "/notification?user="+parameterUsername;
+	const url = "/notifications?user="+parameterUsername;
 	fetch(url)
 	  .then((response)=> {
         return response.json();
 	  })
         .then((notifications)=> {
-		  const noteDiv = document.createElement('Div');
           if (notifications.length == 0) {
-            notificationsDiv.innerHTML = '<p>No notifications</p>';
+            bodyDiv.innerHTML = '<p>No notifications</p>';
           } else {
-            notificationsDiv.innerHTML = '';
+            bodyDiv.innerHTML = '';
 			notifications.forEach((note) => {
-              noteDiv.innerHTML = note.timestamp+"<br>"+note.text+"<br>"+"<a href="+note.link+">click here</a>";
-              notificationsDiv.appendChild(noteDiv);
+			  const noteDiv = document.createElement('Div');
+              noteDiv.innerHTML = note.timestamp+"<br>"+note.text+"<br>"+"<a href='/user-page.html?user="+note.link+"'>"+note.link+"</a>";
+			  noteDiv.style.borderStyle = "solid";
+			  noteDiv.style.borderWidths = "1px";
+			  noteDiv.style.marginTop = "2px";
+			  
+              bodyDiv.appendChild(noteDiv);
             });
           }
 		});

@@ -223,14 +223,15 @@ public class Datastore {
         PreparedQuery allLocationresults = datastore.prepare(allLocations);
         for (Entity entity : allLocationresults.asIterable()) {
           try {
-            double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
-            double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
-            if(Math.abs(locations.get(0).getLatitude()-latitude)<3 && Math.abs(locations.get(0).getLongitude()-longitude)<3)
+            double otherLongitude = Double.parseDouble(entity.getProperty("longitude").toString());
+            double otherLatitude = Double.parseDouble(entity.getProperty("latitude").toString());
+            if(Math.abs(locations.get(0).getLatitude()-otherLatitude)<3 && Math.abs(locations.get(0).getLongitude()-otherLongitude)<3)
             {
               String idString = entity.getKey().getName();
               UUID id = UUID.fromString(idString);
               String text = (String) entity.getProperty("text");
-              Location location = new Location(id, longitude, latitude, text, user);
+              String otherUser = (String) entity.getProperty("user");
+              Location location = new Location(id, otherLongitude, otherLatitude, text, otherUser);
               locations.add(location);
             }
 
@@ -244,7 +245,7 @@ public class Datastore {
     else
     {
       if(locations.size()>1)
-        System.out.println("Invalid: multiple locations for a charity!");
+        System.out.println("Invalid: multiple locations for a charity!!!!!!!!!!!!!");
       locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
     }
     return locations;
