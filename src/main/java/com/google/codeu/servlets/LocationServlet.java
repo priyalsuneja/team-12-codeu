@@ -76,13 +76,13 @@ public class LocationServlet extends HttpServlet{
     {
       /*make location object*/
       String text = "Charity Location";
-      Location location = new Location(longitude, latitude, text, user);
+      Location location = new Location(latitude, longitude, text, user);
       datastore.storeLocation(location);
     }
     else //location already exists => update it
     {
       String existingLocationId = locations.get(0).getId().toString();
-      datastore.updateLocation(existingLocationId, longitude, latitude); 
+      datastore.updateLocation(existingLocationId, latitude, longitude); 
     }
     
     locations = datastore.getLocations(user);

@@ -18,7 +18,7 @@ public class Location {
     private String text;
     private String user;
 
-    public Location(UUID id, double longitude, double latitude, String text, String user) {
+    public Location(UUID id, double latitude, double longitude, String text, String user) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -26,8 +26,8 @@ public class Location {
         this.user = user;
     }
     
-    public Location(double longitude, double latitude, String text, String user) {
-        this(UUID.randomUUID(), longitude, latitude, text, user);
+    public Location(double latitude, double longitude, String text, String user) {
+        this(UUID.randomUUID(), latitude, longitude, text, user);
     }
     
     public void setId(UUID id) {

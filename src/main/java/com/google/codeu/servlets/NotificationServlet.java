@@ -46,24 +46,4 @@ public class NotificationServlet extends HttpServlet {
     String json = gson.toJson(notifications);
     response.getWriter().println(json);      
   }
-  
-//  @Override
-//  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//    UserService userService = UserServiceFactory.getUserService();
-//    if (!userService.isUserLoggedIn()) {
-//      response.sendRedirect("/index.html");
-//      return;
-//    }
-//    String user = userService.getCurrentUser().getEmail();
-//    /*location of self index 0, others near by index>=1*/
-//    List<Location> locations = datastore.getLocations(user);
-//    if(locations!=null && locations.size()>0) {
-//      /*send notification to other charities near by*/
-//      for(int i = 1; i<locations.size(); i++)
-//      {
-//        Notification notification = new Notification(user, user, "New charity location found near you!");//in this case link is also user: test@example.com
-//        datastore.storeNotification(notification);
-//      }
-//    }
-//  }
 }

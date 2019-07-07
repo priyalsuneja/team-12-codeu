@@ -207,7 +207,7 @@ public class Datastore {
         String text = (String) entity.getProperty("text");
         double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
         double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
-        Location location = new Location(id, longitude, latitude, text, user);
+        Location location = new Location(id, latitude, longitude, text, user);
         locations.add(location);
       } catch (Exception e) {
         System.err.println("Error reading message.");
@@ -231,7 +231,7 @@ public class Datastore {
               UUID id = UUID.fromString(idString);
               String text = (String) entity.getProperty("text");
               String otherUser = (String) entity.getProperty("user");
-              Location location = new Location(id, otherLongitude, otherLatitude, text, otherUser);
+              Location location = new Location(id, otherLatitude, otherLongitude, text, otherUser);
               locations.add(location);
             }
 
@@ -252,7 +252,7 @@ public class Datastore {
   }
   
   /*update a location entity stored in datastore*/
-  public void updateLocation(String locationId, double longitude, double latitude) {
+  public void updateLocation(String locationId, double latitude, double longitude) {
     try {
       Key locationKey = KeyFactory.createKey("Location", locationId);
       Entity locationEntity = datastore.get(locationKey);
