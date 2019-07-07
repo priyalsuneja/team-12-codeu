@@ -62,25 +62,6 @@ public class SearchCharitiesServelet extends HttpServlet {
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
-
-        List<Charity> charities = datastore.getCharities(type);
-
-        JsonArray charitiesArray = new JsonArray();
-        Gson gson = new Gson();
-
-        for(Charity charity : charities) {
-            charitiesArray.add(gson.toJsonTree(charity));
-        }
-
-        response.setContentType("application/json");
-        response.getOutputStream().println(charitiesArray.toString());
-
-    }
-    @Override
-    public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
-
         List<Charity> charities = datastore.getCharities(type);
 
         JsonArray charitiesArray = new JsonArray();
@@ -95,5 +76,22 @@ public class SearchCharitiesServelet extends HttpServlet {
 
     }
 
+    /**
+     * Responds with a JSON Object of all the distinct charity types
+     */
+    public void doPut (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        List<String> types = datastore.getCharityTypes();
+
+        JsonArray charitiesArray = new JsonArray();
+        Gson gson = new Gson();
+
+        for(String type : types) {
+            charitiesArray.add(gson.toJsonTree(type));
+        }
+
+        response.setContentType("application/json");
+        response.getOutputStream().println(charitiesArray.toString());
+
+    }
 }

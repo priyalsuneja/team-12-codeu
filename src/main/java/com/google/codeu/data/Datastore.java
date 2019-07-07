@@ -250,6 +250,37 @@ public class Datastore {
     return charities;
   }
 
+  /**
+   * Gets list of all the distinct types of charities.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<String> getCharityTypes() {
+    List<String> types = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .addSort("type", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String type = (String) entity.getProperty("type");
+
+        if( !types.contains(type) && !type.equals("Organization type")) {
+          types.add(type);
+        }
+      } catch (Exception e) {
+        System.err.println("Error finding types.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return types;
+  }
+
   public void deleteMessage(String messageId) {
     try {
       Key messageKey = KeyFactory.createKey("Message", messageId);

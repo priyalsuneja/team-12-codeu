@@ -3,8 +3,7 @@ function displayCharities() {
 
 	const type = document.getElementById('search-text').value;
     const url = '/search-charities?type=' + type;
-    console.log(url);
-    fetch(url).then(function(response) {
+    fetch(url, {method:'GET'}).then(function(response) {
       return response.json();
     }).then((charities) => {
 
@@ -19,10 +18,32 @@ function displayCharities() {
           charityContainer.innerHTML ='';
 
           charities.forEach((charity) => {
-            const charityContainer = document.getElementById('display-charities');
             charityContainer.innerHTML += charity.name + ', ' + charity.city + '<br>';
           });
       }
     });
 
+ }
+
+ function displayTypes() {
+
+    const url = '/search-charities';
+    fetch(url, {method:'PUT'}).then(function(response) {
+      return response.json();
+    }).then((types) => {
+
+      if(Object.entries(types).length === 0) {
+        const typesContainer = document.getElementById('display-types');
+        typesContainer.innerHTML = "Sorry, there are no charities in the database";
+      }
+
+      else {
+          const typesContainer = document.getElementById('display-types');
+          typesContainer.innerHTML ='Currently Available Charity Types <br>';
+
+          types.forEach((type) => {
+            typesContainer.innerHTML += type+ '<br>';
+          });
+      }
+    });
  }
