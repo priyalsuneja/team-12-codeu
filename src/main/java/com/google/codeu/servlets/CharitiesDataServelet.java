@@ -24,7 +24,7 @@ public class CharitiesDataServelet extends HttpServlet {
   public void init() {
     charityArray = new JsonArray();
     Gson gson = new Gson();
-    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/eo2.csv"));
+    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/charities/eo1.csv"));
     while(scanner.hasNextLine()) {
       String line = scanner.nextLine();
       String[] cells = line.split(",");
