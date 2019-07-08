@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h2>template</h2>
-
+<link rel="stylesheet" href="/css/main.css">
+  	<nav>
+      <ul id="navigation">
+        <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+        <li><a href="/public-feed.html">Public Feed</a></li>
+        <li><a href="/community.html">Community</a></li>
+        <li><a href="/charities.html">Charities</a></li>
+      </ul>
+    </nav>
+<h2>Template</h2>
 <form name = "eventForm" method="post" action="EventServlet">
   Description:<br>
   <input type="text" maxlength = "25" size="100" name="description">
@@ -14,7 +21,29 @@
   Recruit volunteer or event:<br>
   <input type="text" name="volunteer" maxlength = "25" size="100" placeholder="Please enter TRUE for volunteer FALSE for event">
   <br><br>
-  <input type="submit" value="Submit">
 </form> 
+<form id="asd">
+  Name:<br>
+  <input type="text" maxlength = "25" size="100" name="Last Name  ">
+  <br>
+  Why want to join the event:<br>
+  <input type="text" name="why" maxlength = "25" size="100" placeholder="Why want to join the event">
+  <br>
+  Past experience:<br>
+  <input type="text" name="experience" maxlength = "25" size="100" placeholder="Past experience">
+  <br><br>
+</form>
+  <script>
+	  function asd(a)
+	  {
+	      if(a==1)
+	          document.getElementById("asd").style.display="none";
+	      else
+	          document.getElementById("asd").style.display="block";
+	  }
+  </script>
+  <button onclick="asd(1)">Hide Volunteer</button>
+  <button onclick="asd(2)">Show Volunteer</button>
+  <input type="submit" value="Submit">
 </body>
 </html>
