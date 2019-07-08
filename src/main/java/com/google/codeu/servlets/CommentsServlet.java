@@ -53,7 +53,7 @@ public class CommentsServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     String user = request.getParameter("user");
-    if(user==null ||user.equals("")) {
+    if(user==null) {
       response.sendRedirect("/index.html");
       return;
     }
@@ -74,6 +74,14 @@ public class CommentsServlet extends HttpServlet {
     {
         System.out.println("err posting comment: "+e.getMessage());
     }
-      response.sendRedirect("/user-page.html?user=" + user);
+    if(user.equals(""))//the comment is comming from public feed
+    {
+        System.out.println("in public feed redirect!!!!!!!!!!!!!!!!!!!!!!!");
+      response.sendRedirect("/public-feed.html");
+      return;
+    }
+    
+    //comment is comming from user-page
+    response.sendRedirect("/user-page.html?user=" + user);
   }
 }

@@ -40,9 +40,100 @@
     messageDiv.classList.add("message-div");
     messageDiv.appendChild(headerDiv);
     messageDiv.appendChild(bodyDiv);
+	
+	/*adding comment feature*/
+	addCommentsButton(messageDiv, message);
    
     return messageDiv;
   }
+  
+  /*creating comments button*/
+function addCommentsButton(messageDiv, message) {
+  /*creat button*/
+  const commentsButton = document.createElement('Button');
+  commentsButton.innerHTML = 'Comments';
+  
+  /*creat comment container div*/
+  const commentContainerDiv = document.createElement('div');
+  
+  /*create comment div*/
+  const commentDiv = document.createElement('div');
+  commentDiv.classList.add('comment-div');
+  commentDiv.style.width = "90%";
+  commentDiv.innerHTML = '';
+  
+  /*comments button fetches comments for the message, and make a form for posting new comments*/
+  commentsButton.onclick = function() {
+
+	/*hide button when clicked to prevent re-clicking*/
+	commentsButton.style.visibility="hidden";
+	
+	/*fetching posted comments for the message*/
+	const messageId = message.id;
+    const url = '/comments?messageId='+messageId;
+	fetch(url)
+	  .then((response) => {
+        return response.json();
+      })
+      .then((comments) => {
+        if (comments.length == 0) {
+          commentDiv.innerHTML = '<p>There are no comments on this message yet.</p>';
+        } else {
+          comments.forEach((comment) => {
+            const bodyDiv = document.createElement('div');
+            bodyDiv.classList.add('comment-body');
+            bodyDiv.innerHTML = comment.user+': '+comment.text;
+            commentDiv.appendChild(bodyDiv);
+          });
+		}
+      });
+	commentContainerDiv.appendChild(commentDiv);
+	
+    /*creat form div*/
+	const formDiv = document.createElement('div');
+    formDiv.classList.add('form-div');
+    formDiv.style.width = "90%";
+	
+	/*creating comment form*/  
+    var commentForm = document.createElement("form");
+    commentForm.setAttribute('method',"post");
+	
+	/*adding commenter to the action url parameter*/
+	var user;
+	fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        const commenter = loginStatus.username;
+		const user = "";
+		commentForm.setAttribute('action',"/comments?user="+user+"&commenter="+commenter+"&messageId="+message.id);
+	  });
+    
+	
+	/*creat input area*/
+    var inputArea = document.createElement("input");
+    inputArea.type = "text";
+    inputArea.name = "comment";
+    inputArea.id = "comment-input";
+	inputArea.style.width = "100%";
+	inputArea.placeholder = "type you comment here ...";
+	commentForm.appendChild(inputArea);
+	
+	/*create a submit button*/
+    var submitButton = document.createElement("input");
+    submitButton.type = "submit";
+    submitButton.value = "Add Comment";
+	commentForm.appendChild(submitButton);
+	
+	/*adding form to form div*/
+	formDiv.appendChild(commentForm);
+	commentContainerDiv.appendChild(formDiv);
+  }
+  /*adding comments button to message-div*/
+  commentContainerDiv.appendChild(commentsButton);
+  messageDiv.appendChild(commentContainerDiv);
+}
   
   // Fetch data and populate the UI of the page.
   function buildUI() {
