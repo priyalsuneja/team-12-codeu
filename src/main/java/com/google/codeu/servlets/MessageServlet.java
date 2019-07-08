@@ -92,6 +92,60 @@ public class MessageServlet extends HttpServlet {
 
     response.getWriter().println(json);
   }
+  
+  /** Deletes a message*/
+  @Override
+  public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    response.setContentType("application/json");
+
+    String user = request.getParameter("user");
+
+    if (user == null || user.equals("")) {
+      // Request is invalid, return empty array
+      response.getWriter().println("[]");
+      return;
+    }
+	
+    /*deleting message using message id from datastore*/
+    String messageId = Jsoup.clean(request.getParameter("messageId"), Whitelist.none());
+    datastore.deleteMessage(messageId);
+    
+    /*fetch remaining messages after delete*/
+    List<Message> messages = datastore.getMessages(user);
+    Gson gson = new Gson();
+    String json = gson.toJson(messages);
+
+    response.getWriter().println(json);
+  }
+  
+   /**
+   * Edits a message entity in Datastore and
+   * Responds with a JSON representation of {@link Message} data for a specific user. Responds with
+   * an empty array if the user is not provided.
+   */
+  @Override
+  public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("application/json");
+    String user = request.getParameter("user");
+    if (user == null || user.equals("")) {
+      // Request is invalid, return empty array
+      response.getWriter().println("[]");
+      return;
+    } 
+    
+    /*editing message using message id from datastore*/
+    String messageId = Jsoup.clean(request.getParameter("messageId"), Whitelist.none());
+    String messageText = request.getParameter("messageText");
+    datastore.editMessage(messageId, messageText);
+
+    /*fetch messages after update*/
+    List<Message> messages = datastore.getMessages(user);
+    Gson gson = new Gson();
+    String json = gson.toJson(messages);
+
+    response.getWriter().println(json);
+  }
 
   /** Stores a new {@link Message}. */
   @Override

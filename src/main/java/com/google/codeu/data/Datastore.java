@@ -93,6 +93,37 @@ public class Datastore {
   }
 
   /**
+   *  Gets all messages posted by every user.
+   *
+   *  @return a list of messages posted by every user. List is sorted by time descending.
+   */
+  public List<Message> getAllMessages() {
+    List<Message> messages = new ArrayList<>();
+
+    Query query = new Query("Message")
+      .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+        Message message = new Message(id, user, text, timestamp);
+        messages.add(message);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return messages;
+  }
+  /**
    * Stores the User in Datastore.
    */
   public void storeUser(User user) {
@@ -153,7 +184,103 @@ public class Datastore {
 	  PreparedQuery results = datastore.prepare(query);
 	  return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
-  
+
+  /**
+   * Stores Charity in datastore
+   */
+
+  public void storeCharity(Charity charity) {
+    Entity charEntity = new Entity("Charity", charity.getName());
+    charEntity.setProperty("name", charity.getName());
+    charEntity.setProperty("city", charity.getCity());
+    charEntity.setProperty("type", charity.getType());
+    datastore.put(charEntity);
+  }
+
+  /**
+   * Returns the Charity owned by the name, or
+   * null if no matching Charity was found.
+   */
+  public Charity getCharity(String name) {
+
+    Query query = new Query("Charity")
+            .setFilter(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+    PreparedQuery results = datastore.prepare(query);
+    Entity charEntity = results.asSingleEntity();
+    if (charEntity == null) {
+      return null;
+    }
+
+    String city = (String) charEntity.getProperty("city");
+    String type = (String) charEntity.getProperty("type");
+    Charity charity = new Charity(name,city,type);
+
+    return charity;
+  }
+
+  /**
+   * Gets charities with the given type.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<Charity> getCharities(String type) {
+    List<Charity> charities = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .setFilter(new Query.FilterPredicate("type", FilterOperator.EQUAL, type))
+                    .addSort("name", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String name = (String) entity.getProperty("name");
+        String city = (String) entity.getProperty("city");
+
+        Charity charity = new Charity(name, city, type);
+        charities.add(charity);
+      } catch (Exception e) {
+        System.err.println("Error finding charities.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return charities;
+  }
+
+  /**
+   * Gets list of all the distinct types of charities.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<String> getCharityTypes() {
+    List<String> types = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .addSort("type", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String type = (String) entity.getProperty("type");
+
+        if( !types.contains(type) && !type.equals("Organization type")) {
+          types.add(type);
+        }
+      } catch (Exception e) {
+        System.err.println("Error finding types.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return types;
+  }
+
   public void deleteMessage(String messageId) {
     try {
       Key messageKey = KeyFactory.createKey("Message", messageId);
@@ -174,7 +301,7 @@ public class Datastore {
       System.out.println("error: " + e.toString());
     }
   }
-  
+
  /*
   * Store a comment in Datastore
   */
@@ -217,6 +344,138 @@ public class Datastore {
       }
     }
     return comments;
+  }
+
+  /*stores a location entity in datastore*/
+  public void storeLocation(Location location)
+  {
+    Entity userEntity = new Entity("Location", location.getId().toString());
+    userEntity.setProperty("longitude", String.valueOf(location.getLongitude()));
+    userEntity.setProperty("latitude", String.valueOf(location.getLatitude()));
+    userEntity.setProperty("text", location.getText());
+    userEntity.setProperty("user", location.getUser());
+    datastore.put(userEntity);
+  }
+  
+  /*
+  * Return the list of locations including:
+  * location of charity at index zero and
+  * location of nearby charities from index 1 and above
+  */
+  public List<Location> getLocations(String user)
+  {
+    List<Location> locations = new ArrayList<>();
+
+    Query query =
+            new Query("Location")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user));
+
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String text = (String) entity.getProperty("text");
+        double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
+        double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
+        Location location = new Location(id, latitude, longitude, text, user);
+        locations.add(location);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    
+    if(locations.size()==1)//if one location found
+    {
+        Query allLocations =
+           new Query("Location")
+                   .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, user));
+        PreparedQuery allLocationresults = datastore.prepare(allLocations);
+        for (Entity entity : allLocationresults.asIterable()) {
+          try {
+            double otherLongitude = Double.parseDouble(entity.getProperty("longitude").toString());
+            double otherLatitude = Double.parseDouble(entity.getProperty("latitude").toString());
+            if(Math.abs(locations.get(0).getLatitude()-otherLatitude)<3 && Math.abs(locations.get(0).getLongitude()-otherLongitude)<3)
+            {
+              String idString = entity.getKey().getName();
+              UUID id = UUID.fromString(idString);
+              String text = (String) entity.getProperty("text");
+              String otherUser = (String) entity.getProperty("user");
+              Location location = new Location(id, otherLatitude, otherLongitude, text, otherUser);
+              locations.add(location);
+            }
+
+          } catch (Exception e) {
+            System.err.println("Error reading message.");
+            System.err.println(entity.toString());
+            e.printStackTrace();
+          }
+        }
+    }
+    else
+    {
+      if(locations.size()>1)
+        System.out.println("Invalid: multiple locations for a charity!!!!!!!!!!!!!");
+      locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
+    }
+    return locations;
+  }
+  
+  /*update a location entity stored in datastore*/
+  public void updateLocation(String locationId, double latitude, double longitude) {
+    try {
+      Key locationKey = KeyFactory.createKey("Location", locationId);
+      Entity locationEntity = datastore.get(locationKey);
+      locationEntity.setProperty("longitude", longitude);
+      locationEntity.setProperty("latitude", latitude);
+      datastore.put(locationEntity);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+  
+  /*stores a notification entity for a user*/
+  public void storeNotification(Notification notification)
+  {
+      /*creating notification entity*/
+      Entity notificationEntity = new Entity("Notification", notification.getId().toString());
+      notificationEntity.setProperty("user", notification.getUser());
+      notificationEntity.setProperty("text", notification.getText());
+      notificationEntity.setProperty("timestamp", notification.getTimestamp());
+      notificationEntity.setProperty("link", notification.getLink());
+      datastore.put(notificationEntity);
+  }
+  
+  /*returns a list of notifications for a user*/
+  public List<Notification> getNotifications(String user)
+  {
+      List<Notification> notifications = new ArrayList<Notification>();
+      Query query =
+            new Query("Notification")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+                    .addSort("timestamp", SortDirection.DESCENDING);
+      PreparedQuery results = datastore.prepare(query); 
+      for(Entity entity: results.asIterable())
+      {
+        try {
+          String idString = entity.getKey().getName();
+          UUID id = UUID.fromString(idString);
+          String text = (String) entity.getProperty("text");
+          long timestamp = (long) entity.getProperty("timestamp");
+          String link = (String) entity.getProperty("link");
+
+          Notification notification = new Notification(link, id, user, text, timestamp);
+          notifications.add(notification);
+        } catch (Exception e) {
+          System.err.println("Error reading notification.");
+          System.err.println(entity.toString());
+          e.printStackTrace();
+        }
+      }
+      return notifications;
   }
 }
 

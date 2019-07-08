@@ -29,6 +29,143 @@ function setPageTitle() {
   document.title = parameterUsername + ' - User Page';
 }
 
+/**create list of notifications*/
+function listNotifications() {
+  const notificationsDiv = document.getElementById('notification-container');
+  const notificationsBtn = document.getElementById('notifications-btn');
+  const closeBtn = document.createElement('Button');
+  closeBtn.innerHTML="Close";
+  closeBtn.onclick = function() {
+    notificationsDiv.style.visibility = 'hidden';
+  }
+  notificationsDiv.appendChild(closeBtn);
+	
+  /*creating body div for notifications*/
+  const bodyDiv = document.createElement('Div');
+  notificationsDiv.appendChild(bodyDiv);
+  notificationsBtn.onclick = function() {
+	notificationsDiv.style.visibility = 'visible';
+	
+	/*requesting list of notifications*/
+	const url = "/notifications?user="+parameterUsername;
+	fetch(url)
+	  .then((response)=> {
+        return response.json();
+	  })
+        .then((notifications)=> {
+          if (notifications.length == 0) {
+            bodyDiv.innerHTML = '<p>No notifications</p>';
+          } else {
+            bodyDiv.innerHTML = '';
+			notifications.forEach((note) => {
+			  const noteDiv = document.createElement('Div');
+              noteDiv.innerHTML = new Date(note.timestamp)+"<br>"+note.text+"<br>"+"<a href='/user-page.html?user="+note.link+"'>"+note.link+"</a>";
+			  noteDiv.style.borderStyle = "solid";
+			  noteDiv.style.borderWidths = "1px";
+			  noteDiv.style.marginTop = "2px";
+			  
+              bodyDiv.appendChild(noteDiv);
+            });
+          }
+		});
+  }
+}
+
+/** created a map to show the location of charity*/
+function createMap(){
+  const url = "/locations?user="+parameterUsername;
+  fetch(url)
+    .then((response)=> {
+      return response.json();
+	})
+	  .then((locations)=> {
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35, lng: -100},
+          zoom:3
+        });
+        if (locations.length > 0){
+		  
+		  /*adding location of the self charity*/
+		  var longitude = locations[0].longitude;
+		  console.log(longitude);
+		  var latitude = locations[0].latitude;
+	      console.log(latitude);
+          var myMarker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map,
+			zIndex: google.maps.Marker.MAX_ZINDEX + 1
+		  });
+		  
+		  const infoWindow = new google.maps.InfoWindow({
+            content: '<p> You are at: '+locations[0].latitude+', '+locations[0].longitude+'</p>'
+          });
+		  
+		  myMarker.addListener('click', function() {
+            infoWindow.open(map, myMarker);
+          });
+          
+			
+		  /*adding location of other nearby charities*/
+		  for(var i = 1; i<locations.length; i++){
+            longitude = locations[i].longitude;
+			console.log(longitude);
+		    latitude = locations[i].latitude;
+			console.log(latitude);
+            const otherMarker = new google.maps.Marker({
+              position: {lat: latitude, lng: longitude},
+              map: map,
+              icon: {url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+			});
+			const otherInfoWindow = new google.maps.InfoWindow({
+              content: '<p>'+locations[i].user+'</p>'
+            });
+			
+            otherMarker.addListener('click', function() {
+              otherInfoWindow.open(map, otherMarker);
+            });
+		  }  
+        }
+	  });
+}
+
+/**show map-container and form if view self*/
+function showMapFormIfViewSelf() {
+  fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        if (loginStatus.isLoggedIn &&
+            loginStatus.username == parameterUsername) {
+          document.getElementById('map-form-div').classList.remove('hidden');
+          }
+        });
+}
+
+/* map setLocation button function*/
+function addSetLocationFunction() {
+    const setLocationBtn = document.getElementById('set-location-btn');
+	setLocationBtn.onclick = function() {
+	  const adressInput = document.getElementById('address-input');
+	  var address = adressInput.value.split(' ').join('+');
+	  const urlgeo = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key=AIzaSyBJ-A9BQNUd6cR6IgbOnZwr26_62tB6LRI';
+	  fetch(urlgeo)
+	    .then((response)=> {
+		  return response.json();
+		})
+		  .then((locationGeo) => {
+		    if (locationGeo.status == google.maps.GeocoderStatus.OK) {
+			  var latlng = locationGeo.results[0].geometry.location;
+			  const url = '/locations?user='+parameterUsername+'&latitude='+latlng.lat+'&longitude='+latlng.lng;
+	          fetch(url, {method:'POST'})
+			    .then(()=> {
+				  createMap();
+				});
+			}
+		  });
+	}
+}
+
 /**
  * Shows the message form if the user is logged in and viewing their own page.
  */
@@ -41,6 +178,7 @@ function showMessageFormIfViewingSelf() {
         if (loginStatus.isLoggedIn &&
             loginStatus.username == parameterUsername) {
           document.getElementById('about-me-form').classList.remove('hidden');
+		  document.getElementById('message-form').classList.remove('hidden');
           }
         });
   }
@@ -157,8 +295,10 @@ function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv,
   saveButton.innerHTML = "Save";
   saveButton.onclick = function() {
     const messageId = message.id;
-    const url = '/edit-message?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+bodyText.value;
-    fetch(url)
+    var messageText = bodyText.value;
+    messageText = messageText.split('\n').join(" ");
+    const url = '/messages?user=' + parameterUsername+"&messageId="+messageId+"&messageText="+messageText;
+    fetch(url, {method:'PUT'})
     .then((response) => {
       return response.json();
     })
@@ -203,8 +343,8 @@ function addDeleteButtonIfViewSelf(message, div) {
         deleteButton.innerHTML = "Delete Message";
         const messageId = message.id;
         deleteButton.onclick = function(){
-          const url = '/deleteMessage?user=' + parameterUsername+"&messageId="+messageId;
-          fetch(url)
+          const url = '/messages?user=' + parameterUsername+"&messageId="+messageId;
+          fetch(url, {method:'DELETE'})
           .then((response) => {
             return response.json();
           })
@@ -324,17 +464,21 @@ fetch('/blobstore-upload-url')
   .then((imageUploadUrl) => {
 	const messageForm = document.getElementById('message-form');
 	messageForm.action = imageUploadUrl;
-	messageForm.classList.remove('hidden');
   });
 }
 	  
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
-  showMessageFormIfViewingSelf();
+  createMap();
+  addSetLocationFunction();
   fetchMessages();
   fetchAboutMe();
-  fetchBlobstoreUrlAndShowForm()
+  fetchBlobstoreUrlAndShowForm();
+  listNotifications();
+  showMessageFormIfViewingSelf();
+  showMapFormIfViewSelf();
+  
 }
 
 function fetchAboutMe(){

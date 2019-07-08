@@ -21,23 +21,41 @@ limitations under the License.
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-A9BQNUd6cR6IgbOnZwr26_62tB6LRI"></script>
     <script src="/js/user-page-loader.js"></script>
   </head>
   <body onload="buildUI();">
     <nav>
       <ul id="navigation">
         <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
-        <li><a href="/">Public Feed</a></li>
+		    <li ><a><button id="notifications-btn">Notifications</button></a></li>
+        <li><a href="/public-feed.html">Public Feed</a></li>
         <li><a href="/community.html">Community</a></li>
         <li><a href="/charities.html">Charities</a></li>
       </ul>
     </nav>
+	
+	<div id="notification-container"></div>
+	
     <Label id="page-title" class="h1-label">User Page</Label>
+	
+    <div id="map-container">
+	  <div id="map"></div>
+	  <div id="map-form-div" class="hidden">
+	    <p> Add your location, and view near by charities!</p>
+        <form id="location-form" method="POST" action="/locations">
+	      <textarea id= "address-input" name="address" placeholder="Enter your location address" rows=1 required></textarea>
+	      <button id="set-location-btn" type="button">Set Location</button>
+	    </form>
+	  </div>
+	</div>
 	
 	<div id="search-container">
 	  <textarea id="search-text" rows="1"></textarea>
 	  <button type="button" onclick="fetchFilteredMessages()">Search</button>
 	</div>
+	
+
 
     <div id="about-me-container">Loading...</div>
     <div id="about-me-form" class="hidden">
