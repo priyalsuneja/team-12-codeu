@@ -301,5 +301,134 @@ public class Datastore {
       System.out.println("error: " + e.toString());
     }
   }
+  
+  public void storeLocation(Location location)
+  {
+    Entity userEntity = new Entity("Location", location.getId().toString());
+    userEntity.setProperty("longitude", String.valueOf(location.getLongitude()));
+    userEntity.setProperty("latitude", String.valueOf(location.getLatitude()));
+    userEntity.setProperty("text", location.getText());
+    userEntity.setProperty("user", location.getUser());
+    datastore.put(userEntity);
+  }
+  
+  /*
+  * Return the list of locations including:
+  * location of charity at index zero and
+  * location of nearby charities from index 1 and above
+  */
+  public List<Location> getLocations(String user)
+  {
+    List<Location> locations = new ArrayList<>();
+
+    Query query =
+            new Query("Location")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user));
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String text = (String) entity.getProperty("text");
+        double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
+        double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
+        Location location = new Location(id, latitude, longitude, text, user);
+        locations.add(location);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    if(locations.size()==1)//if one location found
+    {
+        Query allLocations =
+           new Query("Location")
+                   .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, user));
+        PreparedQuery allLocationresults = datastore.prepare(allLocations);
+        for (Entity entity : allLocationresults.asIterable()) {
+          try {
+            double otherLongitude = Double.parseDouble(entity.getProperty("longitude").toString());
+            double otherLatitude = Double.parseDouble(entity.getProperty("latitude").toString());
+            if(Math.abs(locations.get(0).getLatitude()-otherLatitude)<3 && Math.abs(locations.get(0).getLongitude()-otherLongitude)<3)
+            {
+              String idString = entity.getKey().getName();
+              UUID id = UUID.fromString(idString);
+              String text = (String) entity.getProperty("text");
+              String otherUser = (String) entity.getProperty("user");
+              Location location = new Location(id, otherLatitude, otherLongitude, text, otherUser);
+              locations.add(location);
+            }
+
+          } catch (Exception e) {
+            System.err.println("Error reading message.");
+            System.err.println(entity.toString());
+            e.printStackTrace();
+          }
+        }
+    }
+    else
+    {
+      if(locations.size()>1)
+        System.out.println("Invalid: multiple locations for a charity!!!!!!!!!!!!!");
+      locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
+    }
+    return locations;
+  }
+  
+  /*update a location entity stored in datastore*/
+  public void updateLocation(String locationId, double latitude, double longitude) {
+    try {
+      Key locationKey = KeyFactory.createKey("Location", locationId);
+      Entity locationEntity = datastore.get(locationKey);
+      locationEntity.setProperty("longitude", longitude);
+      locationEntity.setProperty("latitude", latitude);
+      datastore.put(locationEntity);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+  
+  /*stores a notification entity for a user*/
+  public void storeNotification(Notification notification)
+  {
+      /*creating notification entity*/
+      Entity notificationEntity = new Entity("Notification", notification.getId().toString());
+      notificationEntity.setProperty("user", notification.getUser());
+      notificationEntity.setProperty("text", notification.getText());
+      notificationEntity.setProperty("timestamp", notification.getTimestamp());
+      notificationEntity.setProperty("link", notification.getLink());
+      datastore.put(notificationEntity);
+  }
+  
+  /*returns a list of notifications for a user*/
+  public List<Notification> getNotifications(String user)
+  {
+      List<Notification> notifications = new ArrayList<Notification>();
+      Query query =
+            new Query("Notification")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+                    .addSort("timestamp", SortDirection.DESCENDING);
+      PreparedQuery results = datastore.prepare(query); 
+      for(Entity entity: results.asIterable())
+      {
+        try {
+          String idString = entity.getKey().getName();
+          UUID id = UUID.fromString(idString);
+          String text = (String) entity.getProperty("text");
+          long timestamp = (long) entity.getProperty("timestamp");
+          String link = (String) entity.getProperty("link");
+
+          Notification notification = new Notification(link, id, user, text, timestamp);
+          notifications.add(notification);
+        } catch (Exception e) {
+          System.err.println("Error reading notification.");
+          System.err.println(entity.toString());
+          e.printStackTrace();
+        }
+      }
+      return notifications;
+  }
 }
 
