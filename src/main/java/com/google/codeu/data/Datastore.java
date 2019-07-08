@@ -184,7 +184,103 @@ public class Datastore {
 	  PreparedQuery results = datastore.prepare(query);
 	  return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
-  
+
+  /**
+   * Stores Charity in datastore
+   */
+
+  public void storeCharity(Charity charity) {
+    Entity charEntity = new Entity("Charity", charity.getName());
+    charEntity.setProperty("name", charity.getName());
+    charEntity.setProperty("city", charity.getCity());
+    charEntity.setProperty("type", charity.getType());
+    datastore.put(charEntity);
+  }
+
+  /**
+   * Returns the Charity owned by the name, or
+   * null if no matching Charity was found.
+   */
+  public Charity getCharity(String name) {
+
+    Query query = new Query("Charity")
+            .setFilter(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+    PreparedQuery results = datastore.prepare(query);
+    Entity charEntity = results.asSingleEntity();
+    if (charEntity == null) {
+      return null;
+    }
+
+    String city = (String) charEntity.getProperty("city");
+    String type = (String) charEntity.getProperty("type");
+    Charity charity = new Charity(name,city,type);
+
+    return charity;
+  }
+
+  /**
+   * Gets charities with the given type.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<Charity> getCharities(String type) {
+    List<Charity> charities = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .setFilter(new Query.FilterPredicate("type", FilterOperator.EQUAL, type))
+                    .addSort("name", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String name = (String) entity.getProperty("name");
+        String city = (String) entity.getProperty("city");
+
+        Charity charity = new Charity(name, city, type);
+        charities.add(charity);
+      } catch (Exception e) {
+        System.err.println("Error finding charities.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return charities;
+  }
+
+  /**
+   * Gets list of all the distinct types of charities.
+   *
+   * @return a list of charities that have the given type. List is sorted by time descending.
+   */
+  public List<String> getCharityTypes() {
+    List<String> types = new ArrayList<>();
+
+    Query query =
+            new Query("Charity")
+                    .addSort("type", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String type = (String) entity.getProperty("type");
+
+        if( !types.contains(type) && !type.equals("Organization type")) {
+          types.add(type);
+        }
+      } catch (Exception e) {
+        System.err.println("Error finding types.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return types;
+  }
+
   public void deleteMessage(String messageId) {
     try {
       Key messageKey = KeyFactory.createKey("Message", messageId);

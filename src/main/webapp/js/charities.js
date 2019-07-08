@@ -11,7 +11,6 @@ function createCharities() {
         });
 
         charities.forEach((charity) => {
-         // geocodeAddress(charity.location,map);
          addLandmark(map, parseFloat(charity.lat), parseFloat(charity.lng), charity.name)
         });
 
@@ -32,7 +31,7 @@ function addLandmark(map, lat, lng, title) {
   });
 }
 
-
+// was used to geocode address of a charity, not using currently because the google API has a cap on search queries
 function geocodeAddress(address, resultsMap) {
 
         var geocoder = new google.maps.Geocoder();
