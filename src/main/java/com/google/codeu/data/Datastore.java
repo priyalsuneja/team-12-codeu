@@ -181,8 +181,10 @@ public class Datastore {
   public void storeComment(Comment comment)
   {
     Entity commentEntity = new Entity("Comment", comment.getId().toString());
+    commentEntity.setProperty("user", comment.getUser());
     commentEntity.setProperty("messageId", comment.getMessagId());
     commentEntity.setProperty("text", comment.getText());
+    commentEntity.setProperty("timestamp", comment.getTimestamp());
     datastore.put(commentEntity);
   }
   
@@ -195,15 +197,18 @@ public class Datastore {
     /*query comment for a specific message by messageId*/
     Query query =
             new Query("Comment")
-                    .setFilter(new Query.FilterPredicate("messageId", FilterOperator.EQUAL, messageId));
+                    .setFilter(new Query.FilterPredicate("messageId", FilterOperator.EQUAL, messageId))
+                    .addSort("timestamp", SortDirection.ASCENDING);
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
       try {
         String idString = entity.getKey().getName();
         UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
         String text = (String) entity.getProperty("text");
-        Comment comment = new Comment(id, messageId, text);
+        long timestamp = (long) entity.getProperty("timestamp");
+        Comment comment = new Comment(id, user, messageId, text, timestamp);
         comments.add(comment);
       } catch (Exception e) {
         System.err.println("Error reading comments.");

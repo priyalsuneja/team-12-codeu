@@ -60,12 +60,13 @@ public class CommentsServlet extends HttpServlet {
     
     try{
       String messageId = request.getParameter("messageId");
+	  String commenter = request.getParameter("commenter");
       String comment = Jsoup.clean(request.getParameter("comment"), Whitelist.none());
       
       if(messageId!=null && comment!=null)
       {
         /*creat comment object and store it to datastore*/
-        Comment commentObj = new Comment(messageId, comment);
+        Comment commentObj = new Comment(commenter, messageId, comment);
         datastore.storeComment(commentObj);
       }
     }

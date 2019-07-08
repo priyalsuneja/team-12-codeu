@@ -87,14 +87,15 @@ function buildMessageDiv(message) {
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
 
+  /*adding comments button to message-div*/
+  addCommentsButton(messageDiv, message);
+  
   /*adding delete button to message-div*/
   addDeleteButtonIfViewSelf(message, messageDiv);
 
   /*adding edit button to message div*/
   addEditButtonIfViewSelf(messageDiv, bodyDiv, message);
   
-  /*adding comments button to message-div*/
-  addCommentsButton(messageDiv, message);
 
   return messageDiv;
 }
@@ -109,7 +110,7 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
       if (loginStatus.isLoggedIn &&
           loginStatus.username == parameterUsername) {
         const editButton = document.createElement('Button');
-        editButton.innerHTML = "Edit";
+        editButton.innerHTML = "Edit Message";
         editButton.onclick = function() {
           editButton.style.visibility="hidden";
           const bodyText = document.createElement('textarea');
@@ -199,7 +200,7 @@ function addDeleteButtonIfViewSelf(message, div) {
         loginStatus.username == parameterUsername) {
         /*creat delete button*/
         const deleteButton = document.createElement("Button");
-        deleteButton.innerHTML = "Delete";
+        deleteButton.innerHTML = "Delete Message";
         const messageId = message.id;
         deleteButton.onclick = function(){
           const url = '/deleteMessage?user=' + parameterUsername+"&messageId="+messageId;
@@ -232,6 +233,9 @@ function addCommentsButton(messageDiv, message) {
   const commentsButton = document.createElement('Button');
   commentsButton.innerHTML = 'Comments';
   
+  /*creat comment container div*/
+  const commentContainerDiv = document.createElement('div');
+  
   /*create comment div*/
   const commentDiv = document.createElement('div');
   commentDiv.classList.add('comment-div');
@@ -240,7 +244,10 @@ function addCommentsButton(messageDiv, message) {
   
   /*comments button fetches comments for the message, and make a form for posting new comments*/
   commentsButton.onclick = function() {
-	  
+
+	/*hide button when clicked to prevent re-clicking*/
+	commentsButton.style.visibility="hidden";
+	
 	/*fetching posted comments for the message*/
 	const messageId = message.id;
     const url = '/comments?messageId='+messageId;
@@ -255,12 +262,12 @@ function addCommentsButton(messageDiv, message) {
           comments.forEach((comment) => {
             const bodyDiv = document.createElement('div');
             bodyDiv.classList.add('comment-body');
-            bodyDiv.innerHTML = comment.text;
+            bodyDiv.innerHTML = comment.user+': '+comment.text;
             commentDiv.appendChild(bodyDiv);
           });
 		}
       });
-	messageDiv.appendChild(commentDiv);
+	commentContainerDiv.appendChild(commentDiv);
 	
     /*creat form div*/
 	const formDiv = document.createElement('div');
@@ -270,7 +277,19 @@ function addCommentsButton(messageDiv, message) {
 	/*creating comment form*/  
     var commentForm = document.createElement("form");
     commentForm.setAttribute('method',"post");
-    commentForm.setAttribute('action',"/comments?user="+parameterUsername+"&messageId="+message.id);
+	
+	/*adding commenter to the action url parameter*/
+	var user;
+	fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        const commenter = loginStatus.username;
+		console.log(commenter);
+		commentForm.setAttribute('action',"/comments?user="+parameterUsername+"&commenter="+commenter+"&messageId="+message.id);
+	  });
+    
 	
 	/*creat input area*/
     var inputArea = document.createElement("input");
@@ -278,20 +297,22 @@ function addCommentsButton(messageDiv, message) {
     inputArea.name = "comment";
     inputArea.id = "comment-input";
 	inputArea.style.width = "100%";
+	inputArea.placeholder = "type you comment here ...";
 	commentForm.appendChild(inputArea);
 	
 	/*create a submit button*/
     var submitButton = document.createElement("input");
     submitButton.type = "submit";
-    submitButton.value = "Submit";
+    submitButton.value = "Add Comment";
 	commentForm.appendChild(submitButton);
 	
-	/*adding form to message-div*/
+	/*adding form to form div*/
 	formDiv.appendChild(commentForm);
-	messageDiv.appendChild(formDiv);
+	commentContainerDiv.appendChild(formDiv);
   }
   /*adding comments button to message-div*/
-  messageDiv.appendChild(commentsButton);
+  commentContainerDiv.appendChild(commentsButton);
+  messageDiv.appendChild(commentContainerDiv);
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/

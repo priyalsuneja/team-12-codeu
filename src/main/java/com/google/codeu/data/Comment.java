@@ -15,16 +15,20 @@ public class Comment {
   private UUID id;
   private String messagId;
   private String text;
+  private String user;
+  private long timestamp;
 
-    public Comment(UUID id, String messagId, String text) {
+    public Comment(UUID id, String user, String messagId, String text, long timestamp) {
         this.id = id;
         this.messagId = messagId;
         this.text = text;
+        this.user = user;
+        this.timestamp = timestamp;
     }
     
-    public Comment(String messageId, String text)
+    public Comment(String user, String messageId, String text)
     {
-        this(UUID.randomUUID(), messageId, text);
+        this(UUID.randomUUID(), user, messageId, text, System.currentTimeMillis());
     }
 
     public UUID getId() {
@@ -49,6 +53,22 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+	
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
     
 }
