@@ -131,7 +131,7 @@ public class Datastore {
     Entity userEntity = new Entity("User", user.getEmail());
     userEntity.setProperty("email", user.getEmail());
     userEntity.setProperty("aboutMe", user.getAboutMe());
-    userEntity.setProperty("type", User.UNSET_TYPE);
+    userEntity.setProperty("type", user.getType());
     datastore.put(userEntity);
       System.out.println("user stored or updated!!!!!!!!!!!!!!!!!!!!");
   }

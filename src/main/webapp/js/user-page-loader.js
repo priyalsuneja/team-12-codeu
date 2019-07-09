@@ -449,7 +449,7 @@ function addCommentsButton(messageDiv, message) {
 	/*adding form to form div*/
 	formDiv.appendChild(commentForm);
 	commentContainerDiv.appendChild(formDiv);
-  }
+  };
   /*adding comments button to message-div*/
   commentContainerDiv.appendChild(commentsButton);
   messageDiv.appendChild(commentContainerDiv);
@@ -521,9 +521,12 @@ function fetchFilteredMessages() {
 function fetchUserType() {
   const url = "/user-type?user="+parameterUsername;
   const statusDiv = document.getElementById('user-status-div');
+  statusDiv.innerHTML = '';
   fetch(url)
     .then((response)=> {
-		return response.text();
+		 const userType = response.text();
+		 console.log(userType);
+		 return userType;
 	})
 	  .then((type)=>{
 		  if(type=='1')//user is charity
@@ -543,9 +546,19 @@ function fetchUserType() {
 			 
 			const yesButton = document.createElement('Button');
 			yesButton.innerHTML = "Yes";
+			yesButton.onclick = function () {
+				const urlPostCharity = "/user-type?user="+parameterUsername+"&type=1";
+				fetch(urlPostCharity, {method:'POST'});
+				statusDiv.innerHTML= "Charity Organization";
+			};
 			 
 			const noButton = document.createElement('Button');
 			noButton.innerHTML = "No";
+			noButton.onclick = function () {
+				const urlPostDonor = "/user-type?user="+parameterUsername+"&type=0";
+				fetch(urlPostDonor, {method:'POST'});
+				statusDiv.innerHTML= "Donor User";
+			};
 			 
 			statusFormDiv.appendChild(statusQuestionDiv);
 			statusFormDiv.appendChild(yesButton);
