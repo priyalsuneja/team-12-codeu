@@ -124,13 +124,16 @@ public class Datastore {
     return messages;
   }
   /**
-   * Stores the User in Datastore.
+   * Stores/Updates the User in Datastore.
+   * 
    */
   public void storeUser(User user) {
     Entity userEntity = new Entity("User", user.getEmail());
     userEntity.setProperty("email", user.getEmail());
     userEntity.setProperty("aboutMe", user.getAboutMe());
+    userEntity.setProperty("type", User.UNSET_TYPE);
     datastore.put(userEntity);
+      System.out.println("user stored or updated!!!!!!!!!!!!!!!!!!!!");
   }
 
   /**
@@ -147,10 +150,45 @@ public class Datastore {
       return null;
     }
 
-    String aboutMe = (String) userEntity.getProperty("aboutMe");
-    User user = new User(email, aboutMe);
-
+    String newAboutMe = getUserAboutMe(userEntity);
+    Long newType = getUserType(userEntity); 
+    User user = new User(email, newAboutMe, newType);
+//    storeUser(user);
+    
     return user;
+  }
+  
+  /*this function is to take care of exceptions in case previous user records in datastore don't have aboutMe attribute*/
+  private String getUserAboutMe(Entity userEntity) {
+    try {
+        String aboutMe = (String) userEntity.getProperty("aboutMe");
+        if(aboutMe ==null)
+        {
+            aboutMe = "";
+        }
+        return aboutMe;
+    }
+    catch(Exception e) {
+        System.out.println("could not get user aboutMe: "+e.getMessage());
+        return new String("");
+    }
+  }
+  
+  /*this function is to take care of exceptions in case previous user records in datastore don't have type attribute*/
+  private Long getUserType(Entity userEntity) {
+    try { //userEntity.getProperty("type")!=null
+        Long type = (Long) userEntity.getProperty("type");
+        if(type ==null)
+        {
+            type = User.UNSET_TYPE;
+        }
+        return type;
+    }
+    catch(Exception e)//userEntity.getProperty("type")==null
+    {
+        System.out.println("could not get user type: "+e.getMessage());
+        return User.UNSET_TYPE;
+    }
   }
   
   /**

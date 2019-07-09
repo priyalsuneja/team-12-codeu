@@ -470,6 +470,7 @@ fetch('/blobstore-upload-url')
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
+  fetchUserType();
   createMap();
   addSetLocationFunction();
   fetchMessages();
@@ -515,4 +516,41 @@ function fetchFilteredMessages() {
           messagesContainer.appendChild(messageDiv);
         });
       });
+}
+
+function fetchUserType() {
+  const url = "/user-type?user="+parameterUsername;
+  const statusDiv = document.getElementById('user-status-div');
+  fetch(url)
+    .then((response)=> {
+		return response.text();
+	})
+	  .then((type)=>{
+		  if(type=='1')//user is charity
+		  {
+			statusDiv.innerHTML= "Charity Organization";
+		  }
+		  else if(type=='0')//user is donor
+		  {
+			statusDiv.innerHTML= "Donor User";
+		  }
+		  else //user record does not exits, or user type is null
+		  {
+            const statusFormDiv = document.createElement('Div');
+			 
+            const statusQuestionDiv = document.createElement('Div');
+			statusQuestionDiv.innerHTML = "<p>Are you a charity organization?</p>";
+			 
+			const yesButton = document.createElement('Button');
+			yesButton.innerHTML = "Yes";
+			 
+			const noButton = document.createElement('Button');
+			noButton.innerHTML = "No";
+			 
+			statusFormDiv.appendChild(statusQuestionDiv);
+			statusFormDiv.appendChild(yesButton);
+			statusFormDiv.appendChild(noButton);
+			statusDiv.appendChild(statusFormDiv);
+		  }
+	  });
 }
