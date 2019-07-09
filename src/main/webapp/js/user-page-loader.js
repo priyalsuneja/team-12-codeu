@@ -532,6 +532,7 @@ function fetchUserType() {
 		  if(type=='1')//user is charity
 		  {
 			statusDiv.innerHTML= "Charity Organization";
+			creatCharityInoDiv();
 		  }
 		  else if(type=='0')//user is donor
 		  {
@@ -550,6 +551,7 @@ function fetchUserType() {
 				const urlPostCharity = "/user-type?user="+parameterUsername+"&type=1";
 				fetch(urlPostCharity, {method:'POST'});
 				statusDiv.innerHTML= "Charity Organization";
+				creatCharityInoDiv();
 			};
 			 
 			const noButton = document.createElement('Button');
@@ -566,4 +568,109 @@ function fetchUserType() {
 			statusDiv.appendChild(statusFormDiv);
 		  }
 	  });
+}
+
+function creatCharityInoDiv() {
+  const infoDiv = document.getElementById('info-div');
+  const charityInfoDiv = document.createElement('Div');
+  
+  /*creating a link to chartiy's website*/
+  const websiteLink = document.createElement('a');
+  websiteLink.href = "";
+  websiteLink.id = "website-link";
+  websiteLink.innerHTML = "Our Website";
+  charityInfoDiv.appendChild(websiteLink);
+  
+  /*creating a link to chartiy's website*/
+  const contactLink = document.createElement('a');
+  contactLink.href = "";
+  contactLink.id = "contact-link";
+  contactLink.innerHTML = "Contact Us";
+  charityInfoDiv.appendChild(contactLink);
+  
+  /*creating a link to chartiy's website*/
+  const donateLink = document.createElement('a');
+  donateLink.href = "";
+  donateLink.id = "website-link";
+  donateLink.innerHTML = "Donate";
+  charityInfoDiv.appendChild(donateLink);
+  
+  /*add charityInfoDiv to infoDiv*/
+  infoDiv.appendChild(charityInfoDiv);
+  
+  /*if view self enable edit info*/
+   fetch('/login-status')
+    .then((response) => {
+      return response.json();
+    })
+    .then((loginStatus) => {
+      if (loginStatus.isLoggedIn && loginStatus.username == parameterUsername) {
+        editCharityInfo(infoDiv);
+	  }
+	});
+
+}
+
+/*creates edit button and its functionality to update charity info*/  
+function editCharityInfo(infoDiv) {
+  const charityFormDiv = document.createElement('Div');
+  const editInfoBtn = document.createElement('Button');
+  editInfoBtn.innerHTML = "Click to set you website, contact us, and donate links!";
+  editInfoBtn.onclick = function() {
+	editInfoBtn.style.visibility = 'hidden';
+	/*create dit info form*/
+	var editInfoForm = document.createElement("form");
+    editInfoForm.setAttribute('method',"post");
+	
+    /*creat website input area*/
+    var websiteInput = document.createElement("input");
+    websiteInput.type = "text";
+    websiteInput.name = "website";
+    websiteInput.id = "website-input";
+	websiteInput.style.width = "100%";
+	websiteInput.placeholder = "Enter you website link ...";
+	editInfoForm.appendChild(websiteInput);
+	
+	/*creat contact input area*/
+    var contactInput = document.createElement("input");
+    contactInput.type = "text";
+    contactInput.name = "contact";
+    contactInput.id = "contact-input";
+	contactInput.style.width = "100%";
+	contactInput.placeholder = "Enter you contact page link ...";
+	editInfoForm.appendChild(contactInput);
+	
+	/*creat donate input area*/
+    var donateInput = document.createElement("input");
+    donateInput.type = "text";
+    donateInput.name = "donate";
+    donateInput.id = "donate-input";
+	donateInput.style.width = "100%";
+	donateInput.placeholder = "Enter you donate page link ...";
+	editInfoForm.appendChild(donateInput);
+	
+	/*create a submit button*/
+    var updateButton = document.createElement("input");
+    updateButton.type = "submit";
+    updateButton.value = "Update Information";
+	editInfoForm.appendChild(updateButton);
+	
+	/*adding form to form div*/
+	charityFormDiv.appendChild(editInfoForm);
+	
+	/*add close edit form*/
+	const closeInfoBtn = document.createElement('Button');
+    closeInfoBtn.innerHTML = "Close";
+    closeInfoBtn.onclick = function() {
+		editInfoBtn.style.visibility = 'visible';
+		charityFormDiv.removeChild(editInfoForm);
+		charityFormDiv.removeChild(closeInfoBtn);
+	}
+	
+	charityFormDiv.appendChild(closeInfoBtn);
+	
+	infoDiv.appendChild(charityFormDiv);
+  }
+  
+  infoDiv.appendChild(editInfoBtn);
 }
