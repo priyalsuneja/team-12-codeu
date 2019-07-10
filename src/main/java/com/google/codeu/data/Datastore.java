@@ -515,5 +515,34 @@ public class Datastore {
       }
       return notifications;
   }
+  
+  public void  storeCharityInfo(CharityInfo charityInfo) {
+      Entity charityInoEntity = new Entity("CharityInfo", charityInfo.getEmail());
+      charityInoEntity.setProperty("email", charityInfo.getEmail());
+      charityInoEntity.setProperty("webLink", charityInfo.getWebLink());
+      charityInoEntity.setProperty("contactLink", charityInfo.getContactLink());
+      charityInoEntity.setProperty("donateLink", charityInfo.getDonateLink());
+      charityInoEntity.setProperty("otherInfo", charityInfo.getOtherInfo());
+      datastore.put(charityInoEntity);
+      System.out.println("charityInfo: "+charityInfo.getEmail()+", "+charityInfo.getWebLink()+ ", "+charityInfo.getContactLink()
+    +", "+charityInfo.getDonateLink());
+  }
+  
+  public CharityInfo getCharityInfo(String email) {
+    Query query = new Query("CharityInfo")
+            .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
+    PreparedQuery results = datastore.prepare(query);
+    Entity infoEntity = results.asSingleEntity();
+    if (infoEntity == null) {
+      return null;
+    }
+
+    String webLink = (String)infoEntity.getProperty("webLink");
+    String contactLink = (String)infoEntity.getProperty("contactLink");
+    String donateLink = (String)infoEntity.getProperty("donateLink");
+    String otherInfo = (String)infoEntity.getProperty("otherInfo");
+    CharityInfo charityInfo = new CharityInfo(email, webLink, contactLink, donateLink, otherInfo);
+    return charityInfo;
+  }
 }
 
