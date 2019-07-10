@@ -10,8 +10,10 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Location;
 import com.google.codeu.data.Notification;
+import com.google.codeu.data.User;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,14 @@ public class LocationServlet extends HttpServlet{
       return;
     }
 
-    List<Location> locations = datastore.getLocations(user);
+    Location userLocation = datastore.getUserLocation(user);
+    List<Location> locations = new ArrayList<>();
+    /*get near charity locations if the user location exists, otherwise return empty list of locations*/
+    if(userLocation!=null) {
+        locations = datastore.getAllNearCharityLocations(userLocation);
+        locations.add(0, userLocation);
+    }
+    
     Gson gson = new Gson();
     String json = gson.toJson(locations);
 
@@ -69,30 +78,34 @@ public class LocationServlet extends HttpServlet{
         return;
 	}
     
-    List<Location> locations = datastore.getLocations(user);
+    Location userLocation = datastore.getUserLocation(user);
   
     
     /*check if location object exists*/
-    if(locations==null || locations.isEmpty())
+    if(userLocation==null)
     {
-      /*make location object*/
+      /*make a new location for user*/
       String text = "Charity Location";
-      Location location = new Location(latitude, longitude, text, user);
-      datastore.storeLocation(location);
+      userLocation = new Location(latitude, longitude, text, user);
+      datastore.storeLocation(userLocation);
     }
     else //location already exists => update it
     {
-      String existingLocationId = locations.get(0).getId().toString();
+      String existingLocationId = userLocation.getId().toString();
       datastore.updateLocation(existingLocationId, latitude, longitude); 
     }
     
-    locations = datastore.getLocations(user);
-     if(locations!=null && locations.size()>0) {
-      /*send notification to other charities near by*/
-      for(int i = 1; i<locations.size(); i++)
-      {
-        Notification notification = new Notification(user, locations.get(i).getUser(), "New charity location found near you!");//in this case link is also user: test@example.com
-        datastore.storeNotification(notification);
+    /*send notification to other users nearby, if the updated location is for a charity type user*/
+    User locationUser = datastore.getUser(user);
+    if(locationUser!=null && locationUser.getType()!=null && locationUser.getType()== User.CHARITY_TYPE) {
+      List<Location> allNearLocations = datastore.getAllNearLocations(userLocation);
+      if(allNearLocations!=null && allNearLocations.size()>0) {
+        /*send notification to other charities near by*/
+        for(int i = 0; i<allNearLocations.size(); i++)
+        {
+          Notification notification = new Notification(user, allNearLocations.get(i).getUser(), "New charity location found near you!");//in this case link is also user: test@example.com
+          datastore.storeNotification(notification);
+        }
       }
     }
   }
