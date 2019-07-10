@@ -16,7 +16,7 @@ public class User {
     }
     
     public User(String email, String aboutMe) {
-        this(email, aboutMe, -1);
+        this(email, aboutMe, User.UNSET_TYPE);
     }
 
     public String getEmail(){
