@@ -192,28 +192,24 @@ public class Datastore {
   }
   
   /**
-  * Returns a set of all users who have posted a message or about me
+  * Returns a set of all users who have been saved to datastore as a Charity type
   */
-  public HashMap<String, String> getUsers()
+  public HashMap<String, String> getCharityUsers()
   {
-      HashMap<String, String> usersMap = new HashMap<>();
-
-      //adding users who have posted a message
-      Query messageQuery = new Query("Message");
-      PreparedQuery messageQueryResults = datastore.prepare(messageQuery);
-      for(Entity entity: messageQueryResults.asIterable())
-      {
-        usersMap.put(entity.getProperty("user").toString(),entity.getProperty("user")+"|" );
+    HashMap<String, String> usersMap = new HashMap<>();
+    Query userQuery = new Query("User");
+    PreparedQuery userQueryResults = datastore.prepare(userQuery);
+    for(Entity entity: userQueryResults.asIterable())
+    {
+      try {
+          if(Long.parseLong(entity.getProperty("type").toString())==User.CHARITY_TYPE)
+          {
+            usersMap.put(entity.getProperty("email").toString(),entity.getProperty("email") +"|"+ entity.getProperty("aboutMe") );
+          }
+      }catch(Exception e) {
+          System.out.println("could not read user: "+e.getMessage());
       }
-      
-      //adding users who have posted aboutMe
-      Query userQuery = new Query("User");
-      PreparedQuery userQueryResults = datastore.prepare(userQuery);
-      for(Entity entity: userQueryResults.asIterable())
-      {
-        usersMap.put(entity.getProperty("email").toString(),entity.getProperty("email") +"|"+ entity.getProperty("aboutMe") );
-      }
-	
+    }
     return usersMap;
   }
   

@@ -15,7 +15,11 @@
     </nav>
     <div id="content">
       <Label id = "text" class="h1-label">Community Page</Label>
-      <p>Here is a list of every user who has posted a message:</p>
+      <p>List of all charities:</p>
+	  <div id="search-container">
+	    <textarea id="search-text" rows="1" placeholder="Search for charities by partial/full name, or keyword ..." width="300px;"></textarea>
+	    <button type="button" onclick="filterUsers()">Search</button>
+	  </div>
       <hr/>
       <ul id="list">Loading...</ul>
     </div>
