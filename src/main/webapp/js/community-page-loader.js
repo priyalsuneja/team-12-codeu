@@ -46,6 +46,7 @@
         {
           const aboutMeDiv = document.createElement('Div');
           aboutMeDiv.innerHTML = aboutMe;
+		  aboutMeDiv.id = "about-me-div";
           userListItem.appendChild(aboutMeDiv);
         }
         return userListItem;
