@@ -70,7 +70,7 @@ public class CharityInfoServlet extends HttpServlet {
     String contactLink = request.getParameter("contactLink");
     String donateLink = request.getParameter("donateLink");
     
-    CharityInfo charityInfo = new CharityInfo(email, webLink, contactLink, donateLink, "");
+    CharityInfo charityInfo = new CharityInfo(email, webLink, contactLink, donateLink);
     datastore.storeCharityInfo(charityInfo);
     
     response.sendRedirect("/user-page.html?user=" + email);
