@@ -574,26 +574,58 @@ function creatCharityInoDiv() {
   const infoDiv = document.getElementById('info-div');
   const charityInfoDiv = document.createElement('Div');
   
+  var webUrl = '';
+  var contactUrl = '';
+  var donateUrl = '';
+  
   /*creating a link to chartiy's website*/
   const websiteLink = document.createElement('a');
-  websiteLink.href = "";
   websiteLink.id = "website-link";
   websiteLink.innerHTML = "Our Website";
   charityInfoDiv.appendChild(websiteLink);
   
   /*creating a link to chartiy's website*/
   const contactLink = document.createElement('a');
-  contactLink.href = "";
   contactLink.id = "contact-link";
   contactLink.innerHTML = "Contact Us";
   charityInfoDiv.appendChild(contactLink);
   
   /*creating a link to chartiy's website*/
   const donateLink = document.createElement('a');
-  donateLink.href = "";
   donateLink.id = "website-link";
   donateLink.innerHTML = "Donate";
   charityInfoDiv.appendChild(donateLink);
+  
+  /*getting data from chartyInfoServlet*/
+  console.log(parameterUsername);
+  charityInfoUrl = "/charity-info?user="+parameterUsername;
+  fetch(charityInfoUrl)
+    .then((response) => {
+		const json = response.json();
+		console.log(json);
+		return json ;
+	})
+	  .then((charityInfo)=> {
+		  if(charityInfo.length!=0) {
+			webUrl = charityInfo.webLink;  
+			contactUrl = charityInfo.contactLink;  
+			donateUrl = charityInfo.donateLink;			
+		  }
+		  websiteLink.href = webUrl;
+		  if(webUrl!="") {
+			websiteLink.target = "_blank";
+		  }
+		  
+		  contactLink.href = contactUrl;
+		  if(contactUrl!="") {
+			contactLink.target = "_blank";
+		  }
+		  
+		  donateLink.href = donateUrl;
+		  if(donateUrl!="") {
+			donateLink.target = "_blank";
+		  }
+	  });
   
   /*add charityInfoDiv to infoDiv*/
   infoDiv.appendChild(charityInfoDiv);
@@ -621,11 +653,12 @@ function editCharityInfo(infoDiv) {
 	/*create dit info form*/
 	var editInfoForm = document.createElement("form");
     editInfoForm.setAttribute('method',"post");
+	editInfoForm.setAttribute('action',"/charity-info?user="+parameterUsername);
 	
     /*creat website input area*/
     var websiteInput = document.createElement("input");
     websiteInput.type = "text";
-    websiteInput.name = "website";
+    websiteInput.name = "webLink";
     websiteInput.id = "website-input";
 	websiteInput.style.width = "100%";
 	websiteInput.placeholder = "Enter you website link ...";
@@ -634,7 +667,7 @@ function editCharityInfo(infoDiv) {
 	/*creat contact input area*/
     var contactInput = document.createElement("input");
     contactInput.type = "text";
-    contactInput.name = "contact";
+    contactInput.name = "contactLink";
     contactInput.id = "contact-input";
 	contactInput.style.width = "100%";
 	contactInput.placeholder = "Enter you contact page link ...";
@@ -643,7 +676,7 @@ function editCharityInfo(infoDiv) {
 	/*creat donate input area*/
     var donateInput = document.createElement("input");
     donateInput.type = "text";
-    donateInput.name = "donate";
+    donateInput.name = "donateLink";
     donateInput.id = "donate-input";
 	donateInput.style.width = "100%";
 	donateInput.placeholder = "Enter you donate page link ...";
@@ -652,7 +685,7 @@ function editCharityInfo(infoDiv) {
 	/*create a submit button*/
     var updateButton = document.createElement("input");
     updateButton.type = "submit";
-    updateButton.value = "Update Information";
+    updateButton.value = "Update Charity Information";
 	editInfoForm.appendChild(updateButton);
 	
 	/*adding form to form div*/
