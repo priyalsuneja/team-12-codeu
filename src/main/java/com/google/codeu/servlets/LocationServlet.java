@@ -11,6 +11,7 @@ import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Location;
 import com.google.codeu.data.Notification;
 import com.google.codeu.data.User;
+import com.google.codeu.data.Util;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -97,7 +98,7 @@ public class LocationServlet extends HttpServlet{
     
     /*send notification to other users nearby, if the updated location is for a charity type user*/
     User locationUser = datastore.getUser(user);
-    if(locationUser!=null && locationUser.getType()!=null && locationUser.getType()== User.CHARITY_TYPE) {
+    if(Util.isValidCharityUser(locationUser)) {
       List<Location> allNearLocations = datastore.getAllNearLocations(userLocation);
       if(allNearLocations!=null && allNearLocations.size()>0) {
         /*send notification to other charities near by*/
