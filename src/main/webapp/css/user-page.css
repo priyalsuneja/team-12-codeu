@@ -16,9 +16,64 @@
 
 /* Set the size of the message input to be 100 pixels high
    and will fill the width of its parent element. */
+   
+#info-div a {
+  display:inline-block;
+  padding:10px;
+  margin:10px;
+  text-decoration:none;  
+  background-color:gray;
+  color:white;
+  font-family:Impact, Haettenschweiler, serif;
+  border-radius:5px;
+}
+   
+button:focus {outline:0;}
+#notifications-btn {
+  background: none;
+  border:none;
+  color:white;
+  font-family:Impact, Haettenschweiler, serif;
+  font-size: 12px;
+  
+}
+   
+#notification-container {
+  visibility: hidden;
+  position: fixed;
+  left:5%;
+  width: 25%;
+  max-height:50%;  
+  background-color:white;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  font-size:10px;
+  z-index:999;
+}
+
+#map-container {
+  border: thin solid black;
+  width:50vh;
+  display:inline-block;
+  float:right;
+  right:5vw;
+  position: relative;
+  z-index:1;
+} 
+
+#map{
+  border: thin solid black;
+  width: 100%;
+  height: 50vh;
+}	
+
+#location-form {
+  width:100%;
+}
+
 #message-input {
   height: 100px;
-  width: 75%;
+  width:100%
 }
 
 /* Give each message a rounded border. */
@@ -26,7 +81,8 @@
   border: thin solid black;
   border-radius: 5px;
   margin-top: 20px;
-  width:75%;
+  width:45vw;
+  margin-left:5vw;
 }
 
 /* Add a bottom border to the message header. */
@@ -66,4 +122,33 @@
    user is not logged in or viewing their own page. */
 .hidden {
   display: none;
+}
+
+#page-title {
+  width:45vw;
+  margin-left:5vw;
+}
+
+#search-container {
+  width:45vw;
+  margin-left:5vw;
+}
+
+#about-me-container {
+  width:45vw;
+  margin-left:5vw;
+}
+
+#about-me-form {
+  width:45vw;
+  margin-left:5vw;	
+}
+
+#message-form {
+  width:45vw;
+  margin-left:5vw;	
+}
+
+textarea {
+  width:100%;
 }

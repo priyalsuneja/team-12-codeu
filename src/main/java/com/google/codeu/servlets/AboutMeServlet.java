@@ -31,9 +31,7 @@ public class AboutMeServlet extends HttpServlet {
    * Responds with the "about me" section for a particular user.
    */
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws IOException {
-	 System.out.println("check about");
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html");
 
     String user = request.getParameter("user");
@@ -53,8 +51,7 @@ public class AboutMeServlet extends HttpServlet {
   }
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     UserService userService = UserServiceFactory.getUserService();
     if (!userService.isUserLoggedIn()) {
@@ -64,8 +61,23 @@ public class AboutMeServlet extends HttpServlet {
 
     String userEmail = userService.getCurrentUser().getEmail();
     String aboutMe = Jsoup.clean(request.getParameter("about-me"), Whitelist.none());
-    User user = new User(userEmail, aboutMe);
-    datastore.storeUser(user);
+    
+    /*check if user exists in data store*/
+    User storedUser = datastore.getUser(userEmail);
+    
+    if(storedUser==null)//user does not exits -> store user
+    {
+      System.out.println("store!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      User user = new User(userEmail, aboutMe, User.UNSET_TYPE);
+      datastore.storeUser(user);
+    }
+    else //user exists ->update user
+    {
+      System.out.println("update!!!!!!!!!!!!!!!!!!!!!!!");
+      User user = new User(userEmail, aboutMe, storedUser.getType());
+      datastore.storeUser(user);
+    }
+
 
     response.sendRedirect("/user-page.html?user=" + userEmail);
   }
