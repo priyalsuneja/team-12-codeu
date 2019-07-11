@@ -18,7 +18,6 @@ function createCharities() {
 
  }
 
-
 //Adds a marker that shows an info window when clicked.
 function addLandmark(map, lat, lng, title) {
   const marker = new google.maps.Marker ({
@@ -31,20 +30,53 @@ function addLandmark(map, lat, lng, title) {
   });
 }
 
-// was used to geocode address of a charity, not using currently because the google API has a cap on search queries
-function geocodeAddress(address, resultsMap) {
+/* Searches and displays the names of the charities matching a certain type*/
+function displayCharities() {
 
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-            console.log(results[0].geometry.location);
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
+	const type = document.getElementById('search-type').value;
+    const url = '/search-charities?type=' + type;
+    fetch(url, {method:'GET'}).then(function(response) {
+      return response.json();
+    }).then((charities) => {
+
+        console.log(Object.entries(charities).length);
+      if(Object.entries(charities).length === 0) {
+        const charityContainer = document.getElementById('display-charities');
+        charityContainer.innerHTML = "Sorry, there are no charities matching this keyword!";
       }
+
+      else {
+          const charityContainer = document.getElementById('display-charities');
+          charityContainer.innerHTML ='';
+
+          charities.forEach((charity) => {
+            charityContainer.innerHTML += charity.name + ', ' + charity.city + '<br>';
+          });
+      }
+    });
+
+ }
+
+/* Displays all the available types of charities in the database.*/
+ function displayTypes() {
+
+    const url = '/search-charities';
+    fetch(url, {method:'PUT'}).then(function(response) {
+      return response.json();
+    }).then((types) => {
+
+      if(Object.entries(types).length === 0) {
+        const typesContainer = document.getElementById('display-types');
+        typesContainer.innerHTML = "Sorry, there are no charities in the database";
+      }
+
+      else {
+          const typesContainer = document.getElementById('display-types');
+          typesContainer.innerHTML ='Currently Available Charity Types <br>';
+
+          types.forEach((type) => {
+            typesContainer.innerHTML += type+ '<br>';
+          });
+      }
+    });
+ }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Charities</title>
+        <meta charset="UTF-8">
+        <Label id="page-title" class="h1-label">Charities Page</Label>
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/charities.css">
         <script
@@ -17,8 +18,23 @@
             <li><a href="/community.html">Community</a></li>
         </ul>
     </nav>
-    <Label id = "text" class="h1-label">Charities</Label>
-    <p>This page contains the locations of some charities across the United States. Hover over a pin to find the name of the charity!</p>
-    <div id="map"></div>
+    <p>This page allows you to search for charities across the United States and also has a map showing you charities across the country. Hover over a pin to find the name of the charity!</p>
+    <div id="search-container">
+        <textarea id="search-name" rows="1">Enter Name</textarea>
+        <textarea id="search-city" rows="1">Enter City</textarea>
+        <textarea id="search-type" rows="1">Enter Type</textarea>
+        <button type="button" onclick="displayCharities()">Search</button>
+    </div>
+    <div class="row" id="formatting">
+        <div class="column" id="display-charities">
+            Enter a search term in the textbox and click on the search button to see a list of charities of the given type!
+        </div>
+        <div class="column" id="display-types">
+            <script>displayTypes();</script>
+        </div>
+        <div class="column" id="map"></div>
+    </div>
     </body>
 </html>
+
+
