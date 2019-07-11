@@ -33,16 +33,30 @@ function addLandmark(map, lat, lng, title) {
 /* Searches and displays the names of the charities matching a certain type*/
 function displayCharities() {
 
-	const type = document.getElementById('search-type').value;
-    const url = '/search-charities?type=' + type;
+	var name = document.getElementById('search-name').value;
+	var city = document.getElementById('search-city').value;
+	var type = document.getElementById('search-type').value;
+
+	if(name === 'Enter Name' || Object.entries(name).length === 0) {
+	    name = "null";
+	}
+	if(city === 'Enter City' || Object.entries(city).length === 0) {
+	    city = "null";
+	}
+	if(type === 'Enter Type' || Object.entries(type).length === 0) {
+	    type = "null";
+	}
+
+    const url = '/search-charities?name=' + name + '&city=' + city + '&type=' + type;
+
+
     fetch(url, {method:'GET'}).then(function(response) {
       return response.json();
     }).then((charities) => {
 
-        console.log(Object.entries(charities).length);
       if(Object.entries(charities).length === 0) {
         const charityContainer = document.getElementById('display-charities');
-        charityContainer.innerHTML = "Sorry, there are no charities matching this keyword!";
+        charityContainer.innerHTML = "Sorry, there are no charities matching this combination of filters!";
       }
 
       else {
