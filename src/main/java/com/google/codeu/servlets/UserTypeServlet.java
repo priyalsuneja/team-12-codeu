@@ -8,8 +8,11 @@ package com.google.codeu.servlets;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
+import com.google.codeu.data.Location;
+import com.google.codeu.data.Notification;
 import com.google.codeu.data.User;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,8 +55,7 @@ public class UserTypeServlet extends HttpServlet{
     }
     
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException { 
-        System.out.println("!!!!!!!!!!!!!!!! in post!!!!!!!!!!!!!!!");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       UserService userService = UserServiceFactory.getUserService();
       if (!userService.isUserLoggedIn()) {
         response.sendRedirect("/index.html");
@@ -62,18 +64,34 @@ public class UserTypeServlet extends HttpServlet{
 
       String userEmail = userService.getCurrentUser().getEmail();
       Long type = Long.parseLong(request.getParameter("type"));
-      System.out.println("type is:::::::::::::::::::::::;;;"+type);
       User user = datastore.getUser(userEmail);
-      if(user==null)
+      if(user==null)//if user does not already exist
       {
           datastore.storeUser(new User(userEmail, "", type));
       }
-      else
+      else //if user exists -> update
       {
          user.setType(type);
          datastore.storeUser(user); 
       }
       
+      /*check if user is a chrity type-> send notification*/
+      if(type==User.CHARITY_TYPE) {
+        Location userLocation = datastore.getUserLocation(userEmail);
+        //if user has a location send notification to near by users that a new charity is added near them
+        if(userLocation!=null) {
+            List<Location> lallNearLocations = datastore.getAllNearLocations(userLocation);
+            if(lallNearLocations!=null) //location[0] is self
+            {
+              /*send notification to other users near by*/
+              for(int i = 0; i<lallNearLocations.size(); i++)
+              {
+                Notification notification = new Notification(userEmail, lallNearLocations.get(i).getUser(), "New charity location found near you!");//in this case link is also user: test@example.com
+                datastore.storeNotification(notification);
+              }
+            }
+        }
+      }
       
       response.sendRedirect("/user-page.html?user=" + userEmail);
     }
