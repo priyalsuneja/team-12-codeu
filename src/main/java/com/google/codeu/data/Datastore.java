@@ -476,9 +476,6 @@ public class Datastore {
     List<Location> nearCharitylocations = new ArrayList<>();
     List<Location> allNearLocations = getAllNearLocations(location);
     
-    if(allNearLocations==null)
-        return null;
-    
     for(Location nearLocation:allNearLocations) {
       /*add the near location to list if it is for a charity-type user, otherwise ignore it*/
       User nearLocationUser = getUser(nearLocation.getUser());
