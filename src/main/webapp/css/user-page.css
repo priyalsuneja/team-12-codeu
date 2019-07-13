@@ -26,8 +26,15 @@
   text-align:center;
 }
 
+#top-content {
+  background-image:url("../images/user.jpg");
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+}
+
 #info-div {
-  margin:20px;	
+  margin:50px;	
 }
 
 #charity-info-div {
@@ -43,12 +50,12 @@
 }
 
 #website-link {
-	background:rgb(93, 191, 233);
+	background:rgb(190, 180, 80);
 	color:white;
 }
 
 #website-link:hover {
-  background-color:rgb(190, 180, 80);
+  color:rgb(70, 70, 70);
 }
 
 #contact-link {
@@ -57,22 +64,21 @@
 }
 
 #contact-link:hover {
-  background-color:rgb(190, 180, 80);
+  color:rgb(70, 70, 70);
 }
 
 #donate-link {
 	background-color:rgb(222, 143, 53);
-	color:rgb(70, 70, 70);
+	color:white;
 }
 
 #donate-link:hover {
-  background-color:rgb(190, 180, 80);
-  color:white;
+  color:rgb(70, 70, 70);
   
 }
 
 #all-content button {
-	margin-top:5px;
+	margin:5px;
 	padding:5px;
 	border-radius:5px;
 	background-color:white;
@@ -86,13 +92,13 @@
 }
 
 input {
-    margin-top:5px;
+    margin:5px;
 	padding:5px;
 	border-radius:5px;
-	background-color:white;
-	border:thin solid rgb(222, 143, 53);
+	background-color:rgb(120, 165, 90);
+	border:thin solid rgb(120, 165, 90);
 	font-family:Impact, Haettenschweiler, san-serif;
-	color:gray;
+	color:white;
 }
 
 input:hover {
@@ -124,17 +130,26 @@ button:focus {outline:0;}
 }
 
 #user-status-div {
-	font-size : 3vw;
+	font-size : 5vh;
 	color: rgb(120, 165, 90);
-	margin-top:0;
+	margin-top:10;
 	margin-bottom:10px;
 }
 
 textarea {
   margin-top:10px;
   border-radius:5px;
-  width:97%;
+  width:95%;
   padding:1%;
+}
+
+#about-me-container {
+	margin-top:5vh;
+}
+
+#about-me-form {
+	margin-top:10vh;
+	margin-bottom:10vh;
 }
 
 .policy-div {
@@ -224,6 +239,10 @@ textarea {
   display: block;
   margin-top: 5px;
   width: 100%;
+}
+
+.message button {
+	display:inline-block;
 }
 
 /* Use this to hide certain elements like forms if the

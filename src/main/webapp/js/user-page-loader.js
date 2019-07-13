@@ -249,7 +249,7 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
         const editButton = document.createElement('Button');
         editButton.innerHTML = "Edit Message";
         editButton.onclick = function() {
-          editButton.style.visibility="hidden";
+          editButton.style.display="none";
           const bodyText = document.createElement('textarea');
           bodyText.innerHTML = message.text;
           bodyText.style.width = "100%";
@@ -275,7 +275,7 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
 function addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
   cancelButton.innerHTML = "Cancel";
   cancelButton.onclick = function() {
-    editButton.style.visibility="visible";
+    editButton.style.display="inline-block";
     try{
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
@@ -315,7 +315,7 @@ function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv,
     });
 
     try{
-	  editButton.style.visibility="visible";
+	  editButton.style.display="inline-block";
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
       messageDiv.removeChild(cancelButton);
@@ -385,7 +385,7 @@ function addCommentsButton(messageDiv, message) {
   commentsButton.onclick = function() {
 
 	/*hide button when clicked to prevent re-clicking*/
-	commentsButton.style.visibility="hidden";
+	commentsButton.style.display="none";
 	
 	/*fetching posted comments for the message*/
 	const messageId = message.id;
@@ -450,8 +450,8 @@ function addCommentsButton(messageDiv, message) {
 	commentContainerDiv.appendChild(formDiv);
   };
   /*adding comments button to message-div*/
-  commentContainerDiv.appendChild(commentsButton);
   messageDiv.appendChild(commentContainerDiv);
+  messageDiv.appendChild(commentsButton);
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/

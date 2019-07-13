@@ -42,20 +42,22 @@ limitations under the License.
     </div>
 
    <div id="all-content">	
-    <Label id="page-title" class="h1-label">User Page</Label>
+     <div id="top-content">
+       <Label id="page-title" class="h1-label">User Page</Label>
 	
-	<div id="user-status-div"></div>
-	<div id="info-div"></div>
+	   <div id="user-status-div"></div>
+	   <div id="info-div"></div>
 	
-    <div id="about-me-container">Loading...</div>
-    <div id="about-me-form" class="hidden">
-      <form action="/about" method="POST">
-        <textarea name="about-me" placeholder="Write or update your profile description for others to learn more about you and find you..." rows=3 required></textarea>
-        <br/>
-        <input id="about-me-btn" type="submit" value="Update Profile Description">
-      </form>
-    </div>
-	<hr/>
+       <div id="about-me-container">Loading...</div>
+       <div id="about-me-form" class="hidden">
+         <form action="/about" method="POST">
+           <textarea name="about-me" placeholder="Write or update your profile description for others to learn more about you and find you..." rows=2 required></textarea>
+           <br/>
+           <input id="about-me-btn" type="submit" value="Update Profile Description">
+         </form>
+       </div>
+	   <hr/>
+     </div>
 	
     <div id="map-container">
 	  <p> Add your location, and view nearby charities!</p>
