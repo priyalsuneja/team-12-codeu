@@ -64,7 +64,7 @@ function displayCharities() {
           charityContainer.innerHTML ='';
 
           charities.forEach((charity) => {
-            charityContainer.innerHTML += charity.name + ', ' + charity.city + '<br>';
+            charityContainer.innerHTML += charity.displayName + ', ' + charity.displayCity + '<br>';
           });
       }
     });

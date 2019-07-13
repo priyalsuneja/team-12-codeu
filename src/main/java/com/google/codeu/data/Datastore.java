@@ -225,6 +225,9 @@ public class Datastore {
     charEntity.setProperty("name", charity.getName());
     charEntity.setProperty("city", charity.getCity());
     charEntity.setProperty("type", charity.getType());
+    charEntity.setProperty("displayName", charity.getDisplayName());
+    charEntity.setProperty("displayCity", charity.getDisplayCity());
+    charEntity.setProperty("displayType", charity.getDisplayType());
     datastore.put(charEntity);
   }
 
@@ -358,9 +361,9 @@ public class Datastore {
     for (Entity entity : results.asIterable()) {
       try {
 
-        String resultName = (String) entity.getProperty("name");
-        String resultCity = (String) entity.getProperty("city");
-        String resultType = (String) entity.getProperty("type");
+        String resultName = (String) entity.getProperty("displayName");
+        String resultCity = (String) entity.getProperty("displayCity");
+        String resultType = (String) entity.getProperty("displayType");
 
         Charity charity = new Charity(resultName, resultCity, resultType);
         charities.add(charity);
@@ -391,7 +394,7 @@ public class Datastore {
     for (Entity entity : results.asIterable()) {
       try {
 
-        String type = (String) entity.getProperty("type");
+        String type = (String) entity.getProperty("displayType");
 
         if( !types.contains(type) && !type.equals("Organization type")) {
           types.add(type);
@@ -412,6 +415,19 @@ public class Datastore {
       datastore.delete(messageKey);
     } catch (Exception e) {
       System.out.println("error: " + e.toString());
+    }
+  }
+
+  public void deleteCharities() {
+    try {
+        Query query = new Query("Charity");
+        PreparedQuery results = datastore.prepare(query);
+
+        for (Entity entity : results.asIterable()) {
+            datastore.delete(entity.getKey());
+        }
+    } catch (Exception e) {
+        System.out.println("error: " + e.toString());
     }
   }
 
