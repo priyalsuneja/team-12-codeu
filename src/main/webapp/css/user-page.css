@@ -95,10 +95,10 @@ input {
     margin:5px;
 	padding:5px;
 	border-radius:5px;
-	background-color:rgb(120, 165, 90);
-	border:thin solid rgb(120, 165, 90);
+	background-color:white;
+	border:thin solid rgb(222, 143, 53);
 	font-family:Impact, Haettenschweiler, san-serif;
-	color:white;
+	color:gray;
 }
 
 input:hover {
