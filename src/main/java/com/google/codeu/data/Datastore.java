@@ -32,6 +32,7 @@ import java.util.*;
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
 
+  public static final int LAT_LONG_DEGREE_DIFF = 3;
   private DatastoreService datastore;
 
   public Datastore() {
@@ -482,11 +483,9 @@ public class Datastore {
   }
   
   /*
-  * Return the list of locations including:
-  * location of charity at index zero and
-  * location of nearby charities from index 1 and above
+  * Return the location of the user
   */
-  public List<Location> getLocations(String user)
+  public Location getUserLocation(String user)
   {
     List<Location> locations = new ArrayList<>();
 
@@ -511,41 +510,66 @@ public class Datastore {
         e.printStackTrace();
       }
     }
-    
-    if(locations.size()==1)//if one location found
-    {
-        Query allLocations =
-           new Query("Location")
-                   .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, user));
-        PreparedQuery allLocationresults = datastore.prepare(allLocations);
-        for (Entity entity : allLocationresults.asIterable()) {
-          try {
-            double otherLongitude = Double.parseDouble(entity.getProperty("longitude").toString());
-            double otherLatitude = Double.parseDouble(entity.getProperty("latitude").toString());
-            if(Math.abs(locations.get(0).getLatitude()-otherLatitude)<3 && Math.abs(locations.get(0).getLongitude()-otherLongitude)<3)
-            {
-              String idString = entity.getKey().getName();
-              UUID id = UUID.fromString(idString);
-              String text = (String) entity.getProperty("text");
-              String otherUser = (String) entity.getProperty("user");
-              Location location = new Location(id, otherLatitude, otherLongitude, text, otherUser);
-              locations.add(location);
-            }
-
-          } catch (Exception e) {
-            System.err.println("Error reading message.");
-            System.err.println(entity.toString());
-            e.printStackTrace();
-          }
-        }
-    }
+    if(locations.size()==0 || locations.size()>1)//location does not exist or multiple invalid locations
+        return null;
     else
-    {
-      if(locations.size()>1)
-        System.out.println("Invalid: multiple locations for a charity!!!!!!!!!!!!!");
-      locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
+        return locations.get(0);
+  }
+  
+  /*helper function for  getAllNearCharityLocations() and getAllNearLocations()*/
+  private Location locationEntityToLocationObj(Entity locationEntity) {
+    try {
+      double otherLongitude = Double.parseDouble(locationEntity.getProperty("longitude").toString());
+      double otherLatitude = Double.parseDouble(locationEntity.getProperty("latitude").toString());
+      String idString = locationEntity.getKey().getName();
+      UUID id = UUID.fromString(idString);
+      String text = (String) locationEntity.getProperty("text");
+      String user = (String) locationEntity.getProperty("user");
+      Location location = new Location(id, otherLatitude, otherLongitude, text, user);
+      return location;
+    } catch (Exception e) {
+      System.err.println("Error reading location.");
+      System.err.println(locationEntity.toString());
+      e.printStackTrace();
+      return null;
+    }
+  }
+  
+  /*returns a list of all-type user locations (charity, donor, unset) that are close to an specific location*/
+  public List<Location> getAllNearLocations(Location location) {
+    List<Location> locations = new ArrayList<>();
+    Query allLocations =
+       new Query("Location")
+               .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, location.getUser()));
+    PreparedQuery allLocationresults = datastore.prepare(allLocations);
+    for (Entity entity : allLocationresults.asIterable()) {
+      Location otherLocation = locationEntityToLocationObj(entity);
+      if(otherLocation!=null) {
+        /*check distance between location to define if the are considered near*/
+        if(Math.abs(location.getLatitude()-otherLocation.getLatitude())<Datastore.LAT_LONG_DEGREE_DIFF 
+                && Math.abs(location.getLongitude()-otherLocation.getLongitude())<Datastore.LAT_LONG_DEGREE_DIFF)
+        {
+          /*add the near loaction to list*/
+          locations.add(otherLocation);
+        }
+      }
     }
     return locations;
+  }
+  
+  /*returns a list of charity-user locations near a specific location*/
+  public List<Location> getAllNearCharityLocations(Location location) {   
+    List<Location> nearCharitylocations = new ArrayList<>();
+    List<Location> allNearLocations = getAllNearLocations(location);
+    
+    for(Location nearLocation:allNearLocations) {
+      /*add the near location to list if it is for a charity-type user, otherwise ignore it*/
+      User nearLocationUser = getUser(nearLocation.getUser());
+      if(Util.isValidCharityUser(nearLocationUser)) {
+        nearCharitylocations.add(nearLocation);
+      }
+    }
+    return nearCharitylocations;
   }
   
   /*update a location entity stored in datastore*/
