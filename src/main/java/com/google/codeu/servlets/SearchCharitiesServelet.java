@@ -77,7 +77,6 @@ public class SearchCharitiesServelet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.println(charitiesArray.toString());
-        //response.getOutputStream().println(charitiesArray.toString());
 
     }
 
