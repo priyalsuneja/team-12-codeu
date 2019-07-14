@@ -1,40 +1,747 @@
 Accountability score,Charity name,Charity url,City,Organization type
-96,Friends of Acadia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4858,Bar Harbor,Environment
-89,Campaign for Tobacco-Free Kids,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4166,Washington,Health
-89,Intiman Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17227,Seattle,Arts
-81,Boys & Girls Club of Worcester,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15225,Worcester,Human Services
-67,American Friends of the Yitzhak Rabin Center for the Study of Israel,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9377,New York,Arts
-97,Monterey Bay Aquarium,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4122,Monterey,Animals
 93,Brandywine Valley SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6816,West Chester,Animals
-100,Boys & Girls Clubs of Nassau County Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13927,Fernandina Beach,Human Services
-100,Central Illinois Foodbank,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6970,Springfield,Human Services
-89,Junior Achievement of South Dakota,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14640,Sioux Falls,Education
-92,CancerCare,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3415,New York,Health
-93,National Museum of Wildlife Art,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8207,Jackson,Arts
-58,Crystal Peaks Youth Ranch,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12855,Bend,Human Services
-97,Cambridge in America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3256,New York,Education
-96,Hope for Haiti,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9170,Naples,International
-93,Homes With Hope,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13381,Westport,Human Services
-92,James River Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15076,Richmond,Environment
-100,Fistula Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8855,San Jose,International
-85,Asian American Journalists Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16001,San Francisco,Human and Civil Rights
 93,Baltimore Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8275,Reisterstown,Animals
 77,Bangor Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10965,Bangor,Animals
+89,Elmbrook Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7012,Brookfield,Animals
+92,Vanderburgh Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6138,Evansville,Animals
+100,Nevada Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9093,Reno,Animals
+81,Actors and Others for Animals,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6457,North Hollywood,Animals
+88,Monadnock Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4862,Swanzey,Animals
+100,Citizens for Animal Protection,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6090,Houston,Animals
+96,Main Line Animal Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12053,Chester Springs,Animals
+81,Spartanburg Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12753,Spartanburg,Animals
+100,Greenville Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7978,Greenville,Animals
+100,Sacramento SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5793,Sacramento,Animals
+85,Humane Society of Marion County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7241,Ocala,Animals
+100,SPCA of Texas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4485,Dallas,Animals
+93,Pasado's Safe Haven,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6634,Sultan,Animals
+93,Champaign County Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5283,Urbana,Animals
+100,Animal Welfare Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6840,Kennebunk,Animals
+100,League for Animal Welfare,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8112,Batavia,Animals
+100,NEADS World Class Service Dogs,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5143,Princeton,Animals
+89,Grayson-Jockey Club Research Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5603,Lexington,Animals
+74,Northeast Animal Shelter,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5379,Salem,Animals
+100,SPCA of Westchester,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8944,Briarcliff Manor,Animals
+89,Humane Society of Elkhart County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17221,Bristol,Animals
+92,The Gentle Barn,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13027,Santa Clarita,Animals
+89,Tri-County Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6103,St. Cloud,Animals
+97,Humane Farming Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5634,San Rafael,Animals
+77,Faithful Friends Animal Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16466,Wilmington,Animals
+85,Macomb County Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6167,Utica,Animals
+100,Pennsylvania SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7626,Philadelphia,Animals
+100,Humane Society of Manatee County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17222,Bradenton,Animals
+62,Animal Friends Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14166,Hamilton,Animals
+81,Pet Adoption Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5876,Canoga Park,Animals
+96,Habitat for Horses,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16649,Hitchcock,Animals
+100,Animal Humane New Mexico,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5744,Albuquerque,Animals
+78,Humane Society of Greater Kansas City,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7058,Kansas City,Animals
+96,Animal Welfare Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6787,Voorhees,Animals
+96,Louisiana SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9972,New Orleans,Animals
+100,Dumb Friends League,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3610,Denver,Animals
+88,Humane Society of Summit County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6074,Twinsburg,Animals
+96,Heart of the Valley Animal Shelter,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13544,Bozeman,Animals
+100,Wayside Waifs,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5358,Kansas City,Animals
+97,Front Range Equine Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10304,Ocala,Animals
+89,Bucks County SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5083,Lahaska,Animals
+100,Petco Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9917,San Antonio,Animals
+51,Farm Animal Rights Movement,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8055,Bethesda,Animals
+100,Canine Partners For Life,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6828,Cochranville,Animals
+85,Bay Area Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6171,Green Bay,Animals
+82,Humane Society of West Michigan,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5287,Grand Rapids,Animals
+100,The Anti-Cruelty Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3301,Chicago,Animals
+82,Adopt A Pet.com,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11882,Clairmont,Animals
+96,Humane Society of Sarasota County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6319,Sarasota,Animals
+96,Animal Legal Defense Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3298,Cotati,Animals
+96,Charleston Animal Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7195,North Charleston,Animals
+100,Humane Animal Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6104,Pittsburgh,Animals
+100,New Hampshire SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5958,Stratham,Animals
+96,Save-A-Pet Adoption Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6858,Grayslake,Animals
+70,Butte Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17470,Chico,Animals
+100,Animal Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5328,Golden Valley,Animals
+96,Society for the Improvement of Conditions for Stray Animals,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6093,Kettering,Animals
+100,Canine Companions for Independence,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3418,Santa Rosa,Animals
+93,MSPCA-Angell,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4058,Boston,Animals
+85,Cat Adoption Team,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12911,Sherwood,Animals
+85,Upper Valley Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6092,Enfield,Animals
+70,Gentle Giants Draft Horse Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17613,Mount Airy,Animals
+100,Houston Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5661,Houston,Animals
+92,The NOAH Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9756,Stanwood,Animals
+100,Tree House Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6102,Chicago,Animals
+100,Humane Society of Indianapolis,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6136,Indianapolis,Animals
+100,Humane Society of Utah,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6403,Murray,Animals
+89,Arizona Animal Welfare League & SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5125,Phoenix,Animals
+89,Humane Society of Vero Beach and Indian River County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5564,Vero Beach,Animals
+96,RedRover,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7707,Sacramento,Animals
+93,Virginia Beach SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7179,Virginia Beach,Animals
+85,Delaware Valley Golden Retriever Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14168,Reinholds,Animals
+100,Asheville Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12352,Asheville,Animals
+88,Humane Society of Sonoma County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5837,Santa Rosa,Animals
+96,Monmouth County SPCA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6044,Eatontown,Animals
+100,American Kennel Club Canine Health Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5005,Raleigh,Animals
+97,International Fund for Animal Welfare,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3892,Yarmouth Port,Animals
+92,Humane Society of North Texas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6356,Fort Worth,Animals
+100,Muttville,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16413,San Francisco,Animals
+93,Heartland Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6414,Corvallis,Animals
+100,Peggy Adams Animal Rescue League,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6301,West Palm Beach,Animals
+89,Humane Society of Harrisburg Area,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6815,Harrisburg,Animals
+96,SPCA of Wake County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10081,Raleigh,Animals
+100,WildAid,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12895,San Francisco,Animals
+89,The Wildcat Sanctuary,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17675,Sandstone,Animals
+100,Bat Conservation International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5684,Arlington,Animals
+82,Castleton Ranch Horse Rescue Inc.,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16593,Valley Center,Animals
+100,California Waterfowl Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3411,Roseville,Animals
+92,Georgia Wildlife Federation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6282,Covington,Animals
+100,EcoHealth Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5090,New York,Animals
+96,American Bird Conservancy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5439,The Plains,Animals
+85,Pacific Marine Mammal Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17283,Laguna Beach,Animals
+100,International Rhino Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5699,Fort Worth,Animals
+97,Xerces Society for Invertebrate Conservation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15511,Portland,Animals
+81,Wolf Haven International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7395,Tenino,Animals
+90,Peaceful Valley Donkey Rescue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10710,San Angelo,Animals
+89,Intiman Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17227,Seattle,Arts
+67,American Friends of the Yitzhak Rabin Center for the Study of Israel,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9377,New York,Arts
+93,National Museum of Wildlife Art,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8207,Jackson,Arts
+85,Brooklyn Historical Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16336,Brooklyn,Arts
+89,Hagley Museum and Library,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7840,Wilmington,Arts
+96,McNay Art Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6342,San Antonio,Arts
+97,Virginia Historical Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4695,Richmond,Arts
+89,Baltimore Symphony Orchestra,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3338,Baltimore,Arts
+96,Richmond Symphony,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7177,Richmond,Arts
+96,Oregon Museum of Science and Industry,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7602,Portland,Arts
+89,Milwaukee Art Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5310,Milwaukee,Arts
+67,Lumberyard,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14947,New York,Arts
+89,Shelburne Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12706,Shelburne,Arts
+89,The Atlanta Opera,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8994,Atlanta,Arts
+85,French Institute Alliance FranÃ§aise,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8623,New York,Arts
+62,America's Packard Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15254,Dayton,Arts
+89,Boston AthenÃ¦um,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4370,Boston,Arts
+85,Santa Fe Art Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10241,Santa Fe,Arts
+96,Alley Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7881,Houston,Arts
+78,National Cowboy and Western Heritage Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14225,Oklahoma City,Arts
+96,Berkeley Repertory Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3354,Berkeley,Arts
+89,Science Museum of Western Virginia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14939,Roanoke,Arts
+96,Silicon Valley Creates,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12248,San Jose,Arts
+92,Seattle Art Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4449,Seattle,Arts
+92,Artist Trust,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14714,Seattle,Arts
+93,America-Israel Cultural Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8184,New York,Arts
+89,Flynn Center for the Performing Arts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7523,Burlington,Arts
+100,WAMC/Northeast Public Radio,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7785,Albany,Arts
+86,The Baltimore Museum of Art,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3337,Baltimore,Arts
+93,Connecticut Landmarks,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15611,Hartford,Arts
+96,Cleveland International Film Festival,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15119,Cleveland,Arts
+81,Humanities Texas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15406,Austin,Arts
+89,Florida Holocaust Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8020,St. Petersburg,Arts
+96,WWOZ,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9059,New Orleans,Arts
+85,Human Race Theatre Company,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15251,Dayton,Arts
+81,Boston Neighborhood Network,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15577,Boston,Arts
+89,American Friends of the Israel Philharmonic Orchestra,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8349,New York,Arts
+81,Maine Historical Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15533,Portland,Arts
+85,WHQR 91.3FM,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15847,Wilmington,Arts
+89,Dallas Theater Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9689,Dallas,Arts
+89,ArtsBuild,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14235,Chattanooga,Arts
+97,Opera San JosÃ©,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8376,San JosÃ©,Arts
+85,Telfair Museum of Art,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8681,Savannah,Arts
+89,CEC/Seabee Historical Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14785,Gulfport,Arts
+89,George Washington Masonic National Memorial Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14268,Alexandria,Arts
+85,The Explorers Club,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11683,New York,Arts
+96,Sharon Lynne Wilson Center for the Arts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15769,Brookfield,Arts
+85,Paleontological Research Institution,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8442,Ithaca,Arts
+89,The Doseum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13320,San Antonio,Arts
+85,Preservation Alliance for Greater Philadelphia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5091,Philadelphia,Arts
+88,Valley Public Radio,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9775,Clovis,Arts
+89,The Sarasota Ballet,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14412,Sarasota,Arts
+85,Curious Theatre Company,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13445,Denver,Arts
+85,Honolulu Theatre for Youth,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14839,Honolulu,Arts
+89,Public Art Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8410,New York,Arts
+85,Hyde Park Art Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15747,Chicago,Arts
+89,National Underground Railroad Freedom Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5194,Cincinnati,Arts
+85,Museum of Danish America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15325,Elk Horn,Arts
+89,Science Friday Initiative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16356,New York,Arts
+92,Crow Canyon Archaeological Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14355,Cortez,Arts
+90,Arizona-Sonora Desert Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9731,Tucson,Arts
+82,Historic Columbia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14830,Columbia,Arts
+89,Grand Teton Music Festival,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9422,Wilson,Arts
+81,Triad Stage,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14049,Greensboro,Arts
+89,Preservation Virginia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10377,Richmond,Arts
+81,Nevada Ballet Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9777,Las Vegas,Arts
+96,George W. Bush Presidential Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16902,Dallas,Arts
+85,Eastern Music Festival,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15028,Greensboro,Arts
+81,The Henry Art Gallery,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8346,Seattle,Arts
+100,ETV Endowment of South Carolina,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5511,Spartanburg,Arts
+89,Society of the Four Arts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15858,Palm Beach,Arts
+89,The Ark,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17230,Ann Arbor,Arts
+96,WQED Multimedia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4773,Pittsburgh,Arts
+89,PBS Hawaii,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16013,Honolulu,Arts
+89,The Morgan Library & Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4332,New York,Arts
+89,Radio BilingÃ¼e,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8385,Fresno,Arts
+92,OPERA America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9309,New York,Arts
+81,Maltz Museum of Jewish Heritage,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15102,Beachwood,Arts
+96,Jacob Burns Film Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10231,Pleasantville,Arts
+85,May Festival,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17030,Cincinnati,Arts
+90,Museum of Arts & Design,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6749,New York,Arts
+89,Florence Griswold Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14633,Old Lyme,Arts
+89,Omaha Performing Arts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9055,Omaha,Arts
+96,Opera Theatre of Saint Louis,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6190,St. Louis,Arts
+89,Chicago Shakespeare Theater,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5268,Chicago,Arts
+78,Hands on Children's Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14331,Olympia,Arts
+81,Los Angeles Ballet,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15662,Los Angeles,Arts
+82,Robert E. Lee Memorial Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6520,Stratford,Arts
+96,Manhattan Theatre Club,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5116,New York,Arts
+89,California Shakespeare Theater,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12271,Berkeley,Arts
+62,AD Players,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17282,Houston,Arts
+92,Discovery Place,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5500,Charlotte,Arts
+89,Oakland East Bay Symphony,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15980,Oakland,Arts
+89,Denver Film Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15215,Denver,Arts
+81,Arkansas Symphony Orchestra,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8371,Little Rock,Arts
+88,Young Concert Artists,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9283,New York,Arts
+85,Dance Theatre of Harlem,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6726,New York,Arts
+85,The Shakespeare Theatre of New Jersey,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15460,Florham Park,Arts
+97,Science Museum Oklahoma,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17143,Oklahoma City,Arts
+96,La Jolla Playhouse,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5853,La Jolla,Arts
+88,Albright-Knox Art Gallery,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6779,Buffalo,Arts
+92,The Phillips Collection,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5479,Washington,Arts
+89,Berkshire Museum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14989,Pittsfield,Arts
+85,Second Stage Theatre,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10906,New York,Arts
+97,Erie Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5179,Erie,Community Development
+96,The Cleveland Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3524,Cleveland,Community Development
+100,Hampton Roads Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5488,Norfolk,Community Development
+97,Barnabas Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3342,Crete,Community Development
+96,The Oregon Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4276,Portland,Community Development
+92,Community Foundation of Western Massachusetts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5073,Springfield,Community Development
+96,Community Foundation of Collier County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16676,Naples,Community Development
+100,The Community Foundation for Northeast Florida,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5595,Jacksonville,Community Development
+96,The Greater New Orleans Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5643,New Orleans,Community Development
+89,Community Foundation of Grant County Indiana,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17096,Marion,Community Development
+93,West Central Initiative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15126,Fergus Falls,Community Development
+100,The Community Foundation of Sarasota County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3548,Sarasota,Community Development
+92,Community Foundation of Greater Memphis,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3547,Memphis,Community Development
+96,The Community Foundation for Greater Atlanta,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4535,Atlanta,Community Development
+100,Baltimore Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5130,Baltimore,Community Development
+63,Christian Ministries Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3506,Brunswick,Community Development
+89,Parasol Tahoe Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4296,Incline Village,Community Development
+93,El Paso Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3660,El Paso,Community Development
+88,Community Foundation of the Virgin Islands,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17518,St. Thomas,Community Development
+100,Hartford Foundation for Public Giving,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3796,Hartford,Community Development
+92,Community Foundation for Southeast Michigan,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3546,Detroit,Community Development
+96,Community Foundation Sonoma County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5630,Santa Rosa,Community Development
+96,Foundation for MetroWest,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14992,Natick,Community Development
+96,North Georgia Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17581,Gainesville,Community Development
+92,Crown Point Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17343,Crown Point,Community Development
+100,Community Foundation of New Jersey,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5053,Morristown,Community Development
+100,FJC,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5008,New York,Community Development
+93,The Dayton Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5200,Dayton,Community Development
+96,The San Diego Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4555,San Diego,Community Development
+96,Community Foundation of Middle Tennessee,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5615,Nashville,Community Development
+96,Arizona Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3305,Phoenix,Community Development
+89,Common Counsel Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16572,Oakland,Community Development
+96,The Community Foundation of Western North Carolina,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6275,Asheville,Community Development
+96,The Winston-Salem Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4743,Winston-Salem,Community Development
+92,Greater Washington Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3722,Washington,Community Development
+89,Miami Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5624,Miami,Community Development
+97,Grand Rapids Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5301,Grand Rapids,Community Development
+97,New Hampshire Charitable Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4863,Concord,Community Development
+96,Jewish Community Foundation of San Diego,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5859,San Diego,Community Development
+100,Woodlawn Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4752,New Rochelle,Community Development
+96,The San Francisco Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4431,San Francisco,Community Development
+96,The Community Foundation of Louisville,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5187,Louisville,Community Development
+96,Austin Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6348,Austin,Community Development
+81,The Generosity Trust,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3466,Chattanooga,Community Development
+96,Orange County Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5209,Newport Beach,Community Development
+89,Community Foundation for Muskegon County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5918,Muskegon,Community Development
+97,New York Community Trust,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4231,New York,Community Development
+96,Greater Milwaukee Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5323,Milwaukee,Community Development
+100,Central Indiana Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5237,Indianapolis,Community Development
+96,InFaith Community Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5920,Minneapolis,Community Development
+96,United Way of Hall County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14532,Gainsville,Community Development 
+100,United Way of Southwest Michigan,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14920,Saint Joseph,Community Development 
+92,United Way of Lebanon County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14829,Lebanon,Community Development 
+93,United Way of Berks County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6819,Reading,Community Development 
+88,United Way of Cayuga County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10664,Auburn,Community Development 
+96,United Way of Coastal Fairfield County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13618,Bridgeport,Community Development 
+81,Getting Out and Staying Out Inc.,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16946,New York,Education
+85,Great Lakes Women's Business Council,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14449,Livonia,Education
+89,Coro New York Leadership Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13815,New York,Education
+73,Working Wardrobes,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17307,Irvine,Education
+89,Gateway to College National Network,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16422,Portland,Education
+85,Agriculture Future of America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15337,Kansas City,Education
+85,Arkansas Single Parent Scholarship Fund Program,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14597,Springdale,Education
+89,On the Move,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16534,Napa,Education
+81,The Farm School,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15699,Athol,Education
+92,Investigative Reporters & Editors,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15345,Columbia,Education
+89,Society for Classical Studies,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13002,New York,Education
+74,Soil Born Farms Urban Agriculture & Education Project,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14463,Rancho Cordova,Education
+100,Literacy Partners,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4006,New York,Education
+92,Summit Academy OIC,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5333,Minneapolis,Education
+89,Techbridge,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16026,Atlanta,Education
+96,Midwest Organic & Sustainable Education Services,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14254,Spring Valley,Education
+100,The Education Foundation of Collier County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9173,Naples,Education
+97,PowerMyLearning,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11300,New York,Education
+100,Teaching Matters,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7771,New York,Education
+92,Growing Home,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17368,Chicago,Education
+93,School for Advanced Research,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12267,Santa Fe,Education
+81,Nonprofit Leadership Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8034,Kansas City,Education
+89,Academy of Hope Adult Public Charter School,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14729,Washington,Education
+100,PENCIL,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11520,New York,Education
+77,Mozilla Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16300,Mountain View,Education
+85,Junior Achievement of Wisconsin,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14483,Milwaukee,Education
+100,The Ghetto Film School,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12598,Bronx,Education
+96,Joy of Music Program,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15582,Worcester,Education
+89,Rainey Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14712,Cleveland,Education
+89,GPS Education Partners,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14308,Brookfield,Education
+85,Brooklyn Youth Chorus Academy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14804,Brooklyn,Education
+100,Hillsborough Education Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5587,Tampa,Education
+92,The SEED Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7176,Washington,Education
+85,Music Conservatory of Westchester,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8854,White Plains,Education
+100,Year Up,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10495,Boston,Education
+96,Classroom Central,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14411,Charlotte,Education 
+96,AdoptAClassroom.org,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11927,Minneapolis,Education 
+100,Pratham USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7676,Houston,Education 
+77,National Guard Youth Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14593,Washington,Education 
+97,ORT America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5013,New York,Education 
+89,Sonoma Valley Education Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17453,Sonoma,Education 
+96,Junior Achievement of Georgia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13685,Atlanta,Education 
+96,VH1 Save The Music Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12802,New York,Education 
+89,Achievement Centers for Children & Families Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10383,Delray Beach,Education 
+96,Optimist International Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10628,St. Louis,Education 
+88,Thompson Island Outward Bound Education Center (TIOBEC),https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4562,Boston,Education 
+93,Glenwood Academy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10564,Glenwood,Education 
+100,AMIT,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3293,New York,Education 
+92,Taco Bell Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15732,Irvine,Education 
+96,AIM for Seva,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11738,Saylorsburg,Education 
+96,Friends of Acadia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4858,Bar Harbor,Environment
+100,Friends of Great Smoky Mountains National Park,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8369,Kodak,Environment
+85,Center for Ecoliteracy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5813,Berkeley,Environment
+100,New York-New Jersey Trail Conference,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7654,Mahwah,Environment
+96,Missouri Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4119,St. Louis,Environment
+92,Naples Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7877,Naples,Environment
+74,Civic Garden Center of Greater Cincinnati,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9023,Cincinnati,Environment
+89,Glynwood,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17167,Cold Spring,Environment
+96,Audubon Naturalist Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6621,Chevy Chase,Environment
+92,Access Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9311,Boulder,Environment
+100,Earthplace,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7752,Westport,Environment
+96,Descanso Gardens Guild,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13994,La CaÃ±ada Flintridge,Environment
+85,Project for Public Spaces,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8245,New York,Environment
+89,San Antonio Botanical Garden Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13984,San Antonio,Environment
+88,Boston Harbor Now,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8338,Boston,Environment
+100,Irvine Nature Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7845,Owings Mills,Environment
+89,Cincinnati Parks Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8647,Cincinnati,Environment
+93,The New York Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4227,Bronx,Environment
+92,Friends of the Urban Forest,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7436,San Francisco,Environment
+100,Santa Barbara Botanic Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5845,Santa Barbara,Environment
+100,Hidden Villa,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5795,Los Altos Hills,Environment
+96,American Alpine Club,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12372,Golden,Environment
+96,American Public Gardens Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17020,Kennett Square,Environment
+89,Thomas Irvine Dodge Nature Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5345,West St. Paul,Environment
+89,Delaware Nature Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5393,Hockessin,Environment
+89,The Dallas Arboretum and Botanical Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3593,Dallas,Environment
+96,Seattle Parks Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15961,Seattle,Environment
+96,Friends of the National Arboretum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7097,Washington,Environment
+100,Fairchild Tropical Botanic Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5558,Coral Gables,Environment
+89,Harris Center for Conservation Education,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9429,Hancock,Environment
+93,Riveredge Nature Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7013,Newburg,Environment
+96,Regional Parks Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11784,Oakland,Environment
+89,Madison Square Park Conservancy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13992,New York,Environment
+89,The Atlanta Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10544,Atlanta,Environment
+77,Denison Pequotsepos Nature Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15613,Mystic,Environment
+93,Vermont Institute of Natural Science,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5960,Quechee,Environment
+89,The Nature Center at Shaker Lakes,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10048,Shaker Heights,Environment
+96,San Francisco Parks Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5122,San Francisco,Environment
+96,San Diego Botanic Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10973,Encinitas,Environment
+85,North Lakeland Discovery Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14313,Manitosh Waters,Environment
+92,Golden Gate National Parks Conservancy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3760,San Francisco,Environment
+89,Massachusetts Horticultural Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7527,Wellesley,Environment
+97,California State Parks Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6593,San Francisco,Environment
+81,Memphis Botanic Garden Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6081,Memphis,Environment
+97,Central Park Conservancy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3462,New York,Environment
+89,Mill River Park Collaborative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14906,Stamford,Environment
+96,Desert Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3617,Phoenix,Environment
+96,Greater Newark Conservancy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6797,Newark,Environment
+92,Friends of the High Line,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12483,New York,Environment
+96,City Parks Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4995,New York,Environment
+85,McKee Botanical Garden,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14981,Vero Beach,Environment
+92,CancerCare,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3415,New York,Health
+89,Bryan's House,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5697,Dallas,Health
+86,Southwest Center for HIV/AIDS,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14196,Phoenix,Health
+96,SHARE,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7714,New York,Health
+100,The V Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5907,Cary,Health
+94,American Lung Association of the Southeast,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7217,Jacksonville,Health
+96,Solve ME/CFS Initiative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6512,Los Angeles,Health
+94,American Cancer Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6495,Atlanta,Health
+100,Neuroendocrine Tumor Research Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12960,Boston,Health
+47,Julie Rogers Gift of Life Program,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16538,Beaumont,Health
+97,Children's Cancer Research Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7032,Minneapolis,Health
+85,California Dental Association Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12523,Sacramento,Health
+96,AIDS Foundation Houston,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5707,Houston,Health
+89,Treatment Action Group,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9373,New York,Health
+100,Leukemia Research Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8070,Northfield,Health
+86,National Headache Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10512,Chicago,Health
+100,National Kidney Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4185,New York,Health
+100,American Brain Tumor Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7605,Chicago,Health
+89,Allergy & Asthma Network,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10400,Vienna,Health
+100,International Myeloma Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5931,North Hollywood,Health
+100,PKD Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4336,Kansas City,Health
+100,Race to Erase MS,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8215,Los Angeles,Health
+97,March of Dimes,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4045,White Plains,Health
+100,Les Turner ALS Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7949,Skokie,Health
+85,Taking Control of Your Diabetes,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9467,Del Mar,Health
+93,American Italian Cancer Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8262,New York,Health
+93,John Muir Health Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5804,Walnut Creek,Health 
+86,Virginia Mason Health System,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5769,Seattle,Health 
+96,Deborah Hospital Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5052,Browns Mills,Health 
+89,Hoag Hospital Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5865,Newport Beach,Health 
+100,ALSAC - St. Jude Children's Research Hospital,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12847,Memphis,Health 
+100,Children's Hospital Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6335,Oklahoma City,Health 
+88,CAMC Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3414,Charleston,Health 
+78,Memorial Hermann Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6346,Houston,Health 
+97,International Planned Parenthood Federation/Western Hemisphere Region,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4942,New York,Health 
+86,Children's Hospital of Wisconsin Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5319,Milwaukee,Health 
+63,Mount Sinai Medical Center Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5576,Miami Beach,Health 
+100,Riley Children's Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5232,Indianapolis,Health 
+96,Jonsson Cancer Center Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5856,Los Angeles,Health 
+89,Children's Hospital Guild Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8079,Seattle,Health 
+66,Medical Development for Israel,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4067,New York,Health 
+97,Lynn Sage Cancer Research Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10168,Chicago,Health 
+77,Doernbecher Children's Hospital Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6416,Portland,Health 
+90,City of Hope,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7645,Duarte,Health 
+93,Johns Hopkins All Children's Hospital Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5582,St. Petersburg,Health 
+89,Rady Children's Hospital Foundation - San Diego,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5205,San Diego,Health 
+96,American Friends of Magen David Adom,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3283,New York,Health 
+96,American Committee for Shaare Zedek Medical Center In Jerusalem,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5021,New York,Health 
+70,Just One Life/Nefesh Achat B'Yisrael,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8440,New York,Health 
+100,Overlook Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6204,Summit,Health 
+77,Foundation of Orthopedics and Complex Spine,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11508,New York,Health 
+85,Asian American Journalists Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16001,San Francisco,Human and Civil Rights
+74,Feminist Majority Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7161,Arlington,Human and Civil Rights
+55,People's Action Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14546,Seattle,Human and Civil Rights
+62,The Concord Coalition,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8755,Arlington,Human and Civil Rights
+96,Advocates for Children of New York,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10426,New York,Human and Civil Rights
+89,Community Catalyst,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12490,Boston,Human and Civil Rights
+96,Public Citizen Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5425,Washington,Human and Civil Rights
+96,MapLight,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16917,Berkeley,Human and Civil Rights
+93,Brennan Center for Justice at NYU School of Law,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5007,New York,Human and Civil Rights
+77,Thomas More Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16443,Chicago,Human and Civil Rights
+93,Legal Action Center of the City of New York,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16344,New York,Human and Civil Rights
+89,Chinese for Affirmative Action,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16564,San Francisco,Human and Civil Rights
+89,Womens Media Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17387,Washington,Human and Civil Rights
+92,Wellstone Action Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12072,St. Paul,Human and Civil Rights
+96,Mothers Against Drunk Driving,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4129,Irving,Human and Civil Rights
+88,Louisville Urban League,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15872,Lousiville,Human and Civil Rights
+89,The New York City Gay & Lesbian Anti-Violence Project,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8810,New York,Human and Civil Rights
+85,ALIGN: The Alliance for a Greater New York,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16364,New York,Human and Civil Rights
+100,NARAL Pro-Choice America Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4151,Washington,Human and Civil Rights
+97,Keshet,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13414,Jamaica Plain,Human and Civil Rights
+89,Judge David L. Bazelon Center for Mental Health Law,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10962,Washington,Human and Civil Rights
+96,Cultural Survival,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10875,Cambridge,Human and Civil Rights
+85,OutServe-SLDN,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8818,Washington,Human and Civil Rights
+100,Equal Justice Initiative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12756,Montgomery,Human and Civil Rights
+89,Centro Legal De La Raza,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16402,Oakland,Human and Civil Rights
+93,Youth Law Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12579,San Francisco,Human and Civil Rights
+96,FairVote,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11898,Takoma Park,Human and Civil Rights
+69,National Center for Transgender Equality,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16916,Washington,Human and Civil Rights
+96,ACLU Foundation of Massachusetts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15006,Boston,Human and Civil Rights
+96,Catholic Legal Immigration Network. Inc. (CLINIC),https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7118,Silver Spring,Human and Civil Rights
+89,American Nonsmokers' Rights Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10952,Berkeley,Human and Civil Rights
+93,Operation HOPE,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10136,Los Angeles,Human and Civil Rights
+96,American Bar Association Fund for Justice and Education,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3241,Chicago,Human and Civil Rights
+82,New York Legal Assistance Group Incorporated,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17572,New York,Human and Civil Rights
+92,Young America's Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4790,Reston,Human and Civil Rights
+85,Americans For Prosperity Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3511,Arlington,Human and Civil Rights
+97,Institute for Free Speech,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13397,Alexandria,Human and Civil Rights
+96,Chicago Legal Clinic,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15281,Chicago,Human and Civil Rights
+81,American Civil Liberties Union of New Jersey Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11704,Newark,Human and Civil Rights
+97,FAIR Federation for American Immigration Reform,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7089,Washington,Human and Civil Rights
+89,Texas Defender Service,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17112,Austin,Human and Civil Rights
+93,American Jewish Committee,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3266,New York,Human and Civil Rights
+66,Resist,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10281,Somerville,Human and Civil Rights
+100,MAZON: A Jewish Response to Hunger,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4060,Los Angeles,Human and Civil Rights
+96,Common Cause Education Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6539,Washington,Human and Civil Rights
+73,Women's Link Worldwide,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17519,Brooklyn,Human and Civil Rights
+89,State Voices,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15189,Washington,Human and Civil Rights
+100,National Center for Law and Economic Justice,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10541,New York,Human and Civil Rights
+89,Family Equality Council,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15804,New York,Human and Civil Rights
+100,Tahirih Justice Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11993,Falls Church,Human and Civil Rights
+100,Mujeres Latinas en AcciÃ³n,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9156,Chicago,Human Services
+100,CASA of the Pikes Peak Region,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12421,Colorado Springs,Human Services
+78,Jewish Family Service Agency of Central New Jersey,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10551,Elizabeth,Human Services
+100,Family & Children's Place,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13059,Louisville,Human Services
+93,Family & Intercultural Resource Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14386,Silverthorne,Human Services
+89,Palmer Home for Children,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13333,Columbus,Human Services
+92,Family Resource Center Association,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14397,Denver,Human Services
+89,Encompass,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15162,North Bend,Human Services
+78,Life is Good Kids Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15681,Boston,Human Services
+81,Daystar,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15482,Nashville,Human Services
+100,Children's Advocacy Center of Southwest Florida,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13344,Fort Myers,Human Services
+100,Thompson Child & Family Focus,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7181,Matthews,Human Services
+85,CareNet Pregnancy Services of Dupage,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15436,Glen Ellyn,Human Services
+89,Open Door Community House,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13158,Columbus,Human Services
+92,ALIVE!,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11105,Alexandria,Human Services
+89,Providence Connections,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6108,Pittsburgh,Human Services
+81,Family Service Agency of Waukesha,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14327,Waukesha,Human Services
+100,Families Forward,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6636,Irvine,Human Services
+96,Friends of the Children NY,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12003,New York,Human Services
+96,Orangewood Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13120,Santa Ana,Human Services
+96,Christian Family Care,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13321,Phoenix,Human Services
+100,Center for Development Services,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14827,Greenville,Human Services
+93,Triangle Family Services,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10681,Raleigh,Human Services
+96,Holt International Children's Services,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5914,Eugene,Human Services
+81,The Mentoring Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17399,Tyler,Human Services
+89,KIDS Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11413,Bend,Human Services
+70,Tariq Khamisa Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11253,San Diego,Human Services
+92,Boys & Girls Clubs of Southern Nevada,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13700,Las Vegas,Human Services
+81,Amarillo Children's Home,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15400,Amarillo,Human Services
+89,Tamassee DAR School,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13939,Tamassee,Human Services
+88,The First Tee Metropolitan New York,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16062,Bronx,Human Services
+100,Covenant House New Orleans,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9608,New Orleans,Human Services
+52,A Better LA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13045,Los Angeles,Human Services
+92,The Hetrick-Martin Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13153,New York,Human Services
+85,Boys & Girls Clubs of Philadelphia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12956,Philadelphia,Human Services
+96,Friends of the Children - Seattle,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14718,Seattle,Human Services
+89,Boys & Girls Clubs of Delaware,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10072,Wilmington,Human Services
+89,Figure Skating in Harlem,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17502,New York,Human Services
+96,Boys & Girls Clubs of Broward County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9002,Fort Lauderdale,Human Services
+97,Boy Scouts of America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9955,Pittsburgh,Human Services
+92,Austin YMBL Sunshine Camps,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13887,Austin,Human Services
+89,Boys & Girls Clubs of North Alabama,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13340,Huntsville,Human Services
+96,Girl Scouts San Diego,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12252,San Diego,Human Services
+89,HOPE South Florida,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13754,Fort Lauderdale,Human Services
+100,Big Brothers Big Sisters of Orange County,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6529,Santa Ana,Human Services
+89,Rancho Cielo Youth Campus,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13727,Salinas,Human Services
+100,Boys & Girls Clubs of Greater Memphis,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9013,Memphis,Human Services
+78,Boys & Girls Clubs of Central Wyoming,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13570,Casper,Human Services
+93,Big Brothers Big Sisters of Miami,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10389,Miami,Human Services
+100,Joy Ranch,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14312,Woodlawn,Human Services
+89,Girls Inc. of Worcester,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15561,Worcester,Human Services
+92,Concern America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10614,Santa Ana,Development and Relief Services 
+89,Helps International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17202,Dallas,Development and Relief Services 
+96,ActionAid USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8757,Washington,Development and Relief Services 
+74,UCP Wheels for Humanity,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10370,Chatsworth,Development and Relief Services 
+89,Just Associates,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17260,Washington,Development and Relief Services 
+66,Russian Children's Welfare Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15645,New York,Development and Relief Services 
+100,Water.org,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8875,Kansas City,Development and Relief Services 
+96,American Relief Agency for the Horn of Africa (ARAHA),https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13861,Columbia Heights,Development and Relief Services 
+88,Safe Water Network,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13216,New York,Development and Relief Services 
+81,Dikembe Mutombo Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10090,Marietta,Development and Relief Services 
+82,Shalom Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14354,Franklin,Development and Relief Services 
+100,Solar Electric Light Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10841,Washington,Development and Relief Services 
+92,African Leadership,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9463,Brentwood,Development and Relief Services 
+96,Heart for Africa,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12776,Alpharetta,Development and Relief Services 
+100,Water For People,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6391,Denver,Development and Relief Services 
+96,Sustainable Harvest International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8827,Ellsworth,Development and Relief Services 
+77,Medical Missions for Children,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9315,Paterson,Development and Relief Services 
+62,FOCAS,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5191,Cincinnati,Development and Relief Services 
+70,Children's Lifeline,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11024,Hamilton,Development and Relief Services 
+96,Alfalit International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7225,Doral,Development and Relief Services 
+96,Population Media Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10867,South Burlington,Development and Relief Services 
+89,Children's Cup,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13048,Keller,Development and Relief Services 
+78,Courage Worldwide,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15669,Rocklin,Development and Relief Services 
+93,Child Legacy International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14068,Boerne,Development and Relief Services 
+96,Global Health Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5269,Minneapolis,Development and Relief Services 
+96,Physicians for Peace,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6261,Norfolk,Development and Relief Services 
+96,Neverthirst,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17385,Birmingham,Development and Relief Services 
+51,Ezras Torah,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16049,Pamona,Development and Relief Services 
+100,Christian Relief Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5378,Amarillo,Development and Relief Services 
+93,Hope 4 Kids International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11707,Phoenix,Development and Relief Services 
+100,Mercy Ships,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4080,Lindale,Development and Relief Services 
+100,Camfed USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11479,San Francisco,Development and Relief Services 
+97,Seva Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5295,Berkeley,Development and Relief Services 
+60,New Missions,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13350,Orlando,Development and Relief Services 
+100,Wings of Hope,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9524,St. Louis,Development and Relief Services 
+96,Christian World Outreach,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11302,Littleton,Development and Relief Services 
+100,International Orthodox Christian Charities,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3894,Baltimore,Development and Relief Services 
+78,Haitian Christian Mission,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14447,Boca Raton,Development and Relief Services 
+55,Good Neighbors USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17332,Costa Mesa,Development and Relief Services 
+93,Music For Life Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9860,Bellingham,Development and Relief Services 
+100,dZi Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12599,Ridgway,Development and Relief Services 
+96,Tostan,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7506,Washington,Development and Relief Services 
+100,World Relief,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4765,Baltimore,Development and Relief Services 
+96,Village Health Works,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16784,New York,Development and Relief Services 
+96,Blood:Water,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12730,Nashville,Development and Relief Services 
+96,Team Rubicon,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17685,Los Angeles,Development and Relief Services 
+100,Children's HeartLink,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6557,Minneapolis,Development and Relief Services 
+96,International Institute of Rural Reconstruction (IIRR),https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9385,New York,Development and Relief Services 
+96,One Child Matters,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3360,Colorado Springs,Development and Relief Services 
+77,Lifting Generations,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17353,Sandy,Development and Relief Services 
+96,Hope for Haiti,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9170,Naples,Humanitarian Relief Supplies
+96,MedShare,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9290,Decatur,Humanitarian Relief Supplies
+89,Children of The Americas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6370,Trabuco Canyon,Humanitarian Relief Supplies
+93,Gleanings For The Hungry,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5719,Dinuba,Humanitarian Relief Supplies
+97,Americares,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3289,Stamford,Humanitarian Relief Supplies
+100,Medical Teams International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4070,Tigard,Humanitarian Relief Supplies
+100,Soles4Souls,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12982,Old Hickory,Humanitarian Relief Supplies
+100,Books For Africa,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3373,Saint Paul,Humanitarian Relief Supplies
+96,The Outreach Program,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13126,Union,Humanitarian Relief Supplies
+63,The AIMS Project,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3803,San Ramon,Humanitarian Relief Supplies
+77,CIS Development Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3403,East Brunswick,Humanitarian Relief Supplies
+62,Christ for Humanity,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5654,Tulsa,Humanitarian Relief Supplies
+100,Brother's Brother Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3396,Pittsburgh,Humanitarian Relief Supplies
+100,Vitamin Angels,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10717,Santa Barbara,Humanitarian Relief Supplies
+89,Feed My Hungry Children,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12238,Phoenix,Humanitarian Relief Supplies
+80,Charity Vision,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17199,Provo,Humanitarian Relief Supplies
+100,Children's Hunger Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3487,Sylmar,Humanitarian Relief Supplies
+100,Matter,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12021,St. Louis Park,Humanitarian Relief Supplies
+67,Aid for Starving Children,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12770,Santa Rosa,Humanitarian Relief Supplies
+96,Project HOPE,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4367,Millwood,Humanitarian Relief Supplies
+96,CitiHope Relief & Development,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3510,Margaretville,Humanitarian Relief Supplies
+100,Matthew 25: Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6901,Cincinnati,Humanitarian Relief Supplies
+100,FAME,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9435,Indianapolis,Humanitarian Relief Supplies
+100,Medical Bridges,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9701,Houston,Humanitarian Relief Supplies
+100,International Relief Teams,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5210,San Diego,Humanitarian Relief Supplies
+92,Central American Medical Outreach,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12993,Orrville,Humanitarian Relief Supplies
+100,American Nicaraguan Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3279,Miami,Humanitarian Relief Supplies
+89,International Eye Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5396,Kensington,Humanitarian Relief Supplies
+100,American Foundation For Children With AIDS,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12734,Harrisburg,Humanitarian Relief Supplies
+96,Giving Children Hope,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7484,Buena Park,Humanitarian Relief Supplies
+100,Globus Relief,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3849,Salt Lake City,Humanitarian Relief Supplies
+66,Children's Relief Mission,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8123,Glendale,Humanitarian Relief Supplies
+100,Heart to Heart International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3807,Lenexa,Humanitarian Relief Supplies
+97,Orphan Grain Train,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6904,Norfolk,Humanitarian Relief Supplies
+90,Christian Blind Mission International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3497,Greenville,Humanitarian Relief Supplies
+81,ISOH/IMPACT,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3857,Perrysburg,Humanitarian Relief Supplies
+81,Feeding The Nations,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12505,South Bend,Humanitarian Relief Supplies
+100,Amigos for Christ,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8280,Buford,Humanitarian Relief Supplies
+100,Salvadoran American Humanitarian Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12830,Miami,Humanitarian Relief Supplies
+81,World Care,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7659,Tucson,Humanitarian Relief Supplies
+100,Cross International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11283,Pompano Beach,Humanitarian Relief Supplies 
+66,Volunteers for Inter-American Development Assistance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5638,Emeryville,Humanitarian Relief Supplies 
+89,American Academy in Rome,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3238,New York,International Peace
+81,Religions for Peace,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4757,New York,International Peace
+78,Better World Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5546,Washington,International Peace
+88,National Committee on United States-China Relations,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4170,New York,International Peace
+100,White Ribbon Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15456,Washington,International Peace
+92,The Abraham Fund Initiatives,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9371,Newton,International Peace
+96,Netherland-America Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6010,New York,International Peace
+96,Washington Office on Latin America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5422,Washington,International Peace
+89,Inter-American Dialogue,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6241,Washington,International Peace
+92,The Chicago Council on Global Affairs,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9047,Chicago,International Peace
+82,Child Rights And You America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13150,Braintree,International Peace
+100,Carnegie Endowment for International Peace,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13537,Washington,International Peace
+100,International Center for Research on Women,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3884,Washington,International Peace
+90,B'nai B'rith International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5476,Washington,International Peace
+96,AFS-USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3222,New York,International Peace
+90,The Center for Justice and Accountability,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11550,San Francisco,International Peace
+100,American Council on Germany,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4945,New York,International Peace
+88,Ibis Reproductive Health,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15546,Cambridge,International Peace
+100,Just Detention International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12902,Los Angeles,International Peace
+93,Council on Foreign Relations,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3580,New York,International Peace
+88,Asia Society Texas Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16326,Houston,International Peace
+85,The Korea Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3975,New York,International Peace
+89,French-American Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4966,New York,International Peace
+96,Invisible Children,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12429,Washington,International Peace
+89,The Fund for Global Human Rights,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11840,Washington,International Peace
+100,Human Rights Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13912,New York,International Peace
+93,Institute for Global Engagement,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9416,Arlington,International Peace
+84,Not For Sale,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17286,San Francisco,International Peace
+96,Alexander Muss Institute for Israel Education,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3821,Rockville Centre,International Peace
+100,The Rotary Foundation of Rotary International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4553,Evanston,International Peace
+100,Jewish World Watch,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13142,Encino,International Peace
+77,Liberty in North Korea,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16992,Long Beach,International Peace
+89,International Peace Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3895,New York,International Peace
+93,Bread for the World Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5376,Washington,International Peace
+89,CEC ArtsLink,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4953,New York,International Peace
+100,The Asia Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3315,San Francisco,International Peace
+74,Soliya,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15730,New York,International Peace
+85,Carnegie Council for Ethics in International Affairs,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14679,New York,International Peace
+85,Global Exchange,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5827,San Francisco,International Peace
+100,Amigos de las AmÃ©ricas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5662,Houston,International Peace
+100,Seeds of Peace,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4459,New York,International Peace
+100,V-Day,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10309,San Francisco,International Peace
+97,The National Security Archive,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6048,Washington,International Peace
+96,NetHope,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13133,Fairfax,International Peace
+100,Shared Hope International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9128,Vancouver,International Peace
+100,Love146,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12525,New Haven,International Peace
+100,Nonviolent Peaceforce,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12504,St. Paul,International Peace
+100,Center for Global Development,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12083,Washington,International Peace
+100,The Prem Rawat Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11810,Los Angeles,International Peace
+88,OneVoice Movement,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12929,New York,International Peace
+78,International Friendships,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14006,Columbus,Religion
+46,Catholics United for the Faith,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7761,Steubenville,Religion
+55,Ambassadors for Christ International - USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5521,Marietta,Religion
+76,Roseland Christian Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7818,Chicago,Religion
+85,Christian Solidarity International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7807,Westlake Village,Religion
+44,Misaskim,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16375,Brooklyn,Religion
+96,Youth for Christ USA,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6938,Englewood,Religion
+89,Cadence International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13213,Englewood,Religion
+78,Men of Valor,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13229,Nashville,Religion
+85,Bridge Builders International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7421,Philomath,Religion
+86,Global Advance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7325,Dallas,Religion
+73,Four Corners Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16270,Opelika,Religion
+100,African Bible Colleges,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13962,Clinton,Religion
+85,Call to Action,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6950,Chicago,Religion
+71,First Love International Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15290,Loves Park,Religion
+70,Christian Union,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14063,Princeton,Religion
+78,Life Without Limbs,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12591,Agoura Hills,Religion
+93,United Religions Initiative,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6331,San Francisco,Religion
+89,Hillel of Greater Philadelphia,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6814,Philadelphia,Religion
+92,Christian Leadership Concepts,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7254,Nashville,Religion
+82,The National Centre for Padre Pio,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5089,Barto,Religion
+74,Columbia/Barnard Hillel,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9428,New York,Religion
+63,Living Waters,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17394,Bellflower,Religion
+92,Mastermedia International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8768,Redlands,Religion
+85,Pulse,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17016,Minneapolis,Religion
+88,InterAct Ministries,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5777,Boring,Religion
+93,Frontier Fellowship,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10132,Richfield,Religion
+71,Project AmaZon,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16496,Peoria,Religion
+81,South Carolina Woman's Missionary Union,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5509,Columbia,Religion
+46,Camp Highland,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11919,Ellijay,Religion
+93,Institute for Creation Research,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7485,Dallas,Religion
+89,Officers' Christian Fellowship,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5289,Englewood,Religion
+62,Missionary Aviation Repair Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13435,Soldotna,Religion
+85,Barnabas Aid,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14145,McLean,Religion
+78,Agudath Israel of America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3223,New York,Religion
+93,Adventist Frontier Missions,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5299,Berrien Springs,Religion
+71,Afikim Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15900,New York,Religion
+66,Missionary Flights International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12966,Fort Pierce,Religion
+96,Lifeline Christian Mission,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15112,Westerville,Religion
+31,The Mission,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16517,Potrero,Religion
+78,Team RFC,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7931,Tempe,Religion
+96,Santa Fe Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4437,Santa Fe,Research and Public Policy
+96,Mount Desert Island Biological Laboratory,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5954,Bar Harbor,Research and Public Policy
+100,Cary Institute of Ecosystem Studies,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3873,Millbrook,Research and Public Policy
+93,Woods Hole Oceanographic Institution,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4754,Woods Hole,Research and Public Policy
+97,The Planetary Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7483,Pasadena,Research and Public Policy
+85,Lowell Observatory,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9091,Flagstaff,Research and Public Policy
+96,Institute of Noetic Sciences,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8237,Petaluma,Research and Public Policy
+96,American Council for an Energy-Efficient Economy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12062,Washington,Research and Public Policy
+89,Long Now Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16518,San Fransisco,Research and Public Policy
+96,New York Academy of Sciences,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6720,New York,Research and Public Policy
+92,The Rodale Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5133,Kutztown,Research and Public Policy
+89,Mind & Life Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11950,Charlottesville,Research and Public Policy
+85,Clean Air Task Force,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14157,Boston,Research and Public Policy
+89,Mount Washington Observatory,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15100,North Conway,Research and Public Policy
+96,Woods Hole Research Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5974,Falmouth,Research and Public Policy
+89,XPRIZE Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9561,Culver City,Research and Public Policy
+89,SETI Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5816,Mountain View,Research and Public Policy
+66,The National Council for Science and the Environment,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13991,Washington,Research and Public Policy
+100,Global Footprint Network,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12358,Oakland,Research and Public Policy
+97,Physicians Committee for Responsible Medicine,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6633,Washington,Research and Public Policy
+85,Marine Biological Laboratory,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4046,Woods Hole,Research and Public Policy
+96,Carnegie Institution for Science,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3424,Washington,Research and Public Policy
+89,APhA Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15477,Washington,Research and Public Policy
+86,American Association for the Advancement of Science,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3239,Washington,Research and Public Policy
+89,Botanical Research Institute of Texas,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14737,Fort Worth,Research and Public Policy
+81,National Academy of Engineering Fund,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6856,Washington,Research and Public Policy 
 85,Social Venture Partners,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16077,Seattle,Research and Public Policy
 85,American Constitution Society for Law and Policy,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16491,Washington,Research and Public Policy
-89,American Academy in Rome,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3238,New York,International
-92,Concern America,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10614,Santa Ana,International
-89,Helps International,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17202,Dallas,International
-92,United Way of the Eastern Panhandle,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15820,Martinsburg,Community Development
-100,United Hospice of Rockland,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=12582,New City,Human Services
-89,Sustainable South Bronx,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=14728,Bronx,Environment
-89,Sioux Empire United Way,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13615,Sioux Falls,Community Development
-96,Senior Neighbors,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10034,Grand Rapids,Human Services
-74,Feminist Majority Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7161,Arlington,Human and Civil Rights
-89,Elmbrook Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7012,Brookfield,Animals
-89,Bryan's House,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5697,Dallas,Health
-85,Brooklyn Historical Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16336,Brooklyn,Arts
-100,Mujeres Latinas en AcciÃ³n,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9156,Chicago,Human Services
-92,Vanderburgh Humane Society,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6138,Evansville,Animals
-100,Sanibel-Captiva Conservation Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=5569,Sanibel,Environment
-81,Correctional Peace Officers Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=7274,Sacramento,Human Services
+89,Tobin Project,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15668,Cambridge,Research and Public Policy
+89,North Carolina Justice Center,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15829,Raleigh,Research and Public Policy
+96,Woodrow Wilson International Center for Scholars,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6215,Washington,Research and Public Policy
+89,Be the Change Inc.,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=17146,Boston,Research and Public Policy
+96,Alliance for Aging Research,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8961,Washington,Research and Public Policy
+70,Center for Public Interest Research,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9328,Boston,Research and Public Policy
+96,Tanenbaum Center for Interreligious Understanding,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=11420,New York,Research and Public Policy
+74,Washington Low Income Housing Alliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16074,Seattle,Research and Public Policy
+93,Sightline Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6242,Seattle,Research and Public Policy
+96,CLASP,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9420,Washington,Research and Public Policy
+93,Middle East Forum,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=9450,Philadelphia,Research and Public Policy
+96,Encore.org,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=10479,San Francisco,Research and Public Policy
+93,Foundation for Economic Education,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=6759,Atlanta,Research and Public Policy
+89,Institute for Local Self-Reliance,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16407,Washington,Research and Public Policy
+96,Salzburg Global Seminar,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4422,Washington,Research and Public Policy
+96,Connecticut Association for Human Services,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15444,Hartford,Research and Public Policy
+82,Illinois Policy Institute,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=13185,Chicago,Research and Public Policy
+85,Iowa Citizens for Community Improvement,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8272,Des Moines,Research and Public Policy
+93,League of American Bicyclists,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8826,Washington,Research and Public Policy
+100,Center for Climate and Energy Solutions,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=4506,Arlington,Research and Public Policy
+82,Women in Government Foundation,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=16497,Washington,Research and Public Policy
+66,New Economy Coalition,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=15545,Cambridge,Research and Public Policy
+92,Peterson Institute for International Economics,https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3870,Washington,Research and Public Policy

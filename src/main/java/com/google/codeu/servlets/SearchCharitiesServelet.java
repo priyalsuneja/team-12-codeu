@@ -50,6 +50,7 @@ public class SearchCharitiesServelet extends HttpServlet {
             }
         }
 
+
     }
 
     /**
