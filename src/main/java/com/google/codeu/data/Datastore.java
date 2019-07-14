@@ -26,16 +26,8 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-import java.util.Set;
-import java.util.HashSet;
 
-
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
+import java.util.*;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -229,6 +221,9 @@ public class Datastore {
     charEntity.setProperty("name", charity.getName());
     charEntity.setProperty("city", charity.getCity());
     charEntity.setProperty("type", charity.getType());
+    charEntity.setProperty("displayName", charity.getDisplayName());
+    charEntity.setProperty("displayCity", charity.getDisplayCity());
+    charEntity.setProperty("displayType", charity.getDisplayType());
     datastore.put(charEntity);
   }
 
@@ -258,23 +253,117 @@ public class Datastore {
    *
    * @return a list of charities that have the given type. List is sorted by time descending.
    */
-  public List<Charity> getCharities(String type) {
+  public List<Charity> getCharities(String name, String city, String type) {
+
     List<Charity> charities = new ArrayList<>();
 
-    Query query =
-            new Query("Charity")
-                    .setFilter(new Query.FilterPredicate("type", FilterOperator.EQUAL, type))
-                    .addSort("name", SortDirection.ASCENDING);
+    Query query;
+
+    if( isNull(name) ) {
+
+        if( isNull(city) ) {
+
+            if( isNull(type) ) {  // nothing provided
+                return charities;
+            }
+            else {    // only type provided
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.FilterPredicate("type", FilterOperator.EQUAL, type))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+
+        }
+
+        else {
+
+            if( isNull(type) ) { // only city provided
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.FilterPredicate("city", FilterOperator.EQUAL, city))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+
+            else {    // type and city provided
+                Collection<Query.Filter> filters = new ArrayList<>();
+
+                filters.add(new Query.FilterPredicate("city", FilterOperator.EQUAL, city));
+                filters.add(new Query.FilterPredicate("type", FilterOperator.EQUAL, type));
+
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.CompositeFilter(Query.CompositeFilterOperator.AND, filters))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+        }
+    }
+    else {
+
+        if( isNull(city) ) {
+
+            if( isNull(type) ) {  // name provided
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.FilterPredicate("name", FilterOperator.EQUAL, name))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+            else {    // name and type provided
+
+                Collection<Query.Filter> filters = new ArrayList<>();
+
+                filters.add(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+                filters.add(new Query.FilterPredicate("type", FilterOperator.EQUAL, type));
+
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.CompositeFilter(Query.CompositeFilterOperator.AND, filters))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+
+        }
+
+        else {
+
+            if( isNull(type) ) { // name and city provided
+
+                Collection<Query.Filter> filters = new ArrayList<>();
+
+                filters.add(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+                filters.add(new Query.FilterPredicate("city", FilterOperator.EQUAL, city));
+
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.CompositeFilter(Query.CompositeFilterOperator.AND, filters))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+
+            else {    // all three provided
+                Collection<Query.Filter> filters = new ArrayList<>();
+
+                filters.add(new Query.FilterPredicate("city", FilterOperator.EQUAL, city));
+                filters.add(new Query.FilterPredicate("type", FilterOperator.EQUAL, type));
+                filters.add(new Query.FilterPredicate("name", FilterOperator.EQUAL, name));
+
+                query =
+                        new Query("Charity")
+                                .setFilter(new Query.CompositeFilter(Query.CompositeFilterOperator.AND, filters))
+                                .addSort("name", SortDirection.ASCENDING);
+            }
+        }
+    }
+
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
       try {
 
-        String name = (String) entity.getProperty("name");
-        String city = (String) entity.getProperty("city");
+        String resultName = (String) entity.getProperty("displayName");
+        String resultCity = (String) entity.getProperty("displayCity");
+        String resultType = (String) entity.getProperty("displayType");
 
-        Charity charity = new Charity(name, city, type);
+        Charity charity = new Charity(resultName, resultCity, resultType);
         charities.add(charity);
+
       } catch (Exception e) {
         System.err.println("Error finding charities.");
         System.err.println(entity.toString());
@@ -301,7 +390,7 @@ public class Datastore {
     for (Entity entity : results.asIterable()) {
       try {
 
-        String type = (String) entity.getProperty("type");
+        String type = (String) entity.getProperty("displayType");
 
         if( !types.contains(type) && !type.equals("Organization type")) {
           types.add(type);
@@ -322,6 +411,19 @@ public class Datastore {
       datastore.delete(messageKey);
     } catch (Exception e) {
       System.out.println("error: " + e.toString());
+    }
+  }
+
+  public void deleteCharities() {
+    try {
+        Query query = new Query("Charity");
+        PreparedQuery results = datastore.prepare(query);
+
+        for (Entity entity : results.asIterable()) {
+            datastore.delete(entity.getKey());
+        }
+    } catch (Exception e) {
+        System.out.println("error: " + e.toString());
     }
   }
 
@@ -563,6 +665,15 @@ public class Datastore {
     String otherInfo = (String)infoEntity.getProperty("otherInfo");
     CharityInfo charityInfo = new CharityInfo(email, webLink, contactLink, donateLink, otherInfo);
     return charityInfo;
+  }
+
+    /**
+     * Util method to see if a String is null/empty
+     * @param str string to check
+     * @return true if string is null/empty, false otherwise
+     */
+  private boolean isNull(String str) {
+      return ( (str.length() == 0) || str == null || str.equals("null") || str.equals("none"));
   }
 }
 
