@@ -43,7 +43,7 @@ function displayCharities() {
 	if(city === 'Enter City' || Object.entries(city).length === 0) {
 	    city = "null";
 	}
-	if(type === 'Enter Type' || Object.entries(type).length === 0) {
+	if(type === 'Select Type' || Object.entries(type).length === 0) {
 	    type = "null";
 	}
 
@@ -54,19 +54,20 @@ function displayCharities() {
       return response.json();
     }).then((charities) => {
 
+      const charityContainer = document.getElementById('display-charities');
+      charityContainer.innerHTML = '';
+
       if(Object.entries(charities).length === 0) {
-        const charityContainer = document.getElementById('display-charities');
-        charityContainer.innerHTML = "Sorry, there are no charities matching this combination of filters!";
+        charityContainer.innerHTML += "Sorry, there are no charities matching this combination of filters!";
       }
 
       else {
-          const charityContainer = document.getElementById('display-charities');
-          charityContainer.innerHTML ='';
 
           charities.forEach((charity) => {
             charityContainer.innerHTML += charity.displayName + ', ' + charity.displayCity + '<br>';
           });
       }
+
     });
 
  }
@@ -79,17 +80,19 @@ function displayCharities() {
       return response.json();
     }).then((types) => {
 
+      var select = document.getElementById('search-type');
+
       if(Object.entries(types).length === 0) {
-        const typesContainer = document.getElementById('display-types');
-        typesContainer.innerHTML = "Sorry, there are no charities in the database";
+          var option = document.createElement('option');
+          option.text = option.value = 'No charities available';
+          select.add(option);
       }
 
       else {
-          const typesContainer = document.getElementById('display-types');
-          typesContainer.innerHTML ='Currently Available Charity Types <br>';
-
           types.forEach((type) => {
-            typesContainer.innerHTML += type+ '<br>';
+          var option = document.createElement('option');
+              option.text = option.value = type;
+              select.add(option);
           });
       }
     });

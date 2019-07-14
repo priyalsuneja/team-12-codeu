@@ -677,7 +677,7 @@ public class Datastore {
      * @return true if string is null/empty, false otherwise
      */
   private boolean isNull(String str) {
-      return ( (str.length() == 0) || str == null || str.equals("null"));
+      return ( (str.length() == 0) || str == null || str.equals("null") || str.equals("none"));
   }
 }
 
