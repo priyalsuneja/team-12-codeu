@@ -3,6 +3,7 @@
   <head>
     <title>Community Page</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/community.css">
     <script src="/js/community-page-loader.js"></script>
   </head>
   <body onload="buildUI()">
@@ -10,14 +11,25 @@
       <ul id="navigation">
         <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
         <li><a href="/public-feed.html">Public Feed</a></li>
-        <li><a href="/charities.html">Charities</a></li>
+        <li><a href="/charities.html">Charities Map</a></li>
       </ul>
     </nav>
+    <div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
     <div id="content">
-      <Label id = "text" class="h1-label">Community Page</Label>
-      <p>Here is a list of every user who has posted a message:</p>
-      <hr/>
-      <ul id="list">Loading...</ul>
+      <div id="upper-content">
+        <Label id = "text" class="h1-label">Charities Community</Label>
+        <p>Here is a list of all charities and direct links to their pages.</P>
+        <div id="search-container">
+          <textarea id="search-text" rows="1" placeholder="Search for charities by name or a keyword ..."></textarea>
+          <button type="button" onclick="filterUsers()" id="search-button">Search</button>
+        </div>
+        <hr/>
+      </div>
+      <div id="list-container">
+        <ul id="list">Loading...</ul>
+      </div>
     </div>
   </body>
 </html>

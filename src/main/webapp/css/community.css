@@ -1,0 +1,96 @@
+#content {
+	width : 90%;
+	padding : 5%;
+	font-family:Impact, Haettenschweiler, san-serif;
+}
+
+#upper-content {
+	width:100%;
+	padding:0;
+	margin:0;
+	background-image: url("../images/community.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+	background-size: cover;
+}
+
+p {
+	text-align:center;
+	color:gray;
+}
+
+#search-container {
+	width:100%;
+}
+
+textarea:focus {outline:0;}
+#search-text {
+	display:block;
+	margin:15% auto 1% auto;
+	padding-top:10px;
+	padding-bottom:10px;
+	width : 60%;
+	border-radius:5px;
+}
+
+button:focus {outline:0;}
+
+#search-button {
+	display:block;
+	margin:0 auto 5% auto;
+	border-radius:5px;
+	width:20%;
+	position:center;
+	background-color:rgb(120, 165, 90);
+	font-family:Impact, Haettenschweiler, san-serif;
+	color:white;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+#search-button:hover {
+	background-color:rgb(222, 143, 53);
+}
+
+#list-container {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+#content ul {
+	list-style-type: none;
+	margin:5% auto 5% auto;
+	padding:0;
+	width:50%;
+}
+
+#content li {
+	width:100%;
+	text-align:center;
+	padding:10px 0 20px 0;
+	margin-bottom:20px;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: rgb(120, 165, 90);
+	
+}
+
+#content a {
+	text-decoration:none;
+	font-family:Impact, Haettenschweiler, san-serif;
+	color: rgb(70, 70, 70);
+	text-align:center;
+	font-size: 2vw;
+	font-weight:normal;
+}
+
+#content a:hover {
+	color: rgb(222, 143, 53);
+}
+
+#about-me-div {
+	font-size:10px;
+	color:gray;
+}
