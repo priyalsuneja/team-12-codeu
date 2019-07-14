@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.google.codeu.data.Datastore;
@@ -73,7 +74,10 @@ public class SearchCharitiesServelet extends HttpServlet {
         }
 
         response.setContentType("application/json");
-        response.getOutputStream().println(charitiesArray.toString());
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println(charitiesArray.toString());
+        //response.getOutputStream().println(charitiesArray.toString());
 
     }
 
