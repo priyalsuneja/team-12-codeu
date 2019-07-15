@@ -64,7 +64,7 @@ public class SearchCharitiesServelet extends HttpServlet {
         String city = Jsoup.clean(request.getParameter("city"), Whitelist.none());
         String type = Jsoup.clean(request.getParameter("type"), Whitelist.none());
 
-        List<Charity> charities = datastore.getCharities(name.toLowerCase(), city.toLowerCase(), type.toLowerCase());
+        List<Charity> charities = datastore.getCharities(name, city, type);
 
         JsonArray charitiesArray = new JsonArray();
         Gson gson = new Gson();
