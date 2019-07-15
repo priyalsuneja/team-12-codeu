@@ -12,6 +12,7 @@ public class Event {
   private long timestamp;
   private List <String> tags;
   private boolean volunteer;
+  private List<User> volunteerList;
   /**
    * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
    * random ID and uses the current system time for the creation time.
@@ -113,4 +114,11 @@ public void setVolunteer(boolean volunteer) {
 	this.volunteer = volunteer;
 }
 
+public void addVolunteer(User user) {
+	volunteerList.add(user);
+}
+
+public List<User> getVolunteerList(){
+	return volunteerList;
+}
 }

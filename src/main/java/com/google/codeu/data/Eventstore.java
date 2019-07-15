@@ -73,4 +73,32 @@ public class Eventstore {
 
     return events;
   }
+  
+  public List<Event> getAllEvents() {
+	    List<Event> events = new ArrayList<>();
+
+	    Query query = new Query("Event")
+	      .addSort("timestamp", SortDirection.DESCENDING);
+	    PreparedQuery results = eventstore.prepare(query);
+
+	    for (Entity entity : results.asIterable()) {
+	        try {
+	            String idString = entity.getKey().getName();
+	            UUID id = UUID.fromString(idString);
+	            String user = (String) entity.getProperty("user");
+	            String description = (String) entity.getProperty("description");
+	            long timestamp = (long) entity.getProperty("timestamp");
+	            @SuppressWarnings("unchecked")
+	    		List<String> tags = (List<String>) entity.getProperty("tags");
+	            boolean volunteer = (boolean) entity.getProperty("volunteer");
+	            Event event = new Event(tags,id, user, description, timestamp,volunteer);
+	            events.add(event);
+	          } catch (Exception e) {
+	            System.err.println("Error reading message.");
+	            System.err.println(entity.toString());
+	            e.printStackTrace();
+	          }
+	    }
+	    return events;
+	  }
 }

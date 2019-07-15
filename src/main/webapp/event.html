@@ -22,7 +22,7 @@
   <input type="text" name="volunteer" maxlength = "25" size="100" placeholder="Please enter TRUE for volunteer FALSE for event">
   <br><br>
 </form> 
-<form id="asd">
+<form id="volunteer">
   Name:<br>
   <input type="text" maxlength = "25" size="100" name="Last Name  ">
   <br>
@@ -34,16 +34,16 @@
   <br><br>
 </form>
   <script>
-	  function asd(a)
+	  function volunteer(a)
 	  {
 	      if(a==1)
-	          document.getElementById("asd").style.display="none";
+	          document.getElementById("volunteer").style.display="none";
 	      else
-	          document.getElementById("asd").style.display="block";
+	          document.getElementById("volunteer").style.display="block";
 	  }
   </script>
-  <button onclick="asd(1)">Hide Volunteer</button>
-  <button onclick="asd(2)">Show Volunteer</button>
+  <button onclick="volunteer(1)">Hide Volunteer</button>
+  <button onclick="volunteer(2)">Show Volunteer</button>
   <input type="submit" value="Submit">
 </body>
 </html>
