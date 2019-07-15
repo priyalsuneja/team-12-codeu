@@ -28,58 +28,66 @@ limitations under the License.
     <nav>
       <ul id="navigation">
         <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
-		    <li ><a><button id="notifications-btn">Notifications</button></a></li>
+        <li ><a><button id="notifications-btn">Notifications</button></a></li>
         <li><a href="/public-feed.html">Public Feed</a></li>
         <li><a href="/community.html">Community</a></li>
         <li><a href="/charities.html">Charities</a></li>
       </ul>
     </nav>
-	
+
 	<div id="notification-container"></div>
 	
-    <Label id="page-title" class="h1-label">User Page</Label>
+    <div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+
+   <div id="all-content">	
+     <div id="top-content">
+       <Label id="page-title" class="h1-label">User Page</Label>
 	
-	<div id="user-status-div"></div>
-	<div id="info-div"></div>
+	   <div id="user-status-div"></div>
+	   <div id="info-div"></div>
+	
+       <div id="about-me-container">Loading...</div>
+       <div id="about-me-form" class="hidden">
+         <form action="/about" method="POST">
+           <textarea name="about-me" placeholder="Write or update your profile description for others to learn more about you and find you..." rows=2 required></textarea>
+           <br/>
+           <input id="about-me-btn" type="submit" value="Update Profile Description">
+         </form>
+       </div>
+	   <hr/>
+     </div>
 	
     <div id="map-container">
+	  <p> Add your location, and view nearby charities!</p>
+	  <div id= "map-privacy-div" class="policy-div"></div>
 	  <div id="map"></div>
 	  <div id="map-form-div" class="hidden">
-	    <p> Add your location, and view near by charities!</p>
         <form id="location-form" method="POST" action="/locations">
 	      <textarea id= "address-input" name="address" placeholder="Enter your location address" rows=1 required></textarea>
-	      <button id="set-location-btn" type="button">Set Location</button>
+	      <button id="set-location-btn" type="button">Update My Location</button>
 	    </form>
 	  </div>
 	</div>
+	<hr/>
 	
 	<div id="search-container">
-	  <textarea id="search-text" rows="1"></textarea>
+	  <textarea id="search-text" rows="1" placeholder="Filter your messages by searching a keyword ..."></textarea>
 	  <button type="button" onclick="fetchFilteredMessages()">Search</button>
 	</div>
-	
-
-
-    <div id="about-me-container">Loading...</div>
-    <div id="about-me-form" class="hidden">
-      <form action="/about" method="POST">
-        <textarea name="about-me" placeholder="about me" rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
 
     <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
       Enter a new message:
       <br/>
-      <textarea name="text" id="message-input"></textarea>
+      <textarea name="text" id="message-input" placeholder="Write a message for everyone to view! You can upload images, or add links to image, video, and audio files ..."></textarea>
       <br/>
-      <input type="file" name="image" multiple>
+      <input id="upload-image" type="file" name="image" multiple>
       <br/><br/>
       <input type="submit" value="Submit">
     </form>
     <hr/>
     <div id="message-container">Loading...</div>
+   </div>
   </body>
 </html>

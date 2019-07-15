@@ -1,0 +1,53 @@
+#all-content {
+  width : 90%;
+  padding : 5%;
+  font-family:Impact, Haettenschweiler, san-serif;
+  color:rgb(70, 70, 70);
+  font-weight:normal;
+  font-size:12px;
+  text-align:center;
+}
+
+#all-content a {
+  display:block;
+  text-decoration:none;
+  margin:5px;
+  padding:5px;
+  border-radius:5px;
+  background-color:white;
+  border:thin solid rgb(222, 143, 53);
+  font-family:Impact, Haettenschweiler, san-serif;
+  color:gray;
+}
+
+#all-content a:hover {
+	color:rgb(70, 70, 70);
+}
+
+#all-content button {
+	margin:5px;
+	padding:5px;
+	border-radius:5px;
+	background-color:white;
+	border:thin solid rgb(222, 143, 53);
+	font-family:Impact, Haettenschweiler, san-serif;
+	color:gray;
+}
+
+#all-content button:hover {
+	color:rgb(70, 70, 70);
+}
+
+#all-content input {
+    margin:5px;
+	padding:5px;
+	border-radius:5px;
+	background-color:white;
+	border:thin solid rgb(222, 143, 53);
+	font-family:Impact, Haettenschweiler, san-serif;
+	color:gray;
+}
+
+#all-content input:hover {
+	color:rgb(70, 70, 70);
+}

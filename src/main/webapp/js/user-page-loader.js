@@ -218,22 +218,21 @@ function buildMessageDiv(message) {
 
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('message-body');
-  bodyDiv.innerHTML = message.text;
+  bodyDiv.innerHTML = message.text + "<hr/>";
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
 
-  /*adding comments button to message-div*/
-  addCommentsButton(messageDiv, message);
-  
   /*adding delete button to message-div*/
   addDeleteButtonIfViewSelf(message, messageDiv);
 
   /*adding edit button to message div*/
   addEditButtonIfViewSelf(messageDiv, bodyDiv, message);
   
+  /*adding comments button to message-div*/
+  addCommentsButton(messageDiv, message);
 
   return messageDiv;
 }
@@ -250,7 +249,7 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
         const editButton = document.createElement('Button');
         editButton.innerHTML = "Edit Message";
         editButton.onclick = function() {
-          editButton.style.visibility="hidden";
+          editButton.style.display="none";
           const bodyText = document.createElement('textarea');
           bodyText.innerHTML = message.text;
           bodyText.style.width = "100%";
@@ -276,7 +275,7 @@ function addEditButtonIfViewSelf(messageDiv, bodyDiv, message) {
 function addCancelButtonFunction(editButton, cancelButton, saveButton, messageDiv, bodyDiv, bodyText, message) {
   cancelButton.innerHTML = "Cancel";
   cancelButton.onclick = function() {
-    editButton.style.visibility="visible";
+    editButton.style.display="inline-block";
     try{
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
@@ -316,7 +315,7 @@ function addSaveButtonFunction(editButton, cancelButton, saveButton, messageDiv,
     });
 
     try{
-	  editButton.style.visibility="visible";
+	  editButton.style.display="inline-block";
       bodyDiv.removeChild(bodyText);
       bodyDiv.innerHTML = message.text;
       messageDiv.removeChild(cancelButton);
@@ -386,7 +385,7 @@ function addCommentsButton(messageDiv, message) {
   commentsButton.onclick = function() {
 
 	/*hide button when clicked to prevent re-clicking*/
-	commentsButton.style.visibility="hidden";
+	commentsButton.style.display="none";
 	
 	/*fetching posted comments for the message*/
 	const messageId = message.id;
@@ -451,8 +450,8 @@ function addCommentsButton(messageDiv, message) {
 	commentContainerDiv.appendChild(formDiv);
   };
   /*adding comments button to message-div*/
-  commentContainerDiv.appendChild(commentsButton);
   messageDiv.appendChild(commentContainerDiv);
+  messageDiv.appendChild(commentsButton);
 }
 
 /**Fetches the Blobstore upload url and pass it to the form action*/
@@ -529,19 +528,23 @@ function fetchUserType() {
 		 return userType;
 	})
 	  .then((type)=>{
+		  const mapPrivacyDiv=document.getElementById('map-privacy-div');
 		  if(type=='1')//user is charity
 		  {
 			statusDiv.innerHTML= "Charity Organization";
 			creatCharityInoDiv();
+			mapPrivacyDiv.innerHTML = 'As a "Charity", your location will be public for people to view and find you. Charities near you are the yellow markers.';
 		  }
 		  else if(type=='0')//user is donor
 		  {
 			statusDiv.innerHTML= "Donor User";
+			mapPrivacyDiv.innerHTML = 'As a "Donor", your location can not be viewed by others for your privacy. Only charity locations are public. Charities near you are the yellow markers.';
 		  }
 		  else //user record does not exits, or user type is null
 		  {
+			mapPrivacyDiv.innerHTML = 'Your location can not be viewed by others for your privacy. Only charity locations are public. Charities near you are the yellow markers.';
+			
             const statusFormDiv = document.createElement('Div');
-			 
             const statusQuestionDiv = document.createElement('Div');
 			statusQuestionDiv.innerHTML = "<p>Are you a charity organization?</p>";
 			 
@@ -552,6 +555,8 @@ function fetchUserType() {
 				fetch(urlPostCharity, {method:'POST'});
 				statusDiv.innerHTML= "Charity Organization";
 				creatCharityInoDiv();
+			    mapPrivacyDiv.innerHTML = 'As a "Charity", your location will be public for people to view and find you. Charities near you are the yellow markers.';
+		  
 			};
 			 
 			const noButton = document.createElement('Button');
@@ -560,6 +565,7 @@ function fetchUserType() {
 				const urlPostDonor = "/user-type?user="+parameterUsername+"&type=0";
 				fetch(urlPostDonor, {method:'POST'});
 				statusDiv.innerHTML= "Donor User";
+			    mapPrivacyDiv.innerHTML = 'As a "Donor", your location can not be viewed by others for your privacy. Only charity locations are public. Charities near you are the yellow markers.';
 			};
 			 
 			statusFormDiv.appendChild(statusQuestionDiv);
@@ -573,6 +579,7 @@ function fetchUserType() {
 function creatCharityInoDiv() {
   const infoDiv = document.getElementById('info-div');
   const charityInfoDiv = document.createElement('Div');
+  charityInfoDiv.id = "charity-info-div";
   
   var webUrl = '';
   var contactUrl = '';
@@ -592,8 +599,8 @@ function creatCharityInoDiv() {
   
   /*creating a link to chartiy's website*/
   const donateLink = document.createElement('a');
-  donateLink.id = "website-link";
-  donateLink.innerHTML = "Donate";
+  donateLink.id = "donate-link";
+  donateLink.innerHTML = "Donate Here";
   charityInfoDiv.appendChild(donateLink);
   
   /*getting data from chartyInfoServlet*/
@@ -647,7 +654,8 @@ function creatCharityInoDiv() {
 function editCharityInfo(infoDiv) {
   const charityFormDiv = document.createElement('Div');
   const editInfoBtn = document.createElement('Button');
-  editInfoBtn.innerHTML = "Click to set you website, contact us, and donate links!";
+  editInfoBtn.id = "edit-info-button";
+  editInfoBtn.innerHTML = "Click to set your website, contact us, and donate links!";
   editInfoBtn.onclick = function() {
 	editInfoBtn.style.visibility = 'hidden';
 	/*create dit info form*/
@@ -685,6 +693,7 @@ function editCharityInfo(infoDiv) {
 	/*create a submit button*/
     var updateButton = document.createElement("input");
     updateButton.type = "submit";
+	updateButton.id = "uptade-info-button";
     updateButton.value = "Update Charity Information";
 	editInfoForm.appendChild(updateButton);
 	
