@@ -221,9 +221,9 @@ public class Datastore {
     charEntity.setProperty("name", charity.getName());
     charEntity.setProperty("city", charity.getCity());
     charEntity.setProperty("type", charity.getType());
-    charEntity.setProperty("displayName", charity.getDisplayName());
+    /*charEntity.setProperty("displayName", charity.getDisplayName());
     charEntity.setProperty("displayCity", charity.getDisplayCity());
-    charEntity.setProperty("displayType", charity.getDisplayType());
+    charEntity.setProperty("displayType", charity.getDisplayType());*/
     datastore.put(charEntity);
   }
 
@@ -357,9 +357,9 @@ public class Datastore {
     for (Entity entity : results.asIterable()) {
       try {
 
-        String resultName = (String) entity.getProperty("displayName");
-        String resultCity = (String) entity.getProperty("displayCity");
-        String resultType = (String) entity.getProperty("displayType");
+        String resultName = (String) entity.getProperty("name");
+        String resultCity = (String) entity.getProperty("city");
+        String resultType = (String) entity.getProperty("type");
 
         Charity charity = new Charity(resultName, resultCity, resultType);
         charities.add(charity);
@@ -390,7 +390,7 @@ public class Datastore {
     for (Entity entity : results.asIterable()) {
       try {
 
-        String type = (String) entity.getProperty("displayType");
+        String type = (String) entity.getProperty("type");
 
         if( !types.contains(type) && !type.equals("Organization type")) {
           types.add(type);

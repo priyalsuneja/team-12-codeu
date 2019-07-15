@@ -64,7 +64,7 @@ function displayCharities() {
       else {
 
           charities.forEach((charity) => {
-            charityContainer.innerHTML += charity.displayName + ', ' + charity.displayCity + '<br>';
+          charityContainer.innerHTML += charity.name + ', ' + charity.city + '<br>';
           });
       }
 
