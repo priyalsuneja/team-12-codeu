@@ -18,7 +18,6 @@ function createCharities() {
 
  }
 
-
 //Adds a marker that shows an info window when clicked.
 function addLandmark(map, lat, lng, title) {
   const marker = new google.maps.Marker ({
@@ -31,20 +30,70 @@ function addLandmark(map, lat, lng, title) {
   });
 }
 
-// was used to geocode address of a charity, not using currently because the google API has a cap on search queries
-function geocodeAddress(address, resultsMap) {
+/* Searches and displays the names of the charities matching a certain type*/
+function displayCharities() {
 
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-            console.log(results[0].geometry.location);
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
+	var name = document.getElementById('search-name').value;
+	var city = document.getElementById('search-city').value;
+	var type = document.getElementById('search-type').value;
+
+	if(name === 'Enter Name' || Object.entries(name).length === 0) {
+	    name = "null";
+	}
+	if(city === 'Enter City' || Object.entries(city).length === 0) {
+	    city = "null";
+	}
+	if(type === 'Select Type' || Object.entries(type).length === 0) {
+	    type = "null";
+	}
+
+    const url = '/search-charities?name=' + name + '&city=' + city + '&type=' + type;
+
+
+    fetch(url, {method:'GET'}).then(function(response) {
+      return response.json();
+    }).then((charities) => {
+
+      const charityContainer = document.getElementById('display-charities');
+      charityContainer.innerHTML = '';
+
+      if(Object.entries(charities).length === 0) {
+        charityContainer.innerHTML += "Sorry, there are no charities matching this combination of filters!";
       }
+
+      else {
+
+          charities.forEach((charity) => {
+            charityContainer.innerHTML += charity.displayName + ', ' + charity.displayCity + '<br>';
+          });
+      }
+
+    });
+
+ }
+
+/* Displays all the available types of charities in the database.*/
+ function displayTypes() {
+
+    const url = '/search-charities';
+    fetch(url, {method:'PUT'}).then(function(response) {
+      return response.json();
+    }).then((types) => {
+
+      var select = document.getElementById('search-type');
+
+      if(Object.entries(types).length === 0) {
+          var option = document.createElement('option');
+          option.text = option.value = 'No charities available';
+          select.add(option);
+      }
+
+      else {
+          types.forEach((type) => {
+          var option = document.createElement('option');
+              option.text = option.value = type;
+              select.add(option);
+          });
+      }
+    });
+ }
