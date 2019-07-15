@@ -22,9 +22,9 @@ public class Charity {
      //   this.displayName = name;
      //   this.displayCity = city;
      //   this.displayType = type;
-        this.type = type.toLowerCase();
-        this.name = name.toLowerCase();
-        this.city = city.toLowerCase();
+        this.type = type;
+        this.name = name;
+        this.city = city;
     }
 
     public String getName() {
