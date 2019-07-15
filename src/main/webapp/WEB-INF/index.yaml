@@ -19,11 +19,3 @@ indexes:
   - name: timestamp
     direction: desc
 
-- kind: Charity
-  properties:
-    - name: name
-    - name: city
-    - name: type
-    - name: displayName
-    - name: displayCity
-    - name: displayType
