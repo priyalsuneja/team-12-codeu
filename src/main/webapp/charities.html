@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <Label id="page-title" class="h1-label">Charities Page</Label>
+        <title>Charities Page</title>
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/charities.css">
+        <link rel="stylesheet" href="/css/general-content.css">
         <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGfvqK0yGwfz4LxazheBdEdekpDHwRFfg"></script>
         <script src="/js/charities.js"></script>
@@ -15,11 +16,18 @@
         <ul id="navigation">
             <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
             <li><a href="/public-feed.html">Public Feed</a></li>
-            <li><a href="/community.html">Community</a></li>
+            <li><a href="/community.html">Charities Community</a></li>
         </ul>
     </nav>
-    <p>This page allows you to search for charities across the United States and also has a map showing you charities across the country. Hover over a pin to find the name of the charity!</p>
-    <div id="search-container">
+    <div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+	
+    <div id="all-content">
+      <Label id="page-title" class="h1-label">Charities Map and Search</Label>
+      <hr/>
+      <p>This page allows you to search for charities across the United States and also has a map showing you charities across the country. Hover over a pin to find the name of the charity!</p>
+      <div id="search-container">
         <textarea id="search-name" rows="1" placeholder="Enter Name"></textarea>
         <textarea id="search-city" rows="1" placeholder="Enter City"></textarea>
         <select id="search-type" name="Type">
@@ -27,12 +35,13 @@
         </select>
         <button type="button" onclick="displayCharities()">Search</button>
         <script>displayTypes();</script>
-    </div>
-    <div class="row" id="formatting">
+      </div>
+      <div class="row" id="formatting">
         <div class="left" id="display-charities">
             Enter a search term in the textbox and click on the search button to see a list of charities of the given type!
         </div>
         <div class="right" id="map"></div>
+      </div>
     </div>
     </body>
 </html>
