@@ -50,6 +50,7 @@ public class CharitiesDataServelet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    init();
     /*reading locations from datastore for charities user added to the web-app that don't have records in the WEB_-INF files*/
     List<Location> appCharityLocations = datastore.getAllCharityLocations();
     Gson gson = new Gson();
