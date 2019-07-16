@@ -547,6 +547,24 @@ public class Datastore {
     }
   }
   
+  /*returns a list of all charity locations */
+  public List<Location> getAllCharityLocations() {
+    List<Location> locations = new ArrayList<>();
+    Query allLocations = new Query("Location");
+    PreparedQuery allLocationresults = datastore.prepare(allLocations);
+    for (Entity entity : allLocationresults.asIterable()) {
+      Location location = locationEntityToLocationObj(entity);
+      if(location!=null) {
+        /*check if user is a charity*/
+        User locationUser = getUser(location.getUser());
+        if(Util.isValidCharityUser(locationUser)) {
+          locations.add(location);
+        }
+      }
+    }
+    return locations;
+  }
+  
   /*returns a list of all-type user locations (charity, donor, unset) that are close to an specific location*/
   public List<Location> getAllNearLocations(Location location) {
     List<Location> locations = new ArrayList<>();
