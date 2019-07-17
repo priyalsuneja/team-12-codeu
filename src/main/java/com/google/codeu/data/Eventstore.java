@@ -34,7 +34,7 @@ public class Eventstore {
     eventEntity.setProperty("timestamp", event.getTimestamp());
     eventEntity.setProperty("tags",event.getTags());
     eventEntity.setProperty("title", event.getTitle());
-
+    eventEntity.setProperty("volunteerList", event.getVolunteerList());
     eventstore.put(eventEntity);
   }
 
@@ -62,7 +62,8 @@ public class Eventstore {
         @SuppressWarnings("unchecked")
 		List<String> tags = (List<String>) entity.getProperty("tags");
         String title = (String) entity.getProperty("title");
-        Event event = new Event(tags,id, user, description, timestamp,title);
+        List<String> volunteerList = (List<String>) entity.getProperty("volunteerList");
+        Event event = new Event(tags,id, user, description, timestamp,title,volunteerList);
         events.add(event);
       } catch (Exception e) {
         System.err.println("Error reading message.");
@@ -94,8 +95,7 @@ public List<Event> getAllEvents() {
 	            String title = (String) entity.getProperty("title");
 	            List<String> volunteerList = new ArrayList<String>();
 	            volunteerList = (List<String>) entity.getProperty("volunteerList");
-	            Event event = new Event(tags,id, user, description, timestamp,title);
-	            event.setVolunteerList(volunteerList);
+	            Event event = new Event(tags,id, user, description, timestamp,title,volunteerList);
 	            events.add(event);
 	          } catch (Exception e) {
 	            System.err.println("Error reading message.");

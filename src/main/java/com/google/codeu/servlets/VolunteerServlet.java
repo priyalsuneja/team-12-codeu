@@ -63,7 +63,7 @@ public class VolunteerServlet extends HttpServlet {
 	    List<Event> eventList = eventstore.getAllEvents();
 	    for(int i=0;i<eventList.size();++i) {
 	    	if(eventList.get(i).getId().toString().equals(eventId)) {
-	    		if(!eventList.get(i).getVolunteerList().isEmpty())eventList.get(i).addVolunteer(user);
+	    		if(eventList.get(i).getVolunteerList().isEmpty()) System.out.println("saddddd");
 	    	}
 	    }
 	    response.sendRedirect("displayVolunteer.html");
