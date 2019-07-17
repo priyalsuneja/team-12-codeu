@@ -4,10 +4,14 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +66,13 @@ public class Eventstore {
         @SuppressWarnings("unchecked")
 		List<String> tags = (List<String>) entity.getProperty("tags");
         String title = (String) entity.getProperty("title");
-        List<String> volunteerList = (List<String>) entity.getProperty("volunteerList");
+        @SuppressWarnings("unchecked")	
+        List<String> volunteerList;
+        if((List<String>) entity.getProperty("volunteerList")== null) {
+        	volunteerList = new ArrayList<String>();
+        	System.out.println("null");
+        }
+        else volunteerList = (List<String>) entity.getProperty("volunteerList");
         Event event = new Event(tags,id, user, description, timestamp,title,volunteerList);
         events.add(event);
       } catch (Exception e) {
@@ -74,7 +84,16 @@ public class Eventstore {
 
     return events;
   }
-  
+public void updateEvent(String eventId, List<String> volunteerList) {
+	try {
+		Key messageKey = KeyFactory.createKey("Event",eventId);
+        Entity messageEntity = eventstore.get(messageKey);
+        messageEntity.setProperty("volunteerList", volunteerList);
+        eventstore.put(messageEntity);
+      } catch (Exception e) {
+        System.out.println("error: " + e.toString());
+      }	
+ } 
   @SuppressWarnings("unchecked")
 public List<Event> getAllEvents() {
 	    List<Event> events = new ArrayList<>();
@@ -94,7 +113,8 @@ public List<Event> getAllEvents() {
 	    		List<String> tags = (List<String>) entity.getProperty("tags");
 	            String title = (String) entity.getProperty("title");
 	            List<String> volunteerList = new ArrayList<String>();
-	            volunteerList = (List<String>) entity.getProperty("volunteerList");
+	            if((List<String>) entity.getProperty("volunteerList")!=null)
+	            	volunteerList = (List<String>) entity.getProperty("volunteerList");
 	            Event event = new Event(tags,id, user, description, timestamp,title,volunteerList);
 	            events.add(event);
 	          } catch (Exception e) {

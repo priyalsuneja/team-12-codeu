@@ -15,6 +15,7 @@
        eventContainer.innerHTML = '';  
       }
       events.forEach((event) => {  
+       console.log(event.volunteerList.length);
        const eventDiv = buildEventDiv(event);
        eventContainer.appendChild(eventDiv);
       });
@@ -38,16 +39,30 @@
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('message-title');
     titleDiv.innerHTML = "Event Title: " + event.title;
-   
+    
     const volunteerDiv = document.createElement('div');
     volunteerDiv.classList.add('message-volunteer');
-    volunteerDiv.innerHTML = event.volunteerList;
+    volunteerDiv.innerHTML = "Volunteers email: ";
     
     const messageDiv = document.createElement('div');
     messageDiv.classList.add("message-div");
     messageDiv.appendChild(headerDiv);
     messageDiv.appendChild(titleDiv);
     messageDiv.appendChild(volunteerDiv);
+    var list = event.volunteerList;
+    //console.log(list.length)
+    if(list.length == 0){
+    	const volunteerDiv = document.createElement('div');
+    	volunteerDiv.classList.add('message-volunteer');
+    	volunteerDiv.innerHTML = "(No Volunteers Yet)";
+    	messageDiv.appendChild(volunteerDiv);
+    }
+    for(var i=0;i<list.length;++i){
+    	const volunteerDiv = document.createElement('div');
+    	volunteerDiv.classList.add('message-volunteer');
+    	volunteerDiv.innerHTML = (i+1) + ") " + list[i];
+    	messageDiv.appendChild(volunteerDiv);
+    }
     return messageDiv;
   }
   

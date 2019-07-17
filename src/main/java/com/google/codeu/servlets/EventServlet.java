@@ -71,6 +71,7 @@ public class EventServlet extends HttpServlet {
 		    String description = request.getParameter("description");
 		    /*storing the message in eventstore*/
 		    Event event = new Event(tags,user,description,title);
+		    event.setVolunteerList(new ArrayList<String>());
 		    eventstore.storeEvent(event);
 		    response.sendRedirect("displaycharities.html");
 	 }  
