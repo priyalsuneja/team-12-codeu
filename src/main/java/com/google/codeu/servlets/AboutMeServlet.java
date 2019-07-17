@@ -33,7 +33,6 @@ public class AboutMeServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
           throws IOException {
-	 System.out.println("check about");
     response.setContentType("text/html");
 
     String user = request.getParameter("user");

@@ -33,7 +33,7 @@ public class Eventstore {
     eventEntity.setProperty("description", event.getDescription());
     eventEntity.setProperty("timestamp", event.getTimestamp());
     eventEntity.setProperty("tags",event.getTags());
-    eventEntity.setProperty("volunteer", event.isVolunteer());
+    eventEntity.setProperty("title", event.getTitle());
 
     eventstore.put(eventEntity);
   }
@@ -61,8 +61,8 @@ public class Eventstore {
         long timestamp = (long) entity.getProperty("timestamp");
         @SuppressWarnings("unchecked")
 		List<String> tags = (List<String>) entity.getProperty("tags");
-        boolean volunteer = (boolean) entity.getProperty("volunteer");
-        Event event = new Event(tags,id, user, description, timestamp,volunteer);
+        String title = (String) entity.getProperty("title");
+        Event event = new Event(tags,id, user, description, timestamp,title);
         events.add(event);
       } catch (Exception e) {
         System.err.println("Error reading message.");
@@ -74,7 +74,8 @@ public class Eventstore {
     return events;
   }
   
-  public List<Event> getAllEvents() {
+  @SuppressWarnings("unchecked")
+public List<Event> getAllEvents() {
 	    List<Event> events = new ArrayList<>();
 
 	    Query query = new Query("Event")
@@ -90,8 +91,11 @@ public class Eventstore {
 	            long timestamp = (long) entity.getProperty("timestamp");
 	            @SuppressWarnings("unchecked")
 	    		List<String> tags = (List<String>) entity.getProperty("tags");
-	            boolean volunteer = (boolean) entity.getProperty("volunteer");
-	            Event event = new Event(tags,id, user, description, timestamp,volunteer);
+	            String title = (String) entity.getProperty("title");
+	            List<String> volunteerList = new ArrayList<String>();
+	            volunteerList = (List<String>) entity.getProperty("volunteerList");
+	            Event event = new Event(tags,id, user, description, timestamp,title);
+	            event.setVolunteerList(volunteerList);
 	            events.add(event);
 	          } catch (Exception e) {
 	            System.err.println("Error reading message.");

@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Add Event</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/user-page.css">
+</head>
 <body>
-<link rel="stylesheet" href="/css/main.css">
-  	<nav>
-      <ul id="navigation">
-        <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
-        <li><a href="/public-feed.html">Public Feed</a></li>
-        <li><a href="/community.html">Community</a></li>
-        <li><a href="/charities.html">Charities</a></li>
-      </ul>
-    </nav>
-<h2>Template</h2>
-<form name = "eventForm" method="post" action="EventServlet">
-  Description:<br>
-  <input type="text" maxlength = "25" size="100" name="description">
-  <br>
-  tags:<br>
-  <input type="text" name="tags" maxlength = "25" size="100" placeholder="Please separated by comma">
-  <br>
-  Recruit volunteer or event:<br>
-  <input type="text" name="volunteer" maxlength = "25" size="100" placeholder="Please enter TRUE for volunteer FALSE for event">
-  <br><br>
-</form> 
-<form id="volunteer">
-  Name:<br>
-  <input type="text" maxlength = "25" size="100" name="Last Name  ">
-  <br>
-  Why want to join the event:<br>
-  <input type="text" name="why" maxlength = "25" size="100" placeholder="Why want to join the event">
-  <br>
-  Past experience:<br>
-  <input type="text" name="experience" maxlength = "25" size="100" placeholder="Past experience">
-  <br><br>
-</form>
-  <script>
-	  function volunteer(a)
-	  {
-	      if(a==1)
-	          document.getElementById("volunteer").style.display="none";
-	      else
-	          document.getElementById("volunteer").style.display="block";
-	  }
-  </script>
-  <button onclick="volunteer(1)">Hide Volunteer</button>
-  <button onclick="volunteer(2)">Show Volunteer</button>
-  <input type="submit" value="Submit">
+	<nav>
+	     <ul id="navigation">
+		     <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+		     <li><a href="/public-feed.html">Public Feed</a></li>
+		     <li><a href="/community.html">Community</a></li>
+		     <li><a href="/charities.html">Charities</a></li>
+	     </ul>
+	</nav>
+	<div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+	<div id="content">
+	    <Label id="page-title" class="h1-label">Add Events:</Label>
+  	</div>
+	<form name = "eventForm" method="post" action="EventServlet">
+	  Title:<br>
+	  <input type="text" maxlength = "25" size="100" name="title">
+	  <br>
+	  Description:<br>
+	  <input type="text" maxlength = "25" size="100" name="description">
+	  <br>
+	  tags:<br>
+	  <input type="text" name="tags" maxlength = "25" size="100" placeholder="Please separated by comma">
+	  <br>
+	  <input type="submit" value="Submit">
+	  <br><br>
+	</form> 
 </body>
 </html>
