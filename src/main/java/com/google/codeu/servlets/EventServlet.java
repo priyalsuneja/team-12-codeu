@@ -58,24 +58,21 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	 public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		    UserService userService = UserServiceFactory.getUserService();
+		 	UserService userService = UserServiceFactory.getUserService();
 		    if (!userService.isUserLoggedIn()) {
 		      response.sendRedirect("/index.html");
 		      return;
 		    }
-
 		    String user = userService.getCurrentUser().getEmail();
 		    String temp = request.getParameter("tags");
 		    String []tagSet = temp.split(",");
+		    String title = request.getParameter("title");
 		    List <String> tags = Arrays.asList(tagSet);
 		    String description = request.getParameter("description");
-		    String tempVolunteer = request.getParameter("volunteer"); 
-		    boolean volunteer;
-		    if(tempVolunteer.equals("TRUE")) volunteer = true;
-		    else volunteer = false;
 		    /*storing the message in eventstore*/
-		    Event event = new Event(tags,user,description,volunteer);
+		    Event event = new Event(tags,user,description,title);
+		    event.setVolunteerList(new ArrayList<String>());
 		    eventstore.storeEvent(event);
-		    response.sendRedirect("/user-page.html?user=" + user);
-		  }  
+		    response.sendRedirect("displaycharities.html");
+	 }  
 }

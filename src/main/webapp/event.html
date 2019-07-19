@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Add Event</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/user-page.css">
+</head>
 <body>
-
-<h2>template</h2>
-
-<form name = "eventForm" method="post" action="EventServlet">
-  Description:<br>
-  <input type="text" maxlength = "25" size="100" name="description">
-  <br>
-  tags:<br>
-  <input type="text" name="tags" maxlength = "25" size="100" placeholder="Please separated by comma">
-  <br>
-  Recruit volunteer or event:<br>
-  <input type="text" name="volunteer" maxlength = "25" size="100" placeholder="Please enter TRUE for volunteer FALSE for event">
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
+	<nav>
+	     <ul id="navigation">
+		     <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+		     <li><a href="/public-feed.html">Public Feed</a></li>
+		     <li><a href="/community.html">Community</a></li>
+		     <li><a href="/charities.html">Charities</a></li>
+	     </ul>
+	</nav>
+	<div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+	<div id="content">
+	    <Label id="page-title" class="h1-label">Add Events:</Label>
+  	</div>
+	<form name = "eventForm" method="post" action="EventServlet">
+	  Title:<br>
+	  <input type="text" maxlength = "25" size="100" name="title">
+	  <br>
+	  Description:<br>
+	  <input type="text" maxlength = "25" size="100" name="description">
+	  <br>
+	  tags:<br>
+	  <input type="text" name="tags" maxlength = "25" size="100" placeholder="Please separated by comma">
+	  <br>
+	  <input type="submit" value="Submit">
+	  <br><br>
+	</form> 
 </body>
 </html>
