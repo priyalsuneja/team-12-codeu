@@ -179,6 +179,7 @@ public class MessageServlet extends HttpServlet {
         //Get labels of the image and add it after image tag
         byte[] blobBytes = getBlobBytes(imageBlobKeys.get(i));
         List<EntityAnnotation> imageLabels = getImageLabels(blobBytes);
+		messageText = messageText+"<"; //hiding tags using <>
 	if(imageLabels != null)
 	{
           for(EntityAnnotation label : imageLabels)
@@ -186,6 +187,7 @@ public class MessageServlet extends HttpServlet {
             messageText+= label.getDescription() + ": " + label.getScore()+", ";
           }
 	}
+        messageText = messageText+">";
       }
     }
     

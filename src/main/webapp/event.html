@@ -34,5 +34,34 @@
 	  <input type="submit" value="Submit">
 	  <br><br>
 	</form> 
+  <title>Events</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/general-content.css">
+</head>
+<body>
+  <nav>
+    <ul id="navigation">
+      <li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+      <li><a href="/public-feed.html">Public Feed</a></li>
+      <li><a href="/community.html">Charities Community</a></li>
+      <li><a href="/charities.html">Charities Map</a></li>
+    </ul>
+  </nav>
+  <div id="all-content">
+    <Label id = "text" class="h1-label">Event Form</Label>
+
+    <form name = "eventForm" method="post" action="EventServlet">
+      Description:<br>
+      <input type="text" maxlength = "25" size="100" name="description">
+      <br>
+      tags:<br>
+      <input type="text" name="tags" maxlength = "25" size="100" placeholder="Please separated by comma">
+      <br>
+      Recruit volunteer or event:<br>
+      <input type="text" name="volunteer" maxlength = "25" size="100" placeholder="Please enter TRUE for volunteer FALSE for event">
+      <br><br>
+      <input type="submit" value="Submit">
+    </form> 
+  </div>
 </body>
 </html>

@@ -1,9 +1,28 @@
 #map {
-  width: 1200px;
-  height: 800px;
+  width:100%;
+  height: 600px;
   border: thin solid black;
 }
 
-.gm-style img { max-width: none; }
-.gm-style label { width: auto; display: inline; }
 
+#display-types {
+     border: thin solid black;
+     width:50vh;
+     display:inline-block;
+     text-align:center
+}
+
+select {
+    position: relative; /* Enable absolute positioning for children and pseudo elements */
+    width: 200px;
+    padding: 5px;
+    margin: 0 auto;
+
+    /* Styles */
+    outline: none;
+    cursor: pointer;
+
+    /* Font settings */
+    font-weight: bold;
+}
+}

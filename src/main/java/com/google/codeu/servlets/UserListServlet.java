@@ -28,7 +28,7 @@ public class UserListServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-        HashMap<String, String> usersMap = datastore.getUsers();
+        HashMap<String, String> usersMap = datastore.getCharityUsers();
         response.setContentType("application/json");
         Gson gson = new Gson();
         String json = gson.toJson(usersMap.values());
