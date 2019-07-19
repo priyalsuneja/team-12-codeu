@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/user-page.css">
+    <script src="/js/events-suammry-loader.js"></script>
+</head>
+<body onload="buildUI()">
+	<nav>
+	    <ul id="navigation">
+	    	<li><a href="/"><img src="images/home-logo.png" height="25px"></a></li>
+	        <li><a href="/">Home</a></li>
+	        <li><a href="/event.html">Add Event</a></li>
+	    </ul>
+	</nav>
+	<div id="logo">
+      <img src="images/logo.png" width="100%">
+    </div>
+	<div id="content">
+	    <Label id="page-title" class="h1-label">Events List:</Label>
+  	</div>
+	<div id="display-charities">Loading...</div>
+	<h2>=================================================================================</h2>
+	<h2>If you are interested in joining any of the events above, fill in the form below?</h2>
+	<form name="volunteer" method = "post" action = "VolunteerServlet">
+	  Which event do you want to join: <br>
+	  <input type = "text" placeholder = "Enter ID for the event" size = "100" name = "eventID" >
+	  <br>
+	  <input type="submit" value="Submit">
+	  <br><br>
+	</form>
+</body>
+</html>
