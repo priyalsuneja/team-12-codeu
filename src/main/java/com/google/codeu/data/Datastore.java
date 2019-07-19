@@ -124,13 +124,16 @@ public class Datastore {
     return messages;
   }
   /**
-   * Stores the User in Datastore.
+   * Stores/Updates the User in Datastore.
+   * 
    */
   public void storeUser(User user) {
     Entity userEntity = new Entity("User", user.getEmail());
     userEntity.setProperty("email", user.getEmail());
     userEntity.setProperty("aboutMe", user.getAboutMe());
+    userEntity.setProperty("type", user.getType());
     datastore.put(userEntity);
+      System.out.println("user stored or updated!!!!!!!!!!!!!!!!!!!!");
   }
 
   /**
@@ -147,10 +150,45 @@ public class Datastore {
       return null;
     }
 
-    String aboutMe = (String) userEntity.getProperty("aboutMe");
-    User user = new User(email, aboutMe);
-
+    String newAboutMe = getUserAboutMe(userEntity);
+    Long newType = getUserType(userEntity); 
+    User user = new User(email, newAboutMe, newType);
+//    storeUser(user);
+    
     return user;
+  }
+  
+  /*this function is to take care of exceptions in case previous user records in datastore don't have aboutMe attribute*/
+  private String getUserAboutMe(Entity userEntity) {
+    try {
+        String aboutMe = (String) userEntity.getProperty("aboutMe");
+        if(aboutMe ==null)
+        {
+            aboutMe = "";
+        }
+        return aboutMe;
+    }
+    catch(Exception e) {
+        System.out.println("could not get user aboutMe: "+e.getMessage());
+        return new String("");
+    }
+  }
+  
+  /*this function is to take care of exceptions in case previous user records in datastore don't have type attribute*/
+  private Long getUserType(Entity userEntity) {
+    try { //userEntity.getProperty("type")!=null
+        Long type = (Long) userEntity.getProperty("type");
+        if(type ==null)
+        {
+            type = User.UNSET_TYPE;
+        }
+        return type;
+    }
+    catch(Exception e)//userEntity.getProperty("type")==null
+    {
+        System.out.println("could not get user type: "+e.getMessage());
+        return User.UNSET_TYPE;
+    }
   }
   
   /**
@@ -300,6 +338,182 @@ public class Datastore {
     } catch (Exception e) {
       System.out.println("error: " + e.toString());
     }
+  }
+
+ /*
+  * Store a comment in Datastore
+  */
+  public void storeComment(Comment comment)
+  {
+    Entity commentEntity = new Entity("Comment", comment.getId().toString());
+    commentEntity.setProperty("user", comment.getUser());
+    commentEntity.setProperty("messageId", comment.getMessagId());
+    commentEntity.setProperty("text", comment.getText());
+    commentEntity.setProperty("timestamp", comment.getTimestamp());
+    datastore.put(commentEntity);
+  }
+  
+ /*
+  * Returns set of comments for a specific message
+  */  
+  public List<Comment> getComments(String messageId)
+  {
+    List<Comment> comments = new ArrayList<>();
+    /*query comment for a specific message by messageId*/
+    Query query =
+            new Query("Comment")
+                    .setFilter(new Query.FilterPredicate("messageId", FilterOperator.EQUAL, messageId))
+                    .addSort("timestamp", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+        Comment comment = new Comment(id, user, messageId, text, timestamp);
+        comments.add(comment);
+      } catch (Exception e) {
+        System.err.println("Error reading comments.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    return comments;
+  }
+
+  /*stores a location entity in datastore*/
+  public void storeLocation(Location location)
+  {
+    Entity userEntity = new Entity("Location", location.getId().toString());
+    userEntity.setProperty("longitude", String.valueOf(location.getLongitude()));
+    userEntity.setProperty("latitude", String.valueOf(location.getLatitude()));
+    userEntity.setProperty("text", location.getText());
+    userEntity.setProperty("user", location.getUser());
+    datastore.put(userEntity);
+  }
+  
+  /*
+  * Return the list of locations including:
+  * location of charity at index zero and
+  * location of nearby charities from index 1 and above
+  */
+  public List<Location> getLocations(String user)
+  {
+    List<Location> locations = new ArrayList<>();
+
+    Query query =
+            new Query("Location")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user));
+
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String text = (String) entity.getProperty("text");
+        double longitude = Double.parseDouble(entity.getProperty("longitude").toString());
+        double latitude = Double.parseDouble(entity.getProperty("latitude").toString());
+        Location location = new Location(id, latitude, longitude, text, user);
+        locations.add(location);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    
+    if(locations.size()==1)//if one location found
+    {
+        Query allLocations =
+           new Query("Location")
+                   .setFilter(new Query.FilterPredicate("user", FilterOperator.NOT_EQUAL, user));
+        PreparedQuery allLocationresults = datastore.prepare(allLocations);
+        for (Entity entity : allLocationresults.asIterable()) {
+          try {
+            double otherLongitude = Double.parseDouble(entity.getProperty("longitude").toString());
+            double otherLatitude = Double.parseDouble(entity.getProperty("latitude").toString());
+            if(Math.abs(locations.get(0).getLatitude()-otherLatitude)<3 && Math.abs(locations.get(0).getLongitude()-otherLongitude)<3)
+            {
+              String idString = entity.getKey().getName();
+              UUID id = UUID.fromString(idString);
+              String text = (String) entity.getProperty("text");
+              String otherUser = (String) entity.getProperty("user");
+              Location location = new Location(id, otherLatitude, otherLongitude, text, otherUser);
+              locations.add(location);
+            }
+
+          } catch (Exception e) {
+            System.err.println("Error reading message.");
+            System.err.println(entity.toString());
+            e.printStackTrace();
+          }
+        }
+    }
+    else
+    {
+      if(locations.size()>1)
+        System.out.println("Invalid: multiple locations for a charity!!!!!!!!!!!!!");
+      locations = new ArrayList<>();//if locations.size()==0, 0r >1 =>invalid: set to empty array
+    }
+    return locations;
+  }
+  
+  /*update a location entity stored in datastore*/
+  public void updateLocation(String locationId, double latitude, double longitude) {
+    try {
+      Key locationKey = KeyFactory.createKey("Location", locationId);
+      Entity locationEntity = datastore.get(locationKey);
+      locationEntity.setProperty("longitude", longitude);
+      locationEntity.setProperty("latitude", latitude);
+      datastore.put(locationEntity);
+    } catch (Exception e) {
+      System.out.println("error: " + e.toString());
+    }
+  }
+  
+  /*stores a notification entity for a user*/
+  public void storeNotification(Notification notification)
+  {
+      /*creating notification entity*/
+      Entity notificationEntity = new Entity("Notification", notification.getId().toString());
+      notificationEntity.setProperty("user", notification.getUser());
+      notificationEntity.setProperty("text", notification.getText());
+      notificationEntity.setProperty("timestamp", notification.getTimestamp());
+      notificationEntity.setProperty("link", notification.getLink());
+      datastore.put(notificationEntity);
+  }
+  
+  /*returns a list of notifications for a user*/
+  public List<Notification> getNotifications(String user)
+  {
+      List<Notification> notifications = new ArrayList<Notification>();
+      Query query =
+            new Query("Notification")
+                    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+                    .addSort("timestamp", SortDirection.DESCENDING);
+      PreparedQuery results = datastore.prepare(query); 
+      for(Entity entity: results.asIterable())
+      {
+        try {
+          String idString = entity.getKey().getName();
+          UUID id = UUID.fromString(idString);
+          String text = (String) entity.getProperty("text");
+          long timestamp = (long) entity.getProperty("timestamp");
+          String link = (String) entity.getProperty("link");
+
+          Notification notification = new Notification(link, id, user, text, timestamp);
+          notifications.add(notification);
+        } catch (Exception e) {
+          System.err.println("Error reading notification.");
+          System.err.println(entity.toString());
+          e.printStackTrace();
+        }
+      }
+      return notifications;
   }
 }
 
