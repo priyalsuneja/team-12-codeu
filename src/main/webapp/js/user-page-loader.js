@@ -468,6 +468,7 @@ fetch('/blobstore-upload-url')
 	  
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
+  addLoginOrLogoutLinkToNavigation();
   setPageTitle();
   fetchUserType();
   createMap();
@@ -715,4 +716,53 @@ function editCharityInfo(infoDiv) {
   }
   
   infoDiv.appendChild(editInfoBtn);
+}
+
+/**
+ * Adds a login or logout link to the page, depending on whether the user is
+ * already logged in.
+ */
+function addLoginOrLogoutLinkToNavigation() {
+  const navigationElement = document.getElementById('navigation');
+  if (!navigationElement) {
+    console.warn('Navigation element not found!');
+    return;
+  }
+
+  fetch('/login-status')
+      .then((response) => {
+        return response.json();
+      })
+      .then((loginStatus) => {
+        if (loginStatus.isLoggedIn) {
+          navigationElement.appendChild(
+              createListItem(createLink('/logout', 'Logout')));
+        } else {
+          console.log("error: in userpage, but not logged in!");
+        }
+      });
+}
+
+/**
+ * Creates an li element.
+ * @param {Element} childElement
+ * @return {Element} li element
+ */
+function createListItem(childElement) {
+  const listItemElement = document.createElement('li');
+  listItemElement.appendChild(childElement);
+  return listItemElement;
+}
+
+/**
+ * Creates an anchor element.
+ * @param {string} url
+ * @param {string} text
+ * @return {Element} Anchor element
+ */
+function createLink(url, text) {
+  const linkElement = document.createElement('a');
+  linkElement.appendChild(document.createTextNode(text));
+  linkElement.href = url;
+  return linkElement;
 }
