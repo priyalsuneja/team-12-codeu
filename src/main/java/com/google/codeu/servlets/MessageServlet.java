@@ -160,7 +160,6 @@ public class MessageServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     if(request.getParameter("text")!=null) //then it's a message, otherwise it's a sticker
     {
-        System.out.println("********************in post message");
         String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 
       /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
@@ -206,7 +205,7 @@ public class MessageServlet extends HttpServlet {
         /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
         String messageText = "";
         List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
-        if(imageBlobKeys==null) {
+        if(imageBlobKeys==null || imageBlobKeys.isEmpty()) {
             response.sendRedirect("/donors.html");
             return;
         }
