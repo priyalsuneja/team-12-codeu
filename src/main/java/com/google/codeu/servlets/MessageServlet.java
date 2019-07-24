@@ -158,44 +158,98 @@ public class MessageServlet extends HttpServlet {
     }
 
     String user = userService.getCurrentUser().getEmail();
-    String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-    
-  /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
-    String textReplaced = tagURLs(text);
-    
-  /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
-    String messageText = textReplaced;
-    List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
-    /*get image url ulpoaded to Blobstore*/
-    List<String> imageBlobUrls = getUploadedFileUrl(imageBlobKeys);
-    /*add image tag for uploaded image url at the end of message text*/
-    if(imageBlobUrls!=null && !imageBlobUrls.isEmpty()) 
+    if(request.getParameter("text")!=null) //then it's a message, otherwise it's a sticker
     {
-      for(int i = 0; i<imageBlobUrls.size(); i++)
-      {
-        //add image tag for the image user uploaded to Blobstore
-        messageText += "<img src=\"" + imageBlobUrls.get(i) + "\" />"; 
-        
-        //Get labels of the image and add it after image tag
-        byte[] blobBytes = getBlobBytes(imageBlobKeys.get(i));
-        List<EntityAnnotation> imageLabels = getImageLabels(blobBytes);
-		messageText = messageText+"<"; //hiding tags using <>
-	if(imageLabels != null)
-	{
-          for(EntityAnnotation label : imageLabels)
-          {
-            messageText+= label.getDescription() + ": " + label.getScore()+", ";
-          }
-	}
-        messageText = messageText+">";
-      }
-    }
-    
-    /*storing the message in Datastore*/
-    Message message = new Message(user, messageText);
-    datastore.storeMessage(message);
+        System.out.println("********************in post message");
+        String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 
-    response.sendRedirect("/user-page.html?user=" + user);
+      /*replace file urls with corresponding html tags(<img>, <video>, <audio>)*/
+        String textReplaced = tagURLs(text);
+
+      /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
+        String messageText = textReplaced;
+        List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
+        /*get image url ulpoaded to Blobstore*/
+        List<String> imageBlobUrls = getUploadedFileUrl(imageBlobKeys);
+        /*add image tag for uploaded image url at the end of message text*/
+        if(imageBlobUrls!=null && !imageBlobUrls.isEmpty()) 
+        {
+          for(int i = 0; i<imageBlobUrls.size(); i++)
+          {
+            //add image tag for the image user uploaded to Blobstore
+            messageText += "<img src=\"" + imageBlobUrls.get(i) + "\" />"; 
+        
+            //Get labels of the image and add it after image tag
+            byte[] blobBytes = getBlobBytes(imageBlobKeys.get(i));
+            List<EntityAnnotation> imageLabels = getImageLabels(blobBytes);
+            //messageText = messageText+"<"; //hiding tags using <>
+            messageText = messageText+"Tags: ";
+            if(imageLabels != null)
+            {
+              for(EntityAnnotation label : imageLabels)
+              {
+                //messageText+= label.getDescription() + ": " + label.getScore()+", ";
+                messageText+= label.getDescription() + ", ";
+              }
+            }
+            //messageText = messageText+">";
+          }
+        }
+
+        /*storing the message in Datastore*/
+        Message message = new Message(user, messageText);
+        datastore.storeMessage(message);
+        response.sendRedirect("/user-page.html?user=" + user);
+    }
+    else //image is a sticker
+    {
+        /*adding image tags and corresponding labels for the image file uploaded to Blobstore to the end of message*/
+        String messageText = "";
+        List<BlobKey> imageBlobKeys = getBlobKeys(request, "image");
+        if(imageBlobKeys==null) {
+            response.sendRedirect("/donors.html");
+            return;
+        }
+        /*get image url ulpoaded to Blobstore*/
+        List<String> imageBlobUrls = getUploadedFileUrl(imageBlobKeys);
+        
+        
+        if(imageBlobUrls!=null && !imageBlobUrls.isEmpty()) 
+        {
+            byte[] blobBytes = getBlobBytes(imageBlobKeys.get(0));
+            //add image tag for the image user uploaded to Blobstore
+            String messageUrl = "<img src=\"" + imageBlobUrls.get(0) + "\" />" + " <hr/>"; 
+            List<EntityAnnotation> imageTexts = detectText(blobBytes);
+            if(imageTexts != null)
+            {
+              for(EntityAnnotation imageText : imageTexts)
+              {
+                messageText+= imageText.getDescription() + ", ";
+              }
+            }
+            
+           if(messageText.toLowerCase().contains("donated") || messageText.toLowerCase().contains("gave") || messageText.toLowerCase().contains("donor") || messageText.toLowerCase().contains("donate") || messageText.toLowerCase().contains("donation")) 
+           {
+                if(messageText.toLowerCase().contains("blood"))
+                    messageText= messageUrl + "Thanks for donating blood! you can save a life!";
+                else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar"))
+                    messageText= messageUrl + "Thanks for donating money! you make life better for someone!";
+                else if(messageText.toLowerCase().contains("organ"))
+                    messageText= messageUrl + "Thanks for donating an organ! you gave another chance for life to another person!";
+                else
+                    messageText= messageUrl + "Thanks for donating! Any donation is valuable!";
+            }
+           else
+           {
+               response.sendRedirect("/donors.html?error=NotDonation");
+               return;
+           }
+            
+            Message sticker = new Message(user, messageText);
+            datastore.storeSticker(sticker);
+            response.sendRedirect("/donors.html");
+        }
+    }
   }
   
   /**
@@ -399,4 +453,43 @@ public class MessageServlet extends HttpServlet {
 
     return imageResponse.getLabelAnnotationsList();
   }
+
+
+    /*text detection*/
+    private List<EntityAnnotation> detectText(byte[] imgBytes) {
+      List<AnnotateImageRequest> requests = new ArrayList<>();
+      List<EntityAnnotation> annotations = new ArrayList<>();
+      ByteString byteString = ByteString.copyFrom(imgBytes);
+      Image image = Image.newBuilder().setContent(byteString).build();
+
+      Feature feat = Feature.newBuilder().setType(Feature.Type.TEXT_DETECTION).build();
+      AnnotateImageRequest request =
+          AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(image).build();
+      requests.add(request);
+
+      try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
+        BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
+        List<AnnotateImageResponse> responses = response.getResponsesList();
+
+        for (AnnotateImageResponse res : responses) {
+          if (res.hasError()) {
+            System.out.println("Error: %s\n" + res.getError().getMessage());
+            return null;
+          }
+
+          // For full list of available annotations, see http://g.co/cloud/vision/docs
+          for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
+                      annotations.add(annotation);
+            //out.printf("Text: %s\n", annotation.getDescription());
+            //out.printf("Position : %s\n", annotation.getBoundingPoly());
+          }
+        }
+            return annotations;
+      }
+      catch(Exception e)
+      {
+          System.out.println("error: "+e.getMessage());
+          return null;
+      }
+    }
 }

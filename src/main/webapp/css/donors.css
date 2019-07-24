@@ -33,49 +33,6 @@
   background-size: cover;
 }
 
-#info-div {
-  margin:50px;	
-}
-
-#charity-info-div {
-	margin:10px;
-}
-
-#info-div a {
-  padding:10px;
-  margin:10px;
-  text-decoration:none;  
-  font-family:Impact, Haettenschweiler, serif;
-  border-radius:5px;
-}
-
-#website-link {
-	background:rgb(190, 180, 80);
-	color:white;
-}
-
-#website-link:hover {
-  color:rgb(70, 70, 70);
-}
-
-#contact-link {
-	background-color:rgb(120, 165, 90);
-	color:white;
-}
-
-#contact-link:hover {
-  color:rgb(70, 70, 70);
-}
-
-#donate-link {
-	background-color:rgb(222, 143, 53);
-	color:white;
-}
-
-#donate-link:hover {
-  color:rgb(70, 70, 70);
-  
-}
 
 #all-content button {
 	margin:5px;
@@ -114,76 +71,6 @@ button:focus {outline:0;}
   font-size: 12px;
   
 }
-   
-#notification-container {
-  visibility: hidden;
-  position: fixed;
-  top:60px;
-  left:5%;
-  width: 25%;
-  max-height:50%;  
-  background-color:white;
-  border-bottom-style:solid;
-  border-bottom-width:1px;
-  font-size:10px;
-  z-index:999;
-}
-
-#user-status-div {
-	font-size : 5vh;
-	color: rgb(120, 165, 90);
-	margin-top:10;
-	margin-bottom:10px;
-}
-
-textarea {
-  margin-top:10px;
-  border-radius:5px;
-  width:95%;
-  padding:1%;
-}
-
-#about-me-container {
-	margin-top:5vh;
-}
-
-#about-me-form {
-	margin-top:10vh;
-	margin-bottom:10vh;
-}
-
-.policy-div {
-  color:rgb(222, 143, 53);
-  font-size:14px;
-  font-weight:100;
-  margin-bottom:10px;
-  border-radius:10px;
-}
-
-.privacy-policy p {
-  margin:0;
-  padding:0;
-}
-
-#map-container {
-  width:100%;
-  z-index:1;
-} 
-
-#map{
-  border: thin solid black;
-  width: 100%;
-  height: 50vh;
-}	
-
-#location-form {
-  width:100%;
-}
-
-#search-container {
-	margin-top:50px;
-	margin-bottom:20px;
-}
 
 #message-input {
   height: 100px;
@@ -194,7 +81,8 @@ textarea {
 .message-div {
   border: thin solid black;
   border-radius: 5px;
-  width:40vw;
+  width:20vw;
+  height:20vw;
   margin-left:auto;
   margin-right:auto;
   margin-top: 50px;
@@ -213,41 +101,20 @@ textarea {
 /* Give the message body a margin so the text
    isn't too close to the border. */
 .message-body {
+  height:90%;
   margin-top: 5px;
   margin-left:5px;
   margin-right:5px;
-  font-size:12px;
+  font-size:10px;
   font-weight:lighter;
-}
-
-/*for styling the imagaes in message body and their maximum width*/
-.message-body img {
-  display: block;
-  margin-top: 5px;
-  max-width: 100%;
-}
-
-/*Styling videos in message body*/
-.message-body video {
-  display: block;
-  margin-top: 5px;
-  max-width: 100%;
-}
-
-/*Styling audios in message body*/
-.message-body audio {
-  display: block;
-  margin-top: 5px;
-  width: 100%;
 }
 
 .message button {
 	display:inline-block;
 }
 
-/* Use this to hide certain elements like forms if the
-   user is not logged in or viewing their own page. */
-.hidden {
-  display: none;
+#all-content img {
+  height:60%;
 }
+
 
