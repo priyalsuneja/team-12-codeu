@@ -227,11 +227,11 @@ public class MessageServlet extends HttpServlet {
               }
             }
             
-           if(messageText.toLowerCase().contains("donated") || messageText.toLowerCase().contains("gave") || messageText.toLowerCase().contains("donor") || messageText.toLowerCase().contains("donate") || messageText.toLowerCase().contains("donation")) 
+           if(messageText.toLowerCase().contains("donated") || messageText.toLowerCase().contains("gave, blood") || messageText.toLowerCase().contains("donor") || messageText.toLowerCase().contains("donation")) 
            {
                 if(messageText.toLowerCase().contains("blood"))
                     messageText= messageUrl + "Thanks for donating blood! you can save a life!";
-                else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar"))
+                else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar") || messageText.toLowerCase().contains("$"))
                     messageText= messageUrl + "Thanks for donating money! you make life better for someone!";
                 else if(messageText.toLowerCase().contains("organ"))
                     messageText= messageUrl + "Thanks for donating an organ! you gave another chance for life to another person!";

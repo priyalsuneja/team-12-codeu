@@ -7,7 +7,7 @@ function showErrorMessage() {
 	  errorMsg.innerHTML= "";
   }
   else {
-	  errorMsg.innerHTML= "Invalid file. Not a donation sticker!";
+	  errorMsg.innerHTML= "Image you upoaded it not recognized as a donation sticker!";
   }
 }
   

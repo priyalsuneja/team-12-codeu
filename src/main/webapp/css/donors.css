@@ -117,4 +117,8 @@ button:focus {outline:0;}
   height:60%;
 }
 
+#errMsg {
+	color:red;
+}
+
 
