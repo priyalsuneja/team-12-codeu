@@ -231,7 +231,7 @@ public class MessageServlet extends HttpServlet {
 		   {
                 if(messageText.toLowerCase().contains("blood"))
                     messageText= messageUrl + "Thanks for donating blood! you can save a life!";
-                else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar") || messageText.toLowerCase().contains("$"))
+                else if(containsKeyword(messageText, "money", "dollar", "$"))
                     messageText= messageUrl + "Thanks for donating money! you make life better for someone!";
                 else if(messageText.toLowerCase().contains("organ"))
                     messageText= messageUrl + "Thanks for donating an organ! you gave another chance for life to another person!";
