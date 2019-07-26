@@ -7,7 +7,7 @@ function showErrorMessage() {
 	  errorMsg.innerHTML= "";
   }
   else {
-	  errorMsg.innerHTML= "Image you upoaded it not recognized as a donation sticker!";
+	  errorMsg.innerHTML= "Image you uploaded it not recognized as a donation sticker!";
   }
 }
   
