@@ -226,10 +226,9 @@ public class MessageServlet extends HttpServlet {
                 messageText+= imageText.getDescription() + ", ";
               }
             }
-			System.out.println("************************ Text detected: "+messageText+"*************************");
             
-           if(messageText.toLowerCase().contains("donated") || messageText.toLowerCase().contains("gave, blood") || messageText.toLowerCase().contains("donor") || messageText.toLowerCase().contains("donation")) 
-           {
+           if(containsKeyword(messageText, "donated", "gave, blood", "donor", "donation"))
+		   {
                 if(messageText.toLowerCase().contains("blood"))
                     messageText= messageUrl + "Thanks for donating blood! you can save a life!";
                 else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar") || messageText.toLowerCase().contains("$"))
@@ -250,6 +249,16 @@ public class MessageServlet extends HttpServlet {
             response.sendRedirect("/donors.html");
         }
     }
+  }
+  
+  /*helper function */
+  private boolean containsKeyword(String text, String ... terms) {
+	  for(String term: terms) 
+      {
+        if(text.toLowerCase().contains(term))
+          return true;			
+      }
+	  return false;
   }
   
   /**
