@@ -226,17 +226,18 @@ public class MessageServlet extends HttpServlet {
                 messageText+= imageText.getDescription() + ", ";
               }
             }
+			System.out.println("************************ Text detected: "+messageText+"*************************");
             
            if(messageText.toLowerCase().contains("donated") || messageText.toLowerCase().contains("gave, blood") || messageText.toLowerCase().contains("donor") || messageText.toLowerCase().contains("donation")) 
            {
                 if(messageText.toLowerCase().contains("blood"))
-                    messageText+= messageUrl + "Thanks for donating blood! you can save a life!";
+                    messageText= messageUrl + "Thanks for donating blood! you can save a life!";
                 else if(messageText.toLowerCase().contains("money") || messageText.toLowerCase().contains("dollar") || messageText.toLowerCase().contains("$"))
-                    messageText+= messageUrl + "Thanks for donating money! you make life better for someone!";
+                    messageText= messageUrl + "Thanks for donating money! you make life better for someone!";
                 else if(messageText.toLowerCase().contains("organ"))
-                    messageText+= messageUrl + "Thanks for donating an organ! you gave another chance for life to another person!";
+                    messageText= messageUrl + "Thanks for donating an organ! you gave another chance for life to another person!";
                 else
-                    messageText+= messageUrl + "Thanks for donating! Any donation is valuable!";
+                    messageText= messageUrl + "Thanks for donating! Any donation is valuable!";
             }
            else
            {
