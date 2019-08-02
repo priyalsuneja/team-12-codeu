@@ -1,5 +1,6 @@
 package com.google.codeu.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,22 +12,29 @@ public class Event {
   private String description;
   private long timestamp;
   private List <String> tags;
-  private boolean volunteer;
+  private String title;
+  private List<String> volunteerList = new ArrayList<String>();
   /**
    * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
    * random ID and uses the current system time for the creation time.
    */
-  public Event(List<String> tags,String user, String description,boolean volunteer) {
-    this(tags,UUID.randomUUID(), user, description, System.currentTimeMillis(),volunteer);
+  
+  public Event(List<String> tags,String user, String description,String title) {
+	  this(tags,UUID.randomUUID(), user, description, System.currentTimeMillis(),title, new ArrayList<String>());
+  }
+  
+  public Event(List<String> tags,String user, String description,String title,List<String> volunteerList) {
+    this(tags,UUID.randomUUID(), user, description, System.currentTimeMillis(),title, volunteerList);
   }
 
-  public Event(List<String> tags,UUID id,String user, String description, long timestamp, boolean volunteer) {
+  public Event(List<String> tags,UUID id,String user, String description, long timestamp, String title, List<String> volunteerList) {
 	this.tags = tags;
     this.id = id;
     this.user = user;
     this.description = description;
     this.timestamp = timestamp;
-    this.volunteer = volunteer;
+    this.title = title;
+    this.volunteerList = volunteerList;
   }
 
 /**
@@ -99,18 +107,33 @@ public void setTags(List<String> tags) {
 	this.tags = tags;
 }
 
+
 /**
- * @return the volunteer
+ * @return the title
  */
-public boolean isVolunteer() {
-	return volunteer;
+public String getTitle() {
+	return title;
 }
 
 /**
- * @param volunteer the volunteer to set
+ * @param title the title to set
  */
-public void setVolunteer(boolean volunteer) {
-	this.volunteer = volunteer;
+public void setTitle(String title) {
+	this.title = title;
 }
 
+public void addVolunteer(String user) {
+	volunteerList.add(user);
+}
+
+/**
+ * @param volunteerList the volunteerList to set
+ */
+public void setVolunteerList(List<String> volunteerList) {
+	this.volunteerList = volunteerList;
+}
+
+public List<String> getVolunteerList(){
+	return volunteerList;
+}
 }
